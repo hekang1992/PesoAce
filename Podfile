@@ -13,8 +13,6 @@ target 'PesoAce' do
 
   pod 'DeviceKit', '~> 5.2.2'
   
-  pod 'Alamofire', '~> 5.8.1'
-  
   pod 'SnapKit', '~> 5.7.1'
   
   pod 'Kingfisher', '~> 7.11.0'
@@ -28,6 +26,8 @@ target 'PesoAce' do
   pod 'IQKeyboardManagerSwift', '~> 6.5.16'
   
   pod 'SAMKeychain', '~> 1.5.3'
+  
+  pod 'Alamofire', '~> 5.8.1'
   
   pod 'lottie-ios', '~> 4.3.4'
   
