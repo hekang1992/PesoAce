@@ -7,14 +7,13 @@
 
 import UIKit
 
-class PLALaunchViewController: UIViewController {
+class PLALaunchViewController: PLABaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         panduanWangLuoWork()
-        view.backgroundColor = .white
     }
 }
 

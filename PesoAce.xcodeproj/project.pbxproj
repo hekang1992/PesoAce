@@ -9,11 +9,12 @@
 /* Begin PBXBuildFile section */
 		18982DF32C5E165A0036F819 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18982DF22C5E165A0036F819 /* AppDelegate.swift */; };
 		18982DFC2C5E165B0036F819 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18982DFB2C5E165B0036F819 /* Assets.xcassets */; };
-		18982DFF2C5E165B0036F819 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 18982DFE2C5E165B0036F819 /* Base */; };
 		18982E0E2C5E17500036F819 /* DeviceInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18982E0D2C5E17500036F819 /* DeviceInfo.swift */; };
 		18982E112C5E1BC70036F819 /* NetInfoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18982E102C5E1BC70036F819 /* NetInfoManager.swift */; };
 		18982E152C5E263C0036F819 /* PLALaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18982E142C5E263C0036F819 /* PLALaunchViewController.swift */; };
 		18982E172C5E26C90036F819 /* PLANavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18982E162C5E26C90036F819 /* PLANavigationController.swift */; };
+		18982E192C5E27770036F819 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18982E182C5E27770036F819 /* LaunchScreen.storyboard */; };
+		18982E1B2C5E28890036F819 /* PLABaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18982E1A2C5E28890036F819 /* PLABaseViewController.swift */; };
 		7A111470DB6E396641AE5453 /* Pods_PesoAce.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA7B7D9C7C765427C57192B0 /* Pods_PesoAce.framework */; };
 /* End PBXBuildFile section */
 
@@ -21,13 +22,14 @@
 		18982DEF2C5E165A0036F819 /* PesoAce.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PesoAce.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		18982DF22C5E165A0036F819 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		18982DFB2C5E165B0036F819 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		18982DFE2C5E165B0036F819 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		18982E002C5E165B0036F819 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		18982E0D2C5E17500036F819 /* DeviceInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceInfo.swift; sourceTree = "<group>"; };
 		18982E102C5E1BC70036F819 /* NetInfoManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetInfoManager.swift; sourceTree = "<group>"; };
 		18982E122C5E1F5B0036F819 /* PesoAce.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PesoAce.entitlements; sourceTree = "<group>"; };
 		18982E142C5E263C0036F819 /* PLALaunchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PLALaunchViewController.swift; sourceTree = "<group>"; };
 		18982E162C5E26C90036F819 /* PLANavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PLANavigationController.swift; sourceTree = "<group>"; };
+		18982E182C5E27770036F819 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		18982E1A2C5E28890036F819 /* PLABaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PLABaseViewController.swift; sourceTree = "<group>"; };
 		28450693720077835F00ECDB /* Pods-PesoAce.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PesoAce.debug.xcconfig"; path = "Target Support Files/Pods-PesoAce/Pods-PesoAce.debug.xcconfig"; sourceTree = "<group>"; };
 		5DBA2829A6F9E91179DC6C59 /* Pods-PesoAce.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PesoAce.release.xcconfig"; path = "Target Support Files/Pods-PesoAce/Pods-PesoAce.release.xcconfig"; sourceTree = "<group>"; };
 		CA7B7D9C7C765427C57192B0 /* Pods_PesoAce.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PesoAce.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -84,7 +86,7 @@
 			isa = PBXGroup;
 			children = (
 				18982DF22C5E165A0036F819 /* AppDelegate.swift */,
-				18982DFD2C5E165B0036F819 /* LaunchScreen.storyboard */,
+				18982E182C5E27770036F819 /* LaunchScreen.storyboard */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -147,6 +149,7 @@
 			children = (
 				18982E142C5E263C0036F819 /* PLALaunchViewController.swift */,
 				18982E162C5E26C90036F819 /* PLANavigationController.swift */,
+				18982E1A2C5E28890036F819 /* PLABaseViewController.swift */,
 			);
 			path = LaunchVc;
 			sourceTree = "<group>";
@@ -197,6 +200,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
+				CLASSPREFIX = PLA;
 				LastSwiftUpdateCheck = 1540;
 				LastUpgradeCheck = 1540;
 				TargetAttributes = {
@@ -229,7 +233,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				18982DFC2C5E165B0036F819 /* Assets.xcassets in Resources */,
-				18982DFF2C5E165B0036F819 /* Base in Resources */,
+				18982E192C5E27770036F819 /* LaunchScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -287,21 +291,11 @@
 				18982E112C5E1BC70036F819 /* NetInfoManager.swift in Sources */,
 				18982E152C5E263C0036F819 /* PLALaunchViewController.swift in Sources */,
 				18982E172C5E26C90036F819 /* PLANavigationController.swift in Sources */,
+				18982E1B2C5E28890036F819 /* PLABaseViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXVariantGroup section */
-		18982DFD2C5E165B0036F819 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				18982DFE2C5E165B0036F819 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		18982E012C5E165B0036F819 /* Debug */ = {
@@ -439,7 +433,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PesoAce/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -478,7 +472,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PesoAce/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
