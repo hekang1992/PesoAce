@@ -1,0 +1,20 @@
+PODS:
+  - DeviceKit (5.2.2)
+  - SystemServices (2.0.1)
+
+DEPENDENCIES:
+  - DeviceKit (~> 5.2.2)
+  - SystemServices (~> 2.0.1)
+
+SPEC REPOS:
+  trunk:
+    - DeviceKit
+    - SystemServices
+
+SPEC CHECKSUMS:
+  DeviceKit: e36aaf2a0d142ef0b4fac2007649a4414af234be
+  SystemServices: 7af348493ece8951449b476c41532df72569b181
+
+PODFILE CHECKSUM: a11058b49d6d57108b5b01f20c97cc23773d498d
+
+COCOAPODS: 1.14.3
