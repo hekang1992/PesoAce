@@ -11,29 +11,88 @@ import AdSupport
 import SystemConfiguration
 import SystemServices
 import SystemConfiguration.CaptiveNetwork
+import DeviceKit
 
 let Key_Service = "Key_Service"
-
 let Key_Account = "Key_Account"
-
-// 宽度
 let SCREEN_WIDTH = UIScreen.main.bounds.size.width
-// 高度
 let SCREEN_HEIGHT = UIScreen.main.bounds.size.height
 
-
 class DeviceInfo: NSObject {
-
     
-    
-    
-    
-    
+    static func getDeviceInfo() -> [String: Any] {
+        
+        var dict: [String: Any] = ["sneeze": "iOS",
+                                   "stretches": SystemServices().systemsVersion ?? "",
+                                   "vivid": getLoginTime(),
+                                   "amazingly": Bundle.main.bundleIdentifier ?? ""]
+        
+        dict["devoted"] = ["soap": SystemServices().batteryLevel,
+                           "actor": SystemServices().charging ? 1 : 0]
+        
+        dict["gel"] = ["brushing": getIdfv(),
+                       "flossing": getIDFA(),
+                       "lessons": getCurrentWifiMac(),
+                       "sweetened": getCurrentTime(),
+                       "backed": isUsingProxy(),
+                       "bravery": isVPNConnected(),
+                       "goshkhor": isJailBreak(),
+                       "is_simulator": Device.current.isSimulator ? "1" : "0",
+                       "sling": SystemServices().language ?? "",
+                       "overthrew": SystemServices().carrierName ?? "",
+                       "laced": NetInfoManager.shared.typeSty,
+                       "disgusting": NSTimeZone.system.abbreviation() ?? "",
+                       "coy": timeSinceDeviceBoot()]
+        
+        dict["earlobe"] = ["pinched": "",
+                           "slicing": Device.current.name ?? "",
+                           "apply":"",
+                           "slaughter": ScreenHeight(),
+                           "cleansing": UIDevice.current.name,
+                           "traitors": ScreenWidth(),
+                           "snickering": Device.current.description,
+                           "enjoyable": String(Device.current.diagonal),
+                           "leash": Device.current.systemVersion ?? ""]
+        
+        let wifiInfo: [String: Any] = ["asthma": getAppWifiSSIDInfo(),
+                                       "stoning": getAppWifiBSSIDInfo(),
+                                       "lessons": getCurrentWifiMac(),
+                                       "shrapnel": getAppWifiSSIDInfo()]
+        
+        
+        dict["unexpectedly"] = ["raping": SSNetworkInfo.currentIPAddress() ?? "",
+                                "funny": "0",
+                                "meymanah": wifiInfo]
+        
+        dict["battlefield"] = ["imaginable": freeDisk(),
+                               "kidney": allDisk(),
+                               "peeing": totalMemory(),
+                               "prisoners": activeMemoryinRaw()]
+        
+        return dict
+    }
     
 }
 
-
 extension DeviceInfo {
+    
+    static func timeSinceDeviceBoot() -> String {
+        let systemUptime = ProcessInfo.processInfo.systemUptime
+        return String(format: "%.0f", systemUptime * 1000)
+    }
+    
+    static func getCurrentTime() -> String {
+        let currentTime = Date().timeIntervalSince1970
+        let currentTimeMillis = String(Int64(currentTime * 1000))
+        return currentTimeMillis
+    }
+    
+    static func getLoginTime() -> String {
+        let loginTime: TimeInterval = ProcessInfo.processInfo.systemUptime
+        let timeDate = Date(timeIntervalSinceNow: 0 - loginTime)
+        let timeSp = String(format: "%ld", Int(timeDate.timeIntervalSince1970 * 1000))
+        return timeSp
+    }
     
     static func getIdfv() -> String {
         if let uuid = SAMKeychain.password(forService: Key_Service, account: Key_Account), !uuid.isEmpty {
@@ -42,7 +101,6 @@ extension DeviceInfo {
             if let deviceIDFV = UIDevice.current.identifierForVendor?.uuidString {
                 let success = SAMKeychain.setPassword(deviceIDFV, forService: Key_Service, account: Key_Account)
                 if success {
-                    print("获取的UUID is \(deviceIDFV)")
                     return deviceIDFV
                 } else {
                     return ""

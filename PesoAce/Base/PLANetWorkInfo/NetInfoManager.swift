@@ -1,5 +1,5 @@
 //
-//  NetInfo.swift
+//  NetInfoManager.swift
 //  PesoAce
 //
 //  Created by apple on 2024/8/3.
@@ -8,7 +8,7 @@
 import Alamofire
 import Reachability
 
-class NetInfo {
+class NetInfoManager {
 
     enum NetworkStatus {
         case none
@@ -18,7 +18,7 @@ class NetInfo {
     
     var typeSty: String = "NONE"
     
-    static let shared = NetInfo()
+    static let shared = NetInfoManager()
     
     private let reachability = try!Reachability()
     
