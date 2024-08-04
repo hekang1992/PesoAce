@@ -15,6 +15,11 @@
 		18982E172C5E26C90036F819 /* PLANavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18982E162C5E26C90036F819 /* PLANavigationController.swift */; };
 		18982E192C5E27770036F819 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18982E182C5E27770036F819 /* LaunchScreen.storyboard */; };
 		18982E1B2C5E28890036F819 /* PLABaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18982E1A2C5E28890036F819 /* PLABaseViewController.swift */; };
+		18982E1D2C5F4A9B0036F819 /* PLAAFNetWorkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18982E1C2C5F4A9B0036F819 /* PLAAFNetWorkManager.swift */; };
+		18982E202C5F4B0E0036F819 /* TotalModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18982E1F2C5F4B0E0036F819 /* TotalModel.swift */; };
+		18982E222C5F4BC90036F819 /* PLALoginFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18982E212C5F4BC90036F819 /* PLALoginFactory.swift */; };
+		18982E242C5F4E820036F819 /* PLALoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18982E232C5F4E820036F819 /* PLALoginViewController.swift */; };
+		18982E262C5F4F670036F819 /* PLABaseConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18982E252C5F4F670036F819 /* PLABaseConfig.swift */; };
 		7A111470DB6E396641AE5453 /* Pods_PesoAce.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA7B7D9C7C765427C57192B0 /* Pods_PesoAce.framework */; };
 /* End PBXBuildFile section */
 
@@ -30,6 +35,11 @@
 		18982E162C5E26C90036F819 /* PLANavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PLANavigationController.swift; sourceTree = "<group>"; };
 		18982E182C5E27770036F819 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		18982E1A2C5E28890036F819 /* PLABaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PLABaseViewController.swift; sourceTree = "<group>"; };
+		18982E1C2C5F4A9B0036F819 /* PLAAFNetWorkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PLAAFNetWorkManager.swift; sourceTree = "<group>"; };
+		18982E1F2C5F4B0E0036F819 /* TotalModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TotalModel.swift; sourceTree = "<group>"; };
+		18982E212C5F4BC90036F819 /* PLALoginFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PLALoginFactory.swift; sourceTree = "<group>"; };
+		18982E232C5F4E820036F819 /* PLALoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PLALoginViewController.swift; sourceTree = "<group>"; };
+		18982E252C5F4F670036F819 /* PLABaseConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PLABaseConfig.swift; sourceTree = "<group>"; };
 		28450693720077835F00ECDB /* Pods-PesoAce.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PesoAce.debug.xcconfig"; path = "Target Support Files/Pods-PesoAce/Pods-PesoAce.debug.xcconfig"; sourceTree = "<group>"; };
 		5DBA2829A6F9E91179DC6C59 /* Pods-PesoAce.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PesoAce.release.xcconfig"; path = "Target Support Files/Pods-PesoAce/Pods-PesoAce.release.xcconfig"; sourceTree = "<group>"; };
 		CA7B7D9C7C765427C57192B0 /* Pods_PesoAce.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PesoAce.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -115,6 +125,7 @@
 		18982E0A2C5E16D70036F819 /* Login */ = {
 			isa = PBXGroup;
 			children = (
+				18982E232C5F4E820036F819 /* PLALoginViewController.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -122,8 +133,9 @@
 		18982E0B2C5E16E40036F819 /* Base */ = {
 			isa = PBXGroup;
 			children = (
-				18982E0F2C5E1B9F0036F819 /* PLANetWorkInfo */,
+				18982E1E2C5F4AFC0036F819 /* Model */,
 				18982E0C2C5E17240036F819 /* PLADeviceInfo */,
+				18982E0F2C5E1B9F0036F819 /* PLANetWorkInfo */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -132,6 +144,8 @@
 			isa = PBXGroup;
 			children = (
 				18982E0D2C5E17500036F819 /* DeviceInfo.swift */,
+				18982E212C5F4BC90036F819 /* PLALoginFactory.swift */,
+				18982E252C5F4F670036F819 /* PLABaseConfig.swift */,
 			);
 			path = PLADeviceInfo;
 			sourceTree = "<group>";
@@ -140,6 +154,7 @@
 			isa = PBXGroup;
 			children = (
 				18982E102C5E1BC70036F819 /* NetInfoManager.swift */,
+				18982E1C2C5F4A9B0036F819 /* PLAAFNetWorkManager.swift */,
 			);
 			path = PLANetWorkInfo;
 			sourceTree = "<group>";
@@ -152,6 +167,14 @@
 				18982E1A2C5E28890036F819 /* PLABaseViewController.swift */,
 			);
 			path = LaunchVc;
+			sourceTree = "<group>";
+		};
+		18982E1E2C5F4AFC0036F819 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				18982E1F2C5F4B0E0036F819 /* TotalModel.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		3074FF24BAC873EAF461498A /* Frameworks */ = {
@@ -286,11 +309,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18982E242C5F4E820036F819 /* PLALoginViewController.swift in Sources */,
+				18982E202C5F4B0E0036F819 /* TotalModel.swift in Sources */,
 				18982DF32C5E165A0036F819 /* AppDelegate.swift in Sources */,
+				18982E262C5F4F670036F819 /* PLABaseConfig.swift in Sources */,
+				18982E222C5F4BC90036F819 /* PLALoginFactory.swift in Sources */,
 				18982E0E2C5E17500036F819 /* DeviceInfo.swift in Sources */,
 				18982E112C5E1BC70036F819 /* NetInfoManager.swift in Sources */,
 				18982E152C5E263C0036F819 /* PLALaunchViewController.swift in Sources */,
 				18982E172C5E26C90036F819 /* PLANavigationController.swift in Sources */,
+				18982E1D2C5F4A9B0036F819 /* PLAAFNetWorkManager.swift in Sources */,
 				18982E1B2C5E28890036F819 /* PLABaseViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -434,14 +462,14 @@
 				INFOPLIST_FILE = PesoAce/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.zhuanyong.test;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -473,14 +501,14 @@
 				INFOPLIST_FILE = PesoAce/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.zhuanyong.test;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
