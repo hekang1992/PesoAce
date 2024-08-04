@@ -65,7 +65,6 @@ class PLAAFNetWorkManager: NSObject {
                 }
             }
         }
-        
     }
     
     func uploadImageAPI(params: [String: Any]?,

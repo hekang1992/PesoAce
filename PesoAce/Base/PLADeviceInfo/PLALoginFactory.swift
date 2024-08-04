@@ -11,6 +11,14 @@ import DeviceKit
 let PLA_LOGIN = "PLA_LOGIN"
 let PLA_SESSIONID = "PLA_SESSIONID"
 
+var IS_LOGIN: Bool {
+    if let sessionID = UserDefaults.standard.object(forKey: PLA_SESSIONID) as? String {
+        return !sessionID.isEmpty
+    } else {
+        return false
+    }
+}
+
 class PLALoginFactory: NSObject {
 
     static func getLoginParas() -> [String: String]{
