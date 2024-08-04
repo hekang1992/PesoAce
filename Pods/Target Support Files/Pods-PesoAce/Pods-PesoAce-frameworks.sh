@@ -176,7 +176,6 @@ code_sign_if_enabled() {
 }
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
-  install_framework "${BUILT_PRODUCTS_DIR}/AAILiveness/AAILiveness.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/BRPickerView/BRPickerView.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/DeviceKit/DeviceKit.framework"
@@ -193,11 +192,8 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/SystemServices/SystemServices.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/TYAlertController/TYAlertController.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/lottie-ios/Lottie.framework"
-  install_framework "${PODS_XCFRAMEWORKS_BUILD_DIR}/AAILiveness/AAILivenessSDK.framework"
-  install_framework "${PODS_XCFRAMEWORKS_BUILD_DIR}/AAINetwork/AAINetwork.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
-  install_framework "${BUILT_PRODUCTS_DIR}/AAILiveness/AAILiveness.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/BRPickerView/BRPickerView.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/DeviceKit/DeviceKit.framework"
@@ -214,8 +210,6 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/SystemServices/SystemServices.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/TYAlertController/TYAlertController.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/lottie-ios/Lottie.framework"
-  install_framework "${PODS_XCFRAMEWORKS_BUILD_DIR}/AAILiveness/AAILivenessSDK.framework"
-  install_framework "${PODS_XCFRAMEWORKS_BUILD_DIR}/AAINetwork/AAINetwork.framework"
 fi
 if [ "${COCOAPODS_PARALLEL_CODE_SIGN}" == "true" ]; then
   wait

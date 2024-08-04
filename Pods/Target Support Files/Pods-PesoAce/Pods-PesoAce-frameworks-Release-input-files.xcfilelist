@@ -1,5 +1,4 @@
 ${PODS_ROOT}/Target Support Files/Pods-PesoAce/Pods-PesoAce-frameworks.sh
-${BUILT_PRODUCTS_DIR}/AAILiveness/AAILiveness.framework
 ${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework
 ${BUILT_PRODUCTS_DIR}/BRPickerView/BRPickerView.framework
 ${BUILT_PRODUCTS_DIR}/DeviceKit/DeviceKit.framework
@@ -16,5 +15,3 @@ ${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework
 ${BUILT_PRODUCTS_DIR}/SystemServices/SystemServices.framework
 ${BUILT_PRODUCTS_DIR}/TYAlertController/TYAlertController.framework
 ${BUILT_PRODUCTS_DIR}/lottie-ios/Lottie.framework
-${PODS_XCFRAMEWORKS_BUILD_DIR}/AAILiveness/AAILivenessSDK.framework/AAILivenessSDK
-${PODS_XCFRAMEWORKS_BUILD_DIR}/AAINetwork/AAINetwork.framework/AAINetwork

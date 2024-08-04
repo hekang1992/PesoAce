@@ -23,7 +23,6 @@ let baseUrl = "http://8.220.140.28/aceapi"
 
 class PLAAFNetWorkManager: NSObject {
 
-    
     static let shared = PLAAFNetWorkManager()
     
     typealias CompleteBlock = (_ baseModel: BaseModel) -> Void

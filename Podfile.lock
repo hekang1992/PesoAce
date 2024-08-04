@@ -1,7 +1,4 @@
 PODS:
-  - AAILiveness (2.0.8):
-    - AAINetwork
-  - AAINetwork (1.0.2)
   - Alamofire (5.8.1)
   - BRPickerView (2.8.1):
     - BRPickerView/AddressPickerView (= 2.8.1)
@@ -31,8 +28,6 @@ PODS:
   - TYAlertController (1.2.0)
 
 DEPENDENCIES:
-  - "AAILiveness (from `{:http=>\"https://prod-guardian-cv.oss-ap-southeast-5.aliyuncs.com/sdk/iOS-liveness-detection/2.0.8/iOS-Liveness-SDK-V2.0.8.tar.bz2\", :type=>:tbz}`)"
-  - "AAINetwork (from `{:http=>\"https://prod-guardian-cv.oss-ap-southeast-5.aliyuncs.com/sdk/iOS-libraries/AAINetwork/AAINetwork-V1.0.2.tar.bz2\", :type=>:tbz}`)"
   - Alamofire (~> 5.8.1)
   - BRPickerView (~> 2.8.1)
   - DeviceKit (~> 5.2.2)
@@ -69,25 +64,7 @@ SPEC REPOS:
     - SystemServices
     - TYAlertController
 
-EXTERNAL SOURCES:
-  AAILiveness:
-    :http: https://prod-guardian-cv.oss-ap-southeast-5.aliyuncs.com/sdk/iOS-liveness-detection/2.0.8/iOS-Liveness-SDK-V2.0.8.tar.bz2
-    :type: :tbz
-  AAINetwork:
-    :http: https://prod-guardian-cv.oss-ap-southeast-5.aliyuncs.com/sdk/iOS-libraries/AAINetwork/AAINetwork-V1.0.2.tar.bz2
-    :type: :tbz
-
-CHECKOUT OPTIONS:
-  AAILiveness:
-    :http: https://prod-guardian-cv.oss-ap-southeast-5.aliyuncs.com/sdk/iOS-liveness-detection/2.0.8/iOS-Liveness-SDK-V2.0.8.tar.bz2
-    :type: :tbz
-  AAINetwork:
-    :http: https://prod-guardian-cv.oss-ap-southeast-5.aliyuncs.com/sdk/iOS-libraries/AAINetwork/AAINetwork-V1.0.2.tar.bz2
-    :type: :tbz
-
 SPEC CHECKSUMS:
-  AAILiveness: 5ab3a59d6cc70f8da3dbe314aec272adb5a6bf68
-  AAINetwork: 02c3979092230f269eeaeaa273bbaae209a6b3ac
   Alamofire: 3ca42e259043ee0dc5c0cdd76c4bc568b8e42af7
   BRPickerView: 2531a2d4d0fea0b57a1c738de215af0f88863a2f
   DeviceKit: e36aaf2a0d142ef0b4fac2007649a4414af234be
@@ -105,6 +82,6 @@ SPEC CHECKSUMS:
   SystemServices: 7af348493ece8951449b476c41532df72569b181
   TYAlertController: c121090edb0bea7426f987da94cdddd81eef4231
 
-PODFILE CHECKSUM: be732bc9ab71ef4405c6803a886d1f98378cbd59
+PODFILE CHECKSUM: 11afc2399627d68a386db956d3354713a5b3de62
 
 COCOAPODS: 1.14.3

@@ -1,16 +1,6 @@
 # Acknowledgements
 This application makes use of the following third party libraries:
 
-## AAILiveness
-
-                      
-
-
-## AAINetwork
-
-                      
-
-
 ## Alamofire
 
 Copyright (c) 2014-2022 Alamofire Software Foundation (http://alamofire.org/)
