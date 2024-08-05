@@ -9,6 +9,9 @@ import UIKit
 
 class PLALoginView: PLACommonView {
     
+    var block: ((UIButton) -> Void)?
+    var block1: (() -> Void)?
+    
     lazy var hiLabel: UILabel = {
         let hiLabel = UILabel.createLabel(font: UIFont(name: black_font, size: 38.px())!, textColor: UIColor.init(css: "#333333"), textAlignment: .left)
         hiLabel.text = "HI,"
@@ -62,6 +65,7 @@ class PLALoginView: PLACommonView {
         codeTx.attributedPlaceholder = attrString
         codeTx.font = UIFont(name: regular_font, size: 16.px())
         codeTx.textColor = UIColor.init(css: "#333333")
+        codeTx.text = "202406"
         return codeTx
     }()
     
@@ -80,6 +84,14 @@ class PLALoginView: PLACommonView {
         return sendBtn
     }()
     
+    lazy var loginBtn: UIButton = {
+        let loginBtn = UIButton(type: .custom)
+        loginBtn.isEnabled = false
+        loginBtn.setTitle("Login/Register", for: .normal)
+        loginBtn.backgroundColor = UIColor.init(css: "#F4F7FF")
+        return loginBtn
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         scrollView.addSubview(hiLabel)
@@ -91,6 +103,7 @@ class PLALoginView: PLACommonView {
         scrollView.addSubview(codeTx)
         scrollView.addSubview(lineView2)
         scrollView.addSubview(sendBtn)
+        scrollView.addSubview(loginBtn)
         hiLabel.snp.makeConstraints { make in
             make.left.equalToSuperview().offset(26.px())
             make.top.equalToSuperview().offset(DeviceStatusHeightManager.statusBarHeight + 56.px())
@@ -140,7 +153,47 @@ class PLALoginView: PLACommonView {
             make.bottom.equalTo(lineView2.snp.top).offset(-14.px())
             make.size.equalTo(CGSize(width: 50.px(), height: 22.px()))
         }
-        
+        loginBtn.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.left.equalToSuperview().offset(24.px())
+            make.top.equalTo(lineView2.snp.bottom).offset(35.px())
+            make.height.equalTo(54.px())
+        }
+        loginBtn.rx.tap.subscribe(onNext: { [weak self] in
+            self?.block1?()
+        }).disposed(by: disposeBag)
+        phoneTx.rx.text.orEmpty.subscribe(onNext: { [weak self] text in
+            if text.count > 0{
+                self?.loginBtn.isEnabled = true
+                self?.loginBtn.backgroundColor = UIColor.init(css: "#2681FB")
+            }else {
+                self?.loginBtn.isEnabled = false
+                self?.loginBtn.backgroundColor = UIColor.init(css: "#F4F7FF")
+            }
+        }).disposed(by: disposeBag)
+        phoneTx.rx.controlEvent(.editingDidBegin)
+            .subscribe(onNext: { [weak self] in
+            self?.lineView1.backgroundColor = UIColor.init(css: "#2681FB")
+        }).disposed(by: disposeBag)
+        phoneTx.rx.controlEvent(.editingDidEnd)
+            .subscribe(onNext: { [weak self] _ in
+                self?.lineView1.backgroundColor = UIColor.init(css: "#F5F5F5")
+            })
+            .disposed(by: disposeBag)
+        codeTx.rx.controlEvent(.editingDidBegin)
+            .subscribe(onNext: { [weak self] in
+            self?.lineView2.backgroundColor = UIColor.init(css: "#2681FB")
+        }).disposed(by: disposeBag)
+        codeTx.rx.controlEvent(.editingDidEnd)
+            .subscribe(onNext: { [weak self] _ in
+                self?.lineView2.backgroundColor = UIColor.init(css: "#F5F5F5")
+            })
+            .disposed(by: disposeBag)
+        sendBtn.rx.tap.subscribe(onNext: { [weak self] in
+            if let self = self {
+                self.block?(self.sendBtn)
+            }
+        }).disposed(by: disposeBag)
     }
     
     required init?(coder: NSCoder) {

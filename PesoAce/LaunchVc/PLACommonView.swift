@@ -6,9 +6,14 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 class PLACommonView: UIView {
     
+    lazy var disposeBag = {
+        return DisposeBag()
+    }()
     lazy var bgView: UIView = {
         let bgView = UIView()
         return bgView

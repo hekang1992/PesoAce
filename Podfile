@@ -40,6 +40,8 @@ target 'PesoAce' do
   pod 'ReachabilitySwift', '~> 5.0.0'
   
   pod 'TYAlertController', '~> 1.2.0'
+  
+  pod 'RxCocoa', '~> 6.6.0'
 
   # Pods for PesoAce
 

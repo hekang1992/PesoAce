@@ -25,6 +25,9 @@
 		18982E2E2C5FD7F90036F819 /* PLALoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18982E2D2C5FD7F90036F819 /* PLALoginView.swift */; };
 		18982E312C5FDA8F0036F819 /* BlackFont.otf in Resources */ = {isa = PBXBuildFile; fileRef = 18982E302C5FDA8F0036F819 /* BlackFont.otf */; };
 		18982E332C5FDB070036F819 /* RegularFont.otf in Resources */ = {isa = PBXBuildFile; fileRef = 18982E322C5FDB070036F819 /* RegularFont.otf */; };
+		18982E3D2C61003A0036F819 /* loading.json in Resources */ = {isa = PBXBuildFile; fileRef = 18982E3C2C61003A0036F819 /* loading.json */; };
+		18982E3F2C6106D60036F819 /* PLAHomeOneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18982E3E2C6106D60036F819 /* PLAHomeOneView.swift */; };
+		18982E432C6116A20036F819 /* JdgueConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18982E422C6116A20036F819 /* JdgueConfig.swift */; };
 		7A111470DB6E396641AE5453 /* Pods_PesoAce.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA7B7D9C7C765427C57192B0 /* Pods_PesoAce.framework */; };
 /* End PBXBuildFile section */
 
@@ -50,6 +53,9 @@
 		18982E2D2C5FD7F90036F819 /* PLALoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PLALoginView.swift; sourceTree = "<group>"; };
 		18982E302C5FDA8F0036F819 /* BlackFont.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = BlackFont.otf; sourceTree = "<group>"; };
 		18982E322C5FDB070036F819 /* RegularFont.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = RegularFont.otf; sourceTree = "<group>"; };
+		18982E3C2C61003A0036F819 /* loading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = loading.json; sourceTree = "<group>"; };
+		18982E3E2C6106D60036F819 /* PLAHomeOneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PLAHomeOneView.swift; sourceTree = "<group>"; };
+		18982E422C6116A20036F819 /* JdgueConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JdgueConfig.swift; sourceTree = "<group>"; };
 		28450693720077835F00ECDB /* Pods-PesoAce.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PesoAce.debug.xcconfig"; path = "Target Support Files/Pods-PesoAce/Pods-PesoAce.debug.xcconfig"; sourceTree = "<group>"; };
 		5DBA2829A6F9E91179DC6C59 /* Pods-PesoAce.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PesoAce.release.xcconfig"; path = "Target Support Files/Pods-PesoAce/Pods-PesoAce.release.xcconfig"; sourceTree = "<group>"; };
 		CA7B7D9C7C765427C57192B0 /* Pods_PesoAce.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PesoAce.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -114,6 +120,7 @@
 		18982E072C5E16C10036F819 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				18982E3E2C6106D60036F819 /* PLAHomeOneView.swift */,
 				18982E292C5FD5F50036F819 /* PLAHomeViewController.swift */,
 			);
 			path = Home;
@@ -156,9 +163,11 @@
 		18982E0C2C5E17240036F819 /* PLADeviceInfo */ = {
 			isa = PBXGroup;
 			children = (
+				18982E3C2C61003A0036F819 /* loading.json */,
 				18982E0D2C5E17500036F819 /* DeviceInfo.swift */,
 				18982E212C5F4BC90036F819 /* PLALoginFactory.swift */,
 				18982E252C5F4F670036F819 /* PLABaseConfig.swift */,
+				18982E422C6116A20036F819 /* JdgueConfig.swift */,
 			);
 			path = PLADeviceInfo;
 			sourceTree = "<group>";
@@ -282,6 +291,7 @@
 				18982E192C5E27770036F819 /* LaunchScreen.storyboard in Resources */,
 				18982E312C5FDA8F0036F819 /* BlackFont.otf in Resources */,
 				18982E332C5FDB070036F819 /* RegularFont.otf in Resources */,
+				18982E3D2C61003A0036F819 /* loading.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -335,9 +345,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				18982E242C5F4E820036F819 /* PLALoginViewController.swift in Sources */,
+				18982E432C6116A20036F819 /* JdgueConfig.swift in Sources */,
 				18982E202C5F4B0E0036F819 /* TotalModel.swift in Sources */,
 				18982E2C2C5FD65E0036F819 /* PLACommonView.swift in Sources */,
 				18982DF32C5E165A0036F819 /* AppDelegate.swift in Sources */,
+				18982E3F2C6106D60036F819 /* PLAHomeOneView.swift in Sources */,
 				18982E2A2C5FD5F50036F819 /* PLAHomeViewController.swift in Sources */,
 				18982E262C5F4F670036F819 /* PLABaseConfig.swift in Sources */,
 				18982E222C5F4BC90036F819 /* PLALoginFactory.swift in Sources */,

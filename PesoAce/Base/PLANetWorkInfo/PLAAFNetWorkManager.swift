@@ -43,7 +43,7 @@ class PLAAFNetWorkManager: NSObject {
         if let requestUrl = createRequsetURL(baseURL: baseUrl + pageUrl, params: PLALoginFactory.getLoginParas()) {
             AF.request(requestUrl, method: method, parameters: params, headers: headers).responseData { response in
                 switch response.result {
-                case .success(let success):
+                case .success(_):
                     if response.data == nil {
                         return
                     }
@@ -57,6 +57,11 @@ class PLAAFNetWorkManager: NSObject {
                         }
                     }else {
                         errorBlock("failure")
+                    }
+                    let contentToSerialize = model?.wallpaper ?? [:]
+                    if let data = try? JSONSerialization.data(withJSONObject: contentToSerialize, options: []) {
+                        let jsonString = String(data: data, encoding:.utf8)
+                        print(">>>>>>>>>>>>>>>\(jsonString ?? "")")
                     }
                     break
                 case .failure(let failure):

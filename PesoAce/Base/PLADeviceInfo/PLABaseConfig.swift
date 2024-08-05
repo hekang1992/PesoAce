@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import Lottie
 
 let regular_font = "MADETommySoft"
 let black_font = "MADETommySoft-Black"
@@ -103,6 +104,69 @@ extension UIColor {
         self.init(red: red, green: green, blue: blue, alpha: 1.0)
     }
 }
+
+class loadingView: UIView {
+    
+    lazy var grayView: UIView = {
+        let view = UIView()
+        view.backgroundColor = UIColor.black.withAlphaComponent(0.25)
+        return view
+    }()
+    
+    lazy var hudView: LottieAnimationView = {
+        let hudView = LottieAnimationView(name: "loading.json", bundle: Bundle.main)
+        hudView.loopMode = .loop
+        hudView.play()
+        return hudView
+    }()
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        setupViews()
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        setupViews()
+    }
+    
+    private func setupViews() {
+        addSubview(grayView)
+        grayView.addSubview(hudView)
+        grayView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+        hudView.snp.makeConstraints { make in
+            make.center.equalToSuperview()
+            make.size.equalTo(CGSize(width: 120.px(), height: 200.px()))
+        }
+    }
+}
+
+class ViewHud {
+    
+    static let loadView = loadingView()
+    
+    static func addLoadView() {
+        DispatchQueue.main.async {
+            if let keyWindow = UIApplication.shared.windows.first {
+                DispatchQueue.main.async {
+                    loadView.frame = keyWindow.bounds
+                    keyWindow.addSubview(loadView)
+                }
+            }
+        }
+    }
+    
+    static func hideLoadView() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
+            loadView.removeFromSuperview()
+        }
+    }
+    
+}
+
+
 
 class DeviceStatusHeightManager {
     

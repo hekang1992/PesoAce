@@ -15,3 +15,28 @@ class BaseModel: HandyJSON {
     var formica: String?
     var wallpaper: [String: Any]?
 }
+
+class wallpaperModel: HandyJSON {
+    required init() {}
+    var lurch: String?
+    var remem: String?
+    var minarets: String?
+    var tha: thaModel?
+    var spotless: spotlessModel?
+}
+
+class spotlessModel: HandyJSON {
+    required init() {}
+    var vacuumed: String?
+}
+
+class thaModel: HandyJSON {
+    required init() {}
+    var vacuumed: String?
+    var improvement: [improvementModel]?
+}
+
+class improvementModel: HandyJSON {
+    required init() {}
+    var bellyaches: String? //产品ID
+}
