@@ -43,6 +43,8 @@ target 'PesoAce' do
   
   pod 'RxCocoa', '~> 6.6.0'
 
+  pod "GYSide", '~> 0.0.5'
+  
   # Pods for PesoAce
 
 end

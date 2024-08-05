@@ -9,6 +9,7 @@ import UIKit
 import MJRefresh
 import MBProgressHUD_WJExtension
 import HandyJSON
+import GYSide
 
 class PLAHomeViewController: PLABaseViewController {
     
@@ -27,6 +28,9 @@ class PLAHomeViewController: PLABaseViewController {
         oneView.applyBlock = { [weak self] in
             self?.shenqing(self?.model?.bellyaches ?? "")
         }
+        oneView.leftBlock = { [weak self] in
+            self?.leftVc()
+        }
         let header = MJRefreshNormalHeader(refreshingTarget: self, refreshingAction: #selector(handleRefresh))
             oneView.scrollView.mj_header = header
     }
@@ -39,6 +43,14 @@ class PLAHomeViewController: PLABaseViewController {
 }
 
 extension PLAHomeViewController {
+    
+    func leftVc() {
+        let vc =  PLALeftSideViewController()
+        gy_showSide({ (config) in
+            config.animationType = .translationMask
+            config.sideRelative = 0.68
+        }, vc)
+    }
     
     @objc func handleRefresh() {
         homedata()

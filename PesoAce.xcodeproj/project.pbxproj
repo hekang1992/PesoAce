@@ -28,6 +28,9 @@
 		18982E3D2C61003A0036F819 /* loading.json in Resources */ = {isa = PBXBuildFile; fileRef = 18982E3C2C61003A0036F819 /* loading.json */; };
 		18982E3F2C6106D60036F819 /* PLAHomeOneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18982E3E2C6106D60036F819 /* PLAHomeOneView.swift */; };
 		18982E432C6116A20036F819 /* JdgueConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18982E422C6116A20036F819 /* JdgueConfig.swift */; };
+		18982E452C6120570036F819 /* PLALeftSideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18982E442C6120570036F819 /* PLALeftSideViewController.swift */; };
+		18982E492C6121BC0036F819 /* PLALeftSideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18982E482C6121BC0036F819 /* PLALeftSideView.swift */; };
+		18982E4B2C6127490036F819 /* PLAJianTouView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18982E4A2C6127490036F819 /* PLAJianTouView.swift */; };
 		7A111470DB6E396641AE5453 /* Pods_PesoAce.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA7B7D9C7C765427C57192B0 /* Pods_PesoAce.framework */; };
 /* End PBXBuildFile section */
 
@@ -56,6 +59,9 @@
 		18982E3C2C61003A0036F819 /* loading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = loading.json; sourceTree = "<group>"; };
 		18982E3E2C6106D60036F819 /* PLAHomeOneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PLAHomeOneView.swift; sourceTree = "<group>"; };
 		18982E422C6116A20036F819 /* JdgueConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JdgueConfig.swift; sourceTree = "<group>"; };
+		18982E442C6120570036F819 /* PLALeftSideViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PLALeftSideViewController.swift; sourceTree = "<group>"; };
+		18982E482C6121BC0036F819 /* PLALeftSideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PLALeftSideView.swift; sourceTree = "<group>"; };
+		18982E4A2C6127490036F819 /* PLAJianTouView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PLAJianTouView.swift; sourceTree = "<group>"; };
 		28450693720077835F00ECDB /* Pods-PesoAce.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PesoAce.debug.xcconfig"; path = "Target Support Files/Pods-PesoAce/Pods-PesoAce.debug.xcconfig"; sourceTree = "<group>"; };
 		5DBA2829A6F9E91179DC6C59 /* Pods-PesoAce.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PesoAce.release.xcconfig"; path = "Target Support Files/Pods-PesoAce/Pods-PesoAce.release.xcconfig"; sourceTree = "<group>"; };
 		CA7B7D9C7C765427C57192B0 /* Pods_PesoAce.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PesoAce.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -120,8 +126,8 @@
 		18982E072C5E16C10036F819 /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				18982E3E2C6106D60036F819 /* PLAHomeOneView.swift */,
-				18982E292C5FD5F50036F819 /* PLAHomeViewController.swift */,
+				18982E472C6121AC0036F819 /* View */,
+				18982E462C6121A30036F819 /* Controller */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -207,6 +213,25 @@
 				18982E322C5FDB070036F819 /* RegularFont.otf */,
 			);
 			path = Fonts;
+			sourceTree = "<group>";
+		};
+		18982E462C6121A30036F819 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				18982E292C5FD5F50036F819 /* PLAHomeViewController.swift */,
+				18982E442C6120570036F819 /* PLALeftSideViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		18982E472C6121AC0036F819 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				18982E3E2C6106D60036F819 /* PLAHomeOneView.swift */,
+				18982E4A2C6127490036F819 /* PLAJianTouView.swift */,
+				18982E482C6121BC0036F819 /* PLALeftSideView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		3074FF24BAC873EAF461498A /* Frameworks */ = {
@@ -353,12 +378,15 @@
 				18982E2A2C5FD5F50036F819 /* PLAHomeViewController.swift in Sources */,
 				18982E262C5F4F670036F819 /* PLABaseConfig.swift in Sources */,
 				18982E222C5F4BC90036F819 /* PLALoginFactory.swift in Sources */,
+				18982E4B2C6127490036F819 /* PLAJianTouView.swift in Sources */,
 				18982E0E2C5E17500036F819 /* DeviceInfo.swift in Sources */,
 				18982E112C5E1BC70036F819 /* NetInfoManager.swift in Sources */,
 				18982E152C5E263C0036F819 /* PLALaunchViewController.swift in Sources */,
+				18982E492C6121BC0036F819 /* PLALeftSideView.swift in Sources */,
 				18982E2E2C5FD7F90036F819 /* PLALoginView.swift in Sources */,
 				18982E172C5E26C90036F819 /* PLANavigationController.swift in Sources */,
 				18982E1D2C5F4A9B0036F819 /* PLAAFNetWorkManager.swift in Sources */,
+				18982E452C6120570036F819 /* PLALeftSideViewController.swift in Sources */,
 				18982E1B2C5E28890036F819 /* PLABaseViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

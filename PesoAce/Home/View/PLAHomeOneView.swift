@@ -14,6 +14,8 @@ class PLAHomeOneView: UIView {
     
     var applyBlock: (() -> Void)?
     
+    var leftBlock: (() -> Void)?
+    
     lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.showsHorizontalScrollIndicator = false
@@ -25,27 +27,38 @@ class PLAHomeOneView: UIView {
 
     lazy var bgImageView: UIImageView = {
         let bgImageView = UIImageView()
+        bgImageView.isUserInteractionEnabled = true
         bgImageView.image = UIImage(named: "Groupbgimh")
         return bgImageView
     }()
     
     lazy var bgImageView1: UIImageView = {
         let bgImageView = UIImageView()
+        bgImageView.isUserInteractionEnabled = true
         bgImageView.image = UIImage(named: "Groupstep")
         return bgImageView
     }()
     
     lazy var bgImageView2: UIImageView = {
         let bgImageView = UIImageView()
+        bgImageView.isUserInteractionEnabled = true
         bgImageView.image = UIImage(named: "Group 8")
         return bgImageView
     }()
 
     lazy var bgImageView3: UIImageView = {
         let bgImageView = UIImageView()
+        bgImageView.isUserInteractionEnabled = true
         bgImageView.image = UIImage(named: "Group_last")
         return bgImageView
     }()
+    
+    lazy var btn: UIButton = {
+        let btn = UIButton(type: .custom)
+        btn.setBackgroundImage(UIImage(named: "Grou_left"), for: .normal)
+        return btn
+    }()
+    
     
     lazy var appBtn: UIButton = {
         let appBtn = UIButton(type: .custom)
@@ -57,6 +70,7 @@ class PLAHomeOneView: UIView {
         super.init(frame: frame)
         addSubview(scrollView)
         scrollView.addSubview(bgImageView)
+        bgImageView.addSubview(btn)
         scrollView.addSubview(bgImageView1)
         scrollView.addSubview(appBtn)
         scrollView.addSubview(bgImageView2)
@@ -68,6 +82,11 @@ class PLAHomeOneView: UIView {
             make.left.top.equalToSuperview()
             make.width.equalTo(scrollView.snp.width)
             make.height.equalTo(541.px())
+        }
+        btn.snp.makeConstraints { make in
+            make.left.equalToSuperview().offset(24.px())
+            make.size.equalTo(CGSize(width: 24.px(), height: 24.px()))
+            make.top.equalToSuperview().offset(DeviceStatusHeightManager.statusBarHeight + 10.px())
         }
         bgImageView1.snp.makeConstraints { make in
             make.left.equalToSuperview().offset(16.px())
@@ -97,7 +116,9 @@ class PLAHomeOneView: UIView {
         appBtn.rx.tap.subscribe(onNext: { [weak self] in
             self?.applyBlock?()
         }).disposed(by: disp)
-        
+        btn.rx.tap.subscribe(onNext: { [weak self] in
+            self?.leftBlock?()
+        }).disposed(by: disp)
     }
     
     required init?(coder: NSCoder) {
