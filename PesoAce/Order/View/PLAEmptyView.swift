@@ -30,13 +30,3 @@ class PLAEmptyView: UIView {
     
 }
 
-
-class EmptyConfig {
-    
-    static var emptyView = PLAEmptyView()
-    
-    static func hideEmptyView() {
-        EmptyConfig.emptyView.removeFromSuperview()
-    }
-    
-}

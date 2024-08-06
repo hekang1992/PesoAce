@@ -15,6 +15,11 @@ class PLAOrderListViewController: UIViewController {
         return listView
     }()
     
+    lazy var emptyView: PLAEmptyView = {
+        let emptyView = PLAEmptyView()
+        return emptyView
+    }()
+    
     var battered: String?
 
     override func viewDidLoad() {
@@ -33,8 +38,6 @@ class PLAOrderListViewController: UIViewController {
 
 extension PLAOrderListViewController {
     
-    
-    #warning("todo fu")
     func orderListPage(_ battered: String) {
         ViewHud.addLoadView()
         let dict = ["battered": battered, "page": "1"]
@@ -42,19 +45,22 @@ extension PLAOrderListViewController {
             ViewHud.hideLoadView()
             if let greasy = baseModel.greasy, greasy == 0 || greasy == 00 {
                 if let model = JSONDeserializer<wallpaperModel>.deserializeFrom(dict: baseModel.wallpaper), let modelArray = model.cleaner, !modelArray.isEmpty {
-                    EmptyConfig.hideEmptyView()
+                    self?.emptyView.removeFromSuperview()
                 }else {
                     self?.addemptyView()
                 }
+            }else {
+                self?.addemptyView()
             }
-        } errorBlock: { error in
+        } errorBlock: { [weak self] error in
+            self?.addemptyView()
             ViewHud.hideLoadView()
         }
     }
     
     func addemptyView () {
-        listView.addSubview(EmptyConfig.emptyView)
-        EmptyConfig.emptyView.snp.makeConstraints { make in
+        listView.addSubview(emptyView)
+        emptyView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
     }
