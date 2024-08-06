@@ -17,6 +17,8 @@ class PLAOrderView: UIView {
     
     var block: (() -> Void)?
     
+    var block1: ((String) -> Void)?
+    
     lazy var backBtn: UIButton = {
         let backBtn = UIButton(type: .custom)
         backBtn.setBackgroundImage(UIImage(named: "backimage"), for: .normal)
@@ -86,6 +88,9 @@ class PLAOrderView: UIView {
         backBtn.rx.tap.subscribe(onNext: { [weak self ] in
             self?.block?()
         }).disposed(by: disp)
+        DispatchQueue.main.async {
+            self.segmentedView(self.segmentedView, didSelectedItemAt: 0)
+        }
     }
     
     required init?(coder: NSCoder) {
@@ -94,11 +99,10 @@ class PLAOrderView: UIView {
     
 }
 
-
 extension PLAOrderView: JXSegmentedViewDelegate, UIScrollViewDelegate {
     
     func segmentedView(_ segmentedView: JXSegmentedView, didSelectedItemAt index: Int) {
-        
+        self.block1?(String(index + 4))
     }
     
 }

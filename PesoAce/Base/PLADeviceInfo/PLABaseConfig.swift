@@ -123,8 +123,10 @@ class loadingView: UIView {
     
     lazy var hudView: LottieAnimationView = {
         let hudView = LottieAnimationView(name: "loading.json", bundle: Bundle.main)
+        hudView.animationSpeed = 2
         hudView.loopMode = .loop
         hudView.play()
+        
         hudView.layer.cornerRadius = 15.px()
         hudView.backgroundColor = .black.withAlphaComponent(0.85)
         return hudView

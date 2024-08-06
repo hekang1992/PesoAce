@@ -23,7 +23,12 @@ class wallpaperModel: HandyJSON {
     var minarets: String?
     var tha: thaModel?
     var jokingly: jokinglyModel?
-    
+    var cleaner: [cleanerModel]?
+}
+
+class cleanerModel: HandyJSON {
+    required init() {}
+    var biryani: String?
 }
 
 class jokinglyModel: HandyJSON {

@@ -29,18 +29,13 @@ class PLAOrderViewController: UIViewController {
         orderView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
-        
-        for vc in listVCArray {
-            vc.view.removeFromSuperview()
-        }
-        listVCArray.removeAll()
-        
-        for _ in 0..<5 {
+        orderView.block1 = { [weak self] str in
             let vc = PLAOrderListViewController()
-            orderView.contentScrollView.addSubview(vc.view)
-            listVCArray.append(vc)
+            vc.battered = str
+            self?.orderView.contentScrollView.addSubview(vc.view)
+            self?.listVCArray.append(vc)
+            self?.view.setNeedsLayout()
         }
-        view.setNeedsLayout()
     }
     
     override func viewDidLayoutSubviews() {
