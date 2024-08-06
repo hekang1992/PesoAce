@@ -40,8 +40,9 @@ class JudgeConfig: NSObject {
                 if !nextStep.isEmpty {
                     nextStepVc(nextStep, productID, form: vc)
                 }
+            }else {
+                MBProgressHUD.wj_showPlainText(formica, view: nil)
             }
-            MBProgressHUD.wj_showPlainText(formica, view: nil)
         } errorBlock: { error in
             ViewHud.hideLoadView()
         }

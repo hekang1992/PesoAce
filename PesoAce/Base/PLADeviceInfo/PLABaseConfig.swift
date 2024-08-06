@@ -115,8 +115,10 @@ class loadingView: UIView {
     
     lazy var hudView: LottieAnimationView = {
         let hudView = LottieAnimationView(name: "loading.json", bundle: Bundle.main)
-        hudView.loopMode = .loop
+        hudView.loopMode = .autoReverse
         hudView.play()
+        hudView.layer.cornerRadius = 15.px()
+        hudView.backgroundColor = .black
         return hudView
     }()
     
@@ -138,7 +140,7 @@ class loadingView: UIView {
         }
         hudView.snp.makeConstraints { make in
             make.center.equalToSuperview()
-            make.size.equalTo(CGSize(width: 120.px(), height: 200.px()))
+            make.size.equalTo(CGSize(width: 100.px(), height: 100.px()))
         }
     }
 }
