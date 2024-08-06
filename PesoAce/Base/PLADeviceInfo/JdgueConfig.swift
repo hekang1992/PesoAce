@@ -36,7 +36,7 @@ class JudgeConfig: NSObject {
             let formica = baseModel.formica ?? ""
             if let greasy = baseModel.greasy, greasy == 0 || greasy == 00 {
                 guard let model = JSONDeserializer<wallpaperModel>.deserializeFrom(dict: baseModel.wallpaper) else { return }
-                let nextStep = model.spotless?.vacuumed ?? ""
+                let nextStep = model.jokingly?.outgrown ?? ""
                 if !nextStep.isEmpty {
                     nextStepVc(nextStep, productID, form: vc)
                 }
@@ -50,15 +50,18 @@ class JudgeConfig: NSObject {
     
     static func nextStepVc(_ type: String, _ productID: String, form vc: UIViewController) {
         switch type {
-        case "endimanch1":
+        case "afterwards1":
+            let faceVc = PLAFaceViewController()
+            faceVc.productID = productID
+            vc.navigationController?.pushViewController(faceVc, animated: true)
             break
-        case "endimanch2":
+        case "afterwards2":
             break
-        case "endimanch3":
+        case "afterwards3":
             break
-        case "endimanch4":
+        case "afterwards4":
             break
-        case "endimanch5":
+        case "afterwards5":
             break
         default:
             break

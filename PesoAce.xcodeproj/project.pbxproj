@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		186C4CA62C62479B007CDAF1 /* PLAFaceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186C4CA52C62479B007CDAF1 /* PLAFaceViewController.swift */; };
+		186C4CA82C6247B8007CDAF1 /* PLAFaceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186C4CA72C6247B8007CDAF1 /* PLAFaceView.swift */; };
+		186C4CAA2C624D3E007CDAF1 /* PLAOrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186C4CA92C624D3E007CDAF1 /* PLAOrderViewController.swift */; };
+		186C4CAE2C624F2D007CDAF1 /* PLAOrderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186C4CAD2C624F2D007CDAF1 /* PLAOrderView.swift */; };
+		186C4CB02C62662A007CDAF1 /* PLAOrderListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186C4CAF2C62662A007CDAF1 /* PLAOrderListViewController.swift */; };
 		18982DF32C5E165A0036F819 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18982DF22C5E165A0036F819 /* AppDelegate.swift */; };
 		18982DFC2C5E165B0036F819 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18982DFB2C5E165B0036F819 /* Assets.xcassets */; };
 		18982E0E2C5E17500036F819 /* DeviceInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18982E0D2C5E17500036F819 /* DeviceInfo.swift */; };
@@ -35,6 +40,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		186C4CA52C62479B007CDAF1 /* PLAFaceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PLAFaceViewController.swift; sourceTree = "<group>"; };
+		186C4CA72C6247B8007CDAF1 /* PLAFaceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PLAFaceView.swift; sourceTree = "<group>"; };
+		186C4CA92C624D3E007CDAF1 /* PLAOrderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PLAOrderViewController.swift; sourceTree = "<group>"; };
+		186C4CAD2C624F2D007CDAF1 /* PLAOrderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PLAOrderView.swift; sourceTree = "<group>"; };
+		186C4CAF2C62662A007CDAF1 /* PLAOrderListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PLAOrderListViewController.swift; sourceTree = "<group>"; };
 		18982DEF2C5E165A0036F819 /* PesoAce.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PesoAce.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		18982DF22C5E165A0036F819 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		18982DFB2C5E165B0036F819 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -79,6 +89,48 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		186C4CA22C624764007CDAF1 /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				186C4CA32C62477B007CDAF1 /* View */,
+				186C4CA42C624780007CDAF1 /* Controller */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
+		186C4CA32C62477B007CDAF1 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				186C4CA72C6247B8007CDAF1 /* PLAFaceView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		186C4CA42C624780007CDAF1 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				186C4CA52C62479B007CDAF1 /* PLAFaceViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		186C4CAB2C624F10007CDAF1 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				186C4CA92C624D3E007CDAF1 /* PLAOrderViewController.swift */,
+				186C4CAF2C62662A007CDAF1 /* PLAOrderListViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		186C4CAC2C624F12007CDAF1 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				186C4CAD2C624F2D007CDAF1 /* PLAOrderView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		18982DE62C5E165A0036F819 = {
 			isa = PBXGroup;
 			children = (
@@ -105,6 +157,7 @@
 				18982DFB2C5E165B0036F819 /* Assets.xcassets */,
 				18982E062C5E169D0036F819 /* Main */,
 				18982E0A2C5E16D70036F819 /* Login */,
+				186C4CA22C624764007CDAF1 /* Auth */,
 				18982E092C5E16CB0036F819 /* Order */,
 				18982E082C5E16C50036F819 /* Profile */,
 				18982E072C5E16C10036F819 /* Home */,
@@ -142,6 +195,8 @@
 		18982E092C5E16CB0036F819 /* Order */ = {
 			isa = PBXGroup;
 			children = (
+				186C4CAC2C624F12007CDAF1 /* View */,
+				186C4CAB2C624F10007CDAF1 /* Controller */,
 			);
 			path = Order;
 			sourceTree = "<group>";
@@ -370,10 +425,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				18982E242C5F4E820036F819 /* PLALoginViewController.swift in Sources */,
+				186C4CAA2C624D3E007CDAF1 /* PLAOrderViewController.swift in Sources */,
 				18982E432C6116A20036F819 /* JdgueConfig.swift in Sources */,
 				18982E202C5F4B0E0036F819 /* TotalModel.swift in Sources */,
 				18982E2C2C5FD65E0036F819 /* PLACommonView.swift in Sources */,
 				18982DF32C5E165A0036F819 /* AppDelegate.swift in Sources */,
+				186C4CB02C62662A007CDAF1 /* PLAOrderListViewController.swift in Sources */,
+				186C4CA62C62479B007CDAF1 /* PLAFaceViewController.swift in Sources */,
+				186C4CA82C6247B8007CDAF1 /* PLAFaceView.swift in Sources */,
 				18982E3F2C6106D60036F819 /* PLAHomeOneView.swift in Sources */,
 				18982E2A2C5FD5F50036F819 /* PLAHomeViewController.swift in Sources */,
 				18982E262C5F4F670036F819 /* PLABaseConfig.swift in Sources */,
@@ -388,6 +447,7 @@
 				18982E1D2C5F4A9B0036F819 /* PLAAFNetWorkManager.swift in Sources */,
 				18982E452C6120570036F819 /* PLALeftSideViewController.swift in Sources */,
 				18982E1B2C5E28890036F819 /* PLABaseViewController.swift in Sources */,
+				186C4CAE2C624F2D007CDAF1 /* PLAOrderView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

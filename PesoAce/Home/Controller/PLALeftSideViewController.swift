@@ -28,8 +28,9 @@ class PLALeftSideViewController: PLABaseViewController {
         leftView.block2 = {
             NotificationCenter.default.post(name: NSNotification.Name(rawValue:"GYSideTapNotification"), object: nil)
         }
-        leftView.block3 = {
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue:"GYSideTapNotification"), object: nil)
+        leftView.block3 = { [weak self] in
+            let orderVc = PLAOrderViewController()
+            self?.gy_sidePushViewController(viewController: orderVc)
         }
         leftView.block4 = {
             NotificationCenter.default.post(name: NSNotification.Name(rawValue:"GYSideTapNotification"), object: nil)

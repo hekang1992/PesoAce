@@ -22,12 +22,13 @@ class wallpaperModel: HandyJSON {
     var remem: String?
     var minarets: String?
     var tha: thaModel?
-    var spotless: spotlessModel?
+    var jokingly: jokinglyModel?
+    
 }
 
-class spotlessModel: HandyJSON {
+class jokinglyModel: HandyJSON {
     required init() {}
-    var vacuumed: String?
+    var outgrown: String?
 }
 
 class thaModel: HandyJSON {

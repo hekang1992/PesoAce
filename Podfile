@@ -45,6 +45,8 @@ target 'PesoAce' do
 
   pod "GYSide", '~> 0.0.5'
   
+  pod 'JXSegmentedView', '~> 1.4.1'
+  
   # Pods for PesoAce
 
 end
