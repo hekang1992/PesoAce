@@ -13,6 +13,10 @@ class PLAFaceView: UIView {
     lazy var disp = DisposeBag()
     
     var block: (() -> Void)?
+    
+    var block1: ((UIButton) -> Void)?
+    
+    var block2: ((UIButton) -> Void)?
 
     lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
@@ -42,15 +46,70 @@ class PLAFaceView: UIView {
     }()
     
     lazy var stLabel1: UILabel = {
-        let stLabel = UILabel.createLabel(font: UIFont(name: black_font, size: 24.px())!, textColor: UIColor.init(css: "#000000"), textAlignment: .center)
+        let stLabel = UILabel.createLabel(font: UIFont(name: black_font, size: 24.px())!, textColor: UIColor.init(css: "#000000"), textAlignment: .left)
         stLabel.text = "verify identity"
         return stLabel
     }()
     
     lazy var stLabel2: UILabel = {
-        let stLabel = UILabel.createLabel(font: UIFont(name: regular_font, size: 14.px())!, textColor: UIColor.init(css: "#A9A9A9"), textAlignment: .center)
+        let stLabel = UILabel.createLabel(font: UIFont(name: regular_font, size: 14.px())!, textColor: UIColor.init(css: "#A9A9A9"), textAlignment: .left)
         stLabel.text = "For ldentity And Credit Assessment"
         return stLabel
+    }()
+    
+    lazy var idBtn: UIButton = {
+        let idBtn = UIButton(type: .custom)
+        idBtn.adjustsImageWhenHighlighted = false
+        idBtn.setBackgroundImage(UIImage(named: "Groupid"), for: .normal)
+        return idBtn
+    }()
+    
+    lazy var idBtn1: UIButton = {
+        let idBtn = UIButton(type: .custom)
+        idBtn.adjustsImageWhenHighlighted = false
+        idBtn.setBackgroundImage(UIImage(named: "Group 39988"), for: .normal)
+        return idBtn
+    }()
+    
+    lazy var idBtn2: UIButton = {
+        let idBtn = UIButton(type: .custom)
+        idBtn.adjustsImageWhenHighlighted = false
+        idBtn.setBackgroundImage(UIImage(named: "Group 39922"), for: .normal)
+        return idBtn
+    }()
+    
+    lazy var faceBtn: UIButton = {
+        let faceBtn = UIButton(type: .custom)
+        faceBtn.adjustsImageWhenHighlighted = false
+        faceBtn.setBackgroundImage(UIImage(named: "Groupface"), for: .normal)
+        return faceBtn
+    }()
+    
+    lazy var faceBtn1: UIButton = {
+        let faceBtn = UIButton(type: .custom)
+        faceBtn.adjustsImageWhenHighlighted = false
+        faceBtn.setBackgroundImage(UIImage(named: "Group 40007"), for: .normal)
+        return faceBtn
+    }()
+    
+    lazy var descLabel: UILabel = {
+        let descLabel = UILabel.createLabel(font: UIFont(name: regular_font, size: 14.px())!, textColor: UIColor.init(css: "#A9A9A9"), textAlignment: .left)
+        descLabel.numberOfLines = 0
+        descLabel.text = "The platform will protect your information security according to the law and relevant agreements"
+        return descLabel
+    }()
+    
+    lazy var bg: UIImageView = {
+        let bg = UIImageView()
+        bg.image = UIImage(named: "Group 39980")
+        return bg
+    }()
+    
+    lazy var loginBtn: UIButton = {
+        let loginBtn = UIButton(type: .custom)
+        loginBtn.setTitle("Submit and next", for: .normal)
+        loginBtn.backgroundColor = UIColor.init(css: "#F4F7FF")
+        return loginBtn
     }()
     
     override init(frame: CGRect) {
@@ -61,6 +120,14 @@ class PLAFaceView: UIView {
         stView.addSubview(stLabel)
         scrollView.addSubview(stLabel1)
         scrollView.addSubview(stLabel2)
+        scrollView.addSubview(idBtn)
+        idBtn.addSubview(idBtn1)
+        idBtn1.addSubview(idBtn2)
+        scrollView.addSubview(faceBtn)
+        faceBtn.addSubview(faceBtn1)
+        scrollView.addSubview(descLabel)
+        scrollView.addSubview(bg)
+        scrollView.addSubview(loginBtn)
         scrollView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
@@ -87,8 +154,82 @@ class PLAFaceView: UIView {
             make.left.equalToSuperview().offset(20.px())
             make.height.equalTo(28.px())
         }
+        idBtn.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.equalTo(stLabel2.snp.bottom).offset(123.px())
+            make.left.equalToSuperview().offset(24.px())
+            make.height.equalTo(102.px())
+        }
+        idBtn1.snp.makeConstraints { make in
+            make.centerY.equalToSuperview()
+            make.size.equalTo(CGSize(width: 125.px(), height: 78.px()))
+            make.left.equalToSuperview().offset(12.px())
+        }
+        idBtn2.snp.makeConstraints { make in
+            make.center.equalToSuperview()
+            make.size.equalTo(CGSize(width: 24.px(), height: 24.px()))
+        }
+        faceBtn.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.equalTo(idBtn.snp.bottom).offset(12.px())
+            make.left.equalToSuperview().offset(24.px())
+            make.height.equalTo(102.px())
+        }
+        faceBtn1.snp.makeConstraints { make in
+            make.centerY.equalToSuperview()
+            make.size.equalTo(CGSize(width: 125.px(), height: 78.px()))
+            make.left.equalToSuperview().offset(12.px())
+        }
+        descLabel.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.equalTo(faceBtn.snp.bottom).offset(12.px())
+            make.left.equalToSuperview().offset(36.px())
+        }
+        bg.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.size.equalTo(CGSize(width: 160.px(), height: 20.px()))
+            make.top.equalTo(descLabel.snp.bottom).offset(56.px())
+        }
+        loginBtn.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.left.equalToSuperview().offset(32.px())
+            make.top.equalTo(bg.snp.bottom).offset(12.px())
+            make.height.equalTo(57.px())
+            make.bottom.equalToSuperview().offset(-50.px())
+        }
+        
         canBtn.rx.tap.subscribe(onNext: { [weak self ] in
             self?.block?()
+        }).disposed(by: disp)
+        
+        idBtn.rx.tap.subscribe(onNext: { [weak self ] in
+            if let self = self {
+                self.block1?(self.idBtn1)
+            }
+        }).disposed(by: disp)
+        
+        idBtn1.rx.tap.subscribe(onNext: { [weak self ] in
+            if let self = self {
+                self.block1?(self.idBtn1)
+            }
+        }).disposed(by: disp)
+        
+        idBtn2.rx.tap.subscribe(onNext: { [weak self ] in
+            if let self = self {
+                self.block1?(self.idBtn1)
+            }
+        }).disposed(by: disp)
+        
+        faceBtn.rx.tap.subscribe(onNext: { [weak self ] in
+            if let self = self {
+                self.block2?(self.faceBtn1)
+            }
+        }).disposed(by: disp)
+        
+        faceBtn1.rx.tap.subscribe(onNext: { [weak self ] in
+            if let self = self {
+                self.block2?(self.faceBtn1)
+            }
         }).disposed(by: disp)
     }
     

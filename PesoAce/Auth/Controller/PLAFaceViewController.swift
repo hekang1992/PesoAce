@@ -27,6 +27,13 @@ class PLAFaceViewController: PLABaseViewController {
         faceView.block = { [weak self ] in
             self?.navigationController?.popToRootViewController(animated: true)
         }
+        faceView.block1 = { [weak self ] btn in
+            let idVc = PLAAuThAbcController()
+            self?.navigationController?.pushViewController(idVc, animated: true)
+        }
+        faceView.block2 = { [weak self ] btn in
+            
+        }
     }
     
 

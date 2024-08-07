@@ -16,6 +16,8 @@
 		186C4CB42C626C81007CDAF1 /* PLAOrderListNormalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186C4CB32C626C81007CDAF1 /* PLAOrderListNormalCell.swift */; };
 		186C4CB62C626C8D007CDAF1 /* PLAOrderListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186C4CB52C626C8D007CDAF1 /* PLAOrderListCell.swift */; };
 		186C4CB82C6273FD007CDAF1 /* PLAEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186C4CB72C6273FD007CDAF1 /* PLAEmptyView.swift */; };
+		186C4CBA2C6281D5007CDAF1 /* PLAAuThAbcController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186C4CB92C6281D5007CDAF1 /* PLAAuThAbcController.swift */; };
+		186C4CBC2C628223007CDAF1 /* PLAAuthIdView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186C4CBB2C628223007CDAF1 /* PLAAuthIdView.swift */; };
 		18982DF32C5E165A0036F819 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18982DF22C5E165A0036F819 /* AppDelegate.swift */; };
 		18982DFC2C5E165B0036F819 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18982DFB2C5E165B0036F819 /* Assets.xcassets */; };
 		18982E0E2C5E17500036F819 /* DeviceInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18982E0D2C5E17500036F819 /* DeviceInfo.swift */; };
@@ -53,6 +55,8 @@
 		186C4CB32C626C81007CDAF1 /* PLAOrderListNormalCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PLAOrderListNormalCell.swift; sourceTree = "<group>"; };
 		186C4CB52C626C8D007CDAF1 /* PLAOrderListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PLAOrderListCell.swift; sourceTree = "<group>"; };
 		186C4CB72C6273FD007CDAF1 /* PLAEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PLAEmptyView.swift; sourceTree = "<group>"; };
+		186C4CB92C6281D5007CDAF1 /* PLAAuThAbcController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PLAAuThAbcController.swift; sourceTree = "<group>"; };
+		186C4CBB2C628223007CDAF1 /* PLAAuthIdView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PLAAuthIdView.swift; sourceTree = "<group>"; };
 		18982DEF2C5E165A0036F819 /* PesoAce.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PesoAce.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		18982DF22C5E165A0036F819 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		18982DFB2C5E165B0036F819 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -110,6 +114,7 @@
 			isa = PBXGroup;
 			children = (
 				186C4CA72C6247B8007CDAF1 /* PLAFaceView.swift */,
+				186C4CBB2C628223007CDAF1 /* PLAAuthIdView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -118,6 +123,7 @@
 			isa = PBXGroup;
 			children = (
 				186C4CA52C62479B007CDAF1 /* PLAFaceViewController.swift */,
+				186C4CB92C6281D5007CDAF1 /* PLAAuThAbcController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -449,6 +455,7 @@
 				18982E2A2C5FD5F50036F819 /* PLAHomeViewController.swift in Sources */,
 				18982E262C5F4F670036F819 /* PLABaseConfig.swift in Sources */,
 				186C4CB82C6273FD007CDAF1 /* PLAEmptyView.swift in Sources */,
+				186C4CBC2C628223007CDAF1 /* PLAAuthIdView.swift in Sources */,
 				18982E222C5F4BC90036F819 /* PLALoginFactory.swift in Sources */,
 				18982E4B2C6127490036F819 /* PLAJianTouView.swift in Sources */,
 				18982E0E2C5E17500036F819 /* DeviceInfo.swift in Sources */,
@@ -462,6 +469,7 @@
 				18982E452C6120570036F819 /* PLALeftSideViewController.swift in Sources */,
 				186C4CB42C626C81007CDAF1 /* PLAOrderListNormalCell.swift in Sources */,
 				18982E1B2C5E28890036F819 /* PLABaseViewController.swift in Sources */,
+				186C4CBA2C6281D5007CDAF1 /* PLAAuThAbcController.swift in Sources */,
 				186C4CAE2C624F2D007CDAF1 /* PLAOrderView.swift in Sources */,
 				186C4CB62C626C8D007CDAF1 /* PLAOrderListCell.swift in Sources */,
 			);
