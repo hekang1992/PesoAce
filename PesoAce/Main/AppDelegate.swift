@@ -29,9 +29,8 @@ extension AppDelegate {
     
     func jianPanManager(){
         let manager = IQKeyboardManager.shared
-        manager.enable = true
         manager.shouldResignOnTouchOutside = true
-        manager.keyboardDistanceFromTextField = 5.px()
+        manager.enable = true
     }
     
     func rootVcPush() {

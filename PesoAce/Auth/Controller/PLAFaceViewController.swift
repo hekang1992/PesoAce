@@ -22,6 +22,11 @@ class PLAFaceViewController: PLABaseViewController {
         return popView
     }()
     
+    lazy var popInfoView: PLAPMInfoView = {
+        let popInfoView = PLAPMInfoView(frame: self.view.bounds)
+        return popInfoView
+    }()
+    
     var model: cleanerModel?
     
     var productID: String?
@@ -99,14 +104,17 @@ extension PLAFaceViewController: UIImagePickerControllerDelegate, UINavigationCo
     func shangchuantup(_ data: Data, _ image: UIImage) {
         ViewHud.addLoadView()
         let dict = ["shakes": model?.asthma ?? "", "dle": "1", "reputedly": productID ?? "", "sighing": "1", "vacuumed": "11"]
-        PLAAFNetWorkManager.shared.uploadImageAPI(params: dict, pageUrl: "/ace/laughed/hurled/small", method: .post, data: data) { baseModel in
+        PLAAFNetWorkManager.shared.uploadImageAPI(params: dict, pageUrl: "/ace/laughed/hurled/small", method: .post, data: data) { [weak self] baseModel in
             ViewHud.hideLoadView()
             let formica = baseModel.formica ?? ""
             if let greasy = baseModel.greasy, greasy == 0 || greasy == 00 {
                 guard let model = JSONDeserializer<wallpaperModel>.deserializeFrom(dict: baseModel.wallpaper) else { return }
-                
+                DispatchQueue.main.async {
+                    self?.popMessage(from: model)
+                }
+            }else {
+                MBProgressHUD.wj_showPlainText(formica, view: nil)
             }
-            MBProgressHUD.wj_showPlainText(formica, view: nil)
         } errorBlock: { error in
             ViewHud.hideLoadView()
         }
@@ -132,6 +140,17 @@ extension PLAFaceViewController: UIImagePickerControllerDelegate, UINavigationCo
                     PLAPhotoManager.shared.presentCamera(from: self, isfront: "0")
                 }
             })
+        }
+    }
+    
+    func popMessage(from model: wallpaperModel) {
+        let alertVc = TYAlertController(alert: popInfoView, preferredStyle: .actionSheet, transitionAnimation: .fade)
+        popInfoView.nameView.tectFie.text = model.asthma ?? ""
+        popInfoView.idView.tectFie.text = model.liq ?? ""
+        popInfoView.dateView.tectBtn.setTitle(model.fracture ?? "", for: .normal)
+        self.present(alertVc!, animated: true)
+        popInfoView.block = { [weak self] in
+            self?.dismiss(animated: true)
         }
     }
     

@@ -21,6 +21,9 @@ class wallpaperModel: HandyJSON {
     var lurch: String?
     var remem: String?
     var minarets: String?
+    var asthma: String?
+    var liq: String?
+    var fracture: String?
     var tha: thaModel?
     var jokingly: jokinglyModel?
     var cleaner: [cleanerModel]?

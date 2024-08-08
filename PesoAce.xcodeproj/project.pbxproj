@@ -45,6 +45,8 @@
 		18A2BC942C64F68C00BB5DAE /* PLACollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A2BC932C64F68C00BB5DAE /* PLACollectionViewCell.swift */; };
 		18A2BC962C650B2900BB5DAE /* PLAPopPhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A2BC952C650B2900BB5DAE /* PLAPopPhotoView.swift */; };
 		18A2BC982C65107800BB5DAE /* PLAPhotoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A2BC972C65107800BB5DAE /* PLAPhotoManager.swift */; };
+		18E0B0B02C651F190083BCD4 /* PLAPMInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E0B0AF2C651F190083BCD4 /* PLAPMInfoView.swift */; };
+		18E0B0B22C6521500083BCD4 /* PLAPCommonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E0B0B12C6521500083BCD4 /* PLAPCommonView.swift */; };
 		7A111470DB6E396641AE5453 /* Pods_PesoAce.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA7B7D9C7C765427C57192B0 /* Pods_PesoAce.framework */; };
 /* End PBXBuildFile section */
 
@@ -90,6 +92,8 @@
 		18A2BC932C64F68C00BB5DAE /* PLACollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PLACollectionViewCell.swift; sourceTree = "<group>"; };
 		18A2BC952C650B2900BB5DAE /* PLAPopPhotoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PLAPopPhotoView.swift; sourceTree = "<group>"; };
 		18A2BC972C65107800BB5DAE /* PLAPhotoManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLAPhotoManager.swift; sourceTree = "<group>"; };
+		18E0B0AF2C651F190083BCD4 /* PLAPMInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PLAPMInfoView.swift; sourceTree = "<group>"; };
+		18E0B0B12C6521500083BCD4 /* PLAPCommonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PLAPCommonView.swift; sourceTree = "<group>"; };
 		28450693720077835F00ECDB /* Pods-PesoAce.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PesoAce.debug.xcconfig"; path = "Target Support Files/Pods-PesoAce/Pods-PesoAce.debug.xcconfig"; sourceTree = "<group>"; };
 		5DBA2829A6F9E91179DC6C59 /* Pods-PesoAce.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PesoAce.release.xcconfig"; path = "Target Support Files/Pods-PesoAce/Pods-PesoAce.release.xcconfig"; sourceTree = "<group>"; };
 		CA7B7D9C7C765427C57192B0 /* Pods_PesoAce.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PesoAce.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -124,6 +128,8 @@
 				186C4CBB2C628223007CDAF1 /* PLAAuthIdView.swift */,
 				18A2BC932C64F68C00BB5DAE /* PLACollectionViewCell.swift */,
 				18A2BC952C650B2900BB5DAE /* PLAPopPhotoView.swift */,
+				18E0B0AF2C651F190083BCD4 /* PLAPMInfoView.swift */,
+				18E0B0B12C6521500083BCD4 /* PLAPCommonView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -484,6 +490,8 @@
 				186C4CBA2C6281D5007CDAF1 /* PLAAuThAbcController.swift in Sources */,
 				186C4CAE2C624F2D007CDAF1 /* PLAOrderView.swift in Sources */,
 				186C4CB62C626C8D007CDAF1 /* PLAOrderListCell.swift in Sources */,
+				18E0B0B22C6521500083BCD4 /* PLAPCommonView.swift in Sources */,
+				18E0B0B02C651F190083BCD4 /* PLAPMInfoView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
