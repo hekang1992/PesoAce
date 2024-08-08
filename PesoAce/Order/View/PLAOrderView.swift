@@ -17,7 +17,7 @@ class PLAOrderView: UIView {
     
     var block: (() -> Void)?
     
-    var block1: ((String) -> Void)?
+    var block1: ((String, Int) -> Void)?
     
     lazy var backBtn: UIButton = {
         let backBtn = UIButton(type: .custom)
@@ -34,7 +34,7 @@ class PLAOrderView: UIView {
         let segmentedView = JXSegmentedView()
         segmentedView.delegate = self
         segmentedDataSource = JXSegmentedTitleDataSource()
-        segmentedDataSource.titles = ["All", "Ongoing", "Pending", "Completed", "Failure"]
+        segmentedDataSource.titles = ["All", "Completed", "Pending", "Ongoing", "Failure"]
         segmentedDataSource.isTitleColorGradientEnabled = true
         segmentedDataSource.titleNormalFont = UIFont(name: black_font, size: 14.px())!
         segmentedDataSource.titleSelectedFont = UIFont(name: black_font, size: 14.px())!
@@ -88,9 +88,6 @@ class PLAOrderView: UIView {
         backBtn.rx.tap.subscribe(onNext: { [weak self ] in
             self?.block?()
         }).disposed(by: disp)
-        DispatchQueue.main.async {
-            self.segmentedView(self.segmentedView, didSelectedItemAt: 0)
-        }
     }
     
     required init?(coder: NSCoder) {
@@ -102,7 +99,7 @@ class PLAOrderView: UIView {
 extension PLAOrderView: JXSegmentedViewDelegate, UIScrollViewDelegate {
     
     func segmentedView(_ segmentedView: JXSegmentedView, didSelectedItemAt index: Int) {
-        self.block1?(String(index + 4))
+        self.block1?(String(index + 4), index)
     }
     
 }

@@ -45,7 +45,7 @@ class PLAHomeViewController: PLABaseViewController {
 extension PLAHomeViewController {
     
     func leftVc() {
-        let vc =  PLANavigationController(rootViewController: PLALeftSideViewController())
+        let vc = PLALeftSideViewController()
         gy_showSide({ (config) in
             config.animationType = .translationMask
             config.sideRelative = 0.68

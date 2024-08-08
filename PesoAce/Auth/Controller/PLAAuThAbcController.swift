@@ -15,6 +15,8 @@ class PLAAuThAbcController: UIViewController {
         pVeiw.titltLabel.text = "Select the document type"
         return pVeiw
     }()
+    
+    var productID: String?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,17 +29,22 @@ class PLAAuThAbcController: UIViewController {
         pVeiw.block = { [weak self ] in
             self?.navigationController?.popViewController(animated: true)
         }
+        tupianInfo()
+    }
+
+}
+
+
+extension PLAAuThAbcController {
+    
+    func tupianInfo() {
+        ViewHud.addLoadView()
+        PLAAFNetWorkManager.shared.requestAPI(params: [:], pageUrl: "/ace/saybut/obstinate/list", method: .post) { baseModel in
+            ViewHud.hideLoadView()
+        } errorBlock: { error in
+            ViewHud.hideLoadView()
+        }
+
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

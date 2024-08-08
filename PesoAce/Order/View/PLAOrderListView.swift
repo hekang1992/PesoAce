@@ -8,14 +8,19 @@
 import UIKit
 
 class PLAOrderListView: UIView {
-
+    
+    var modelArray: [cleanerModel]?
+    
+    var block: ((String) -> Void)?
+    
     lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.estimatedRowHeight = 100.px()
         tableView.rowHeight = UITableView.automaticDimension
         tableView.separatorStyle = .none
-        tableView.backgroundColor = .clear
+        tableView.backgroundColor = UIColor.init(css: "#F6F6F7")
         tableView.showsVerticalScrollIndicator = false
         tableView.showsHorizontalScrollIndicator = false
         tableView.contentInsetAdjustmentBehavior = .never
@@ -40,16 +45,32 @@ class PLAOrderListView: UIView {
 
 extension PLAOrderListView: UITableViewDelegate, UITableViewDataSource {
     
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 0.01
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        return nil
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        return modelArray?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "PLAOrderListNormalCell", for: indexPath) as? PLAOrderListNormalCell {
+            cell.selectionStyle = .none
+            cell.backgroundColor = .clear
+            cell.model = modelArray?[indexPath.row]
             return cell
         }
         return UITableViewCell()
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let model = modelArray?[indexPath.row] {
+            self.block?(model.thwiiiiit ?? "")
+        }
+    }
     
 }

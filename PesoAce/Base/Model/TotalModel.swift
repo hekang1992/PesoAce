@@ -29,6 +29,10 @@ class wallpaperModel: HandyJSON {
 class cleanerModel: HandyJSON {
     required init() {}
     var biryani: String?
+    var wordlessly: String?
+    var pooling: String?
+    var oozed: String?
+    var thwiiiiit: String?//跳转地址
 }
 
 class jokinglyModel: HandyJSON {

@@ -12,7 +12,7 @@ import MBProgressHUD_WJExtension
 
 class JudgeConfig: NSObject {
     
-    static func judue(_ str: String?, from vc: UIViewController) {
+    static func judue(_ str: String?, from vc: PLABaseViewController) {
         guard let str = str,
               let url = URL(string: str),
               let sch = url.scheme else { return }
@@ -29,7 +29,7 @@ class JudgeConfig: NSObject {
         }
     }
     
-    static func productDetailInfo(_ productID: String, form vc: UIViewController) {
+    static func productDetailInfo(_ productID: String, form vc: PLABaseViewController) {
         ViewHud.addLoadView()
         PLAAFNetWorkManager.shared.requestAPI(params: ["reputedly": productID], pageUrl: "/ace/stood/kamal/antide", method: .post) { baseModel in
             ViewHud.hideLoadView()
@@ -48,10 +48,10 @@ class JudgeConfig: NSObject {
         }
     }
     
-    static func nextStepVc(_ type: String, _ productID: String, form vc: UIViewController) {
+    static func nextStepVc(_ type: String, _ productID: String, form vc: PLABaseViewController) {
         switch type {
         case "afterwards1":
-            let faceVc = PLAFaceViewController()
+            let faceVc = PLAAuThAbcController()
             faceVc.productID = productID
             vc.navigationController?.pushViewController(faceVc, animated: true)
             break

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class PLAOrderViewController: UIViewController {
+class PLAOrderViewController: PLABaseViewController {
     
     lazy var orderView: PLAOrderView = {
         let orderView = PLAOrderView()
@@ -29,12 +29,23 @@ class PLAOrderViewController: UIViewController {
         orderView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
-        orderView.block1 = { [weak self] str in
+        for vc in listVCArray {
+            vc.view.removeFromSuperview()
+        }
+        listVCArray.removeAll()
+        for _ in 0..<5 {
             let vc = PLAOrderListViewController()
-            vc.battered = str
-            self?.orderView.contentScrollView.addSubview(vc.view)
-            self?.listVCArray.append(vc)
-            self?.view.setNeedsLayout()
+            orderView.contentScrollView.addSubview(vc.view)
+            vc.block = { [weak self] url in
+                if let self = self {
+                    JudgeConfig.judue(url, from: self)
+                }
+            }
+            listVCArray.append(vc)
+        }
+        listVCArray.first?.orderListPage("4")
+        orderView.block1 = { [weak self] str, index in
+            self?.listVCArray[index].orderListPage(str)
         }
     }
     

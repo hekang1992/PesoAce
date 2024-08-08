@@ -25,7 +25,7 @@ class PLAFaceViewController: PLABaseViewController {
             make.edges.equalToSuperview()
         }
         faceView.block = { [weak self ] in
-            self?.navigationController?.popToRootViewController(animated: true)
+            self?.navigationController?.popViewController(animated: true)
         }
         faceView.block1 = { [weak self ] btn in
             let idVc = PLAAuThAbcController()

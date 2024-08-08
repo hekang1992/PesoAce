@@ -7,8 +7,9 @@
 
 import UIKit
 import HandyJSON
+import JXSegmentedView
 
-class PLAOrderListViewController: UIViewController {
+class PLAOrderListViewController: PLABaseViewController {
     
     lazy var listView: PLAOrderListView = {
         let listView = PLAOrderListView()
@@ -21,6 +22,8 @@ class PLAOrderListViewController: UIViewController {
     }()
     
     var battered: String?
+    
+    var block: ((String) -> Void)?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,13 +33,15 @@ class PLAOrderListViewController: UIViewController {
         listView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
-        orderListPage(battered ?? "")
-        print("battered>>>>>>>\(battered ?? "")")
+        listView.block = { [weak self] url in
+            self?.block?(url)
+        }
     }
 }
 
 
 extension PLAOrderListViewController {
+    
     
     func orderListPage(_ battered: String) {
         ViewHud.addLoadView()
@@ -46,6 +51,8 @@ extension PLAOrderListViewController {
             if let greasy = baseModel.greasy, greasy == 0 || greasy == 00 {
                 if let model = JSONDeserializer<wallpaperModel>.deserializeFrom(dict: baseModel.wallpaper), let modelArray = model.cleaner, !modelArray.isEmpty {
                     self?.emptyView.removeFromSuperview()
+                    self?.listView.modelArray = modelArray
+                    self?.listView.tableView.reloadData()
                 }else {
                     self?.addemptyView()
                 }
@@ -59,10 +66,13 @@ extension PLAOrderListViewController {
     }
     
     func addemptyView () {
-        listView.addSubview(emptyView)
-        emptyView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
+        DispatchQueue.main.async {
+            self.listView.addSubview(self.emptyView)
+            self.emptyView.snp.makeConstraints { make in
+                make.edges.equalToSuperview()
+            }
         }
+        
     }
     
 }

@@ -140,11 +140,11 @@
 		186C4CAC2C624F12007CDAF1 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				186C4CB72C6273FD007CDAF1 /* PLAEmptyView.swift */,
 				186C4CAD2C624F2D007CDAF1 /* PLAOrderView.swift */,
 				186C4CB12C626BFD007CDAF1 /* PLAOrderListView.swift */,
-				186C4CB32C626C81007CDAF1 /* PLAOrderListNormalCell.swift */,
 				186C4CB52C626C8D007CDAF1 /* PLAOrderListCell.swift */,
-				186C4CB72C6273FD007CDAF1 /* PLAEmptyView.swift */,
+				186C4CB32C626C81007CDAF1 /* PLAOrderListNormalCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
