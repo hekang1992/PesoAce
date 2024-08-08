@@ -11,6 +11,7 @@ class PLALoginView: PLACommonView {
     
     var block: ((UIButton) -> Void)?
     var block1: (() -> Void)?
+    var xieyiblock: (() -> Void)?
     
     lazy var hiLabel: UILabel = {
         let hiLabel = UILabel.createLabel(font: UIFont(name: black_font, size: 38.px())!, textColor: UIColor.init(css: "#333333"), textAlignment: .left)
@@ -92,6 +93,12 @@ class PLALoginView: PLACommonView {
         return loginBtn
     }()
     
+    lazy var xieyibtn: UIButton = {
+        let xieyibtn = UIButton(type: .custom)
+        xieyibtn.setBackgroundImage(UIImage(named: "Group 1663"), for: .normal)
+        return xieyibtn
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         scrollView.addSubview(hiLabel)
@@ -104,6 +111,7 @@ class PLALoginView: PLACommonView {
         scrollView.addSubview(lineView2)
         scrollView.addSubview(sendBtn)
         scrollView.addSubview(loginBtn)
+        scrollView.addSubview(xieyibtn)
         hiLabel.snp.makeConstraints { make in
             make.left.equalToSuperview().offset(26.px())
             make.top.equalToSuperview().offset(DeviceStatusHeightManager.statusBarHeight + 56.px())
@@ -159,6 +167,18 @@ class PLALoginView: PLACommonView {
             make.top.equalTo(lineView2.snp.bottom).offset(35.px())
             make.height.equalTo(54.px())
         }
+        xieyibtn.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.equalTo(loginBtn.snp.bottom).offset(14.px())
+            make.size.equalTo(CGSize(width: 309.px(), height: 22.px()))
+            make.bottom.equalToSuperview().offset(-50.px())
+        }
+        
+        
+        xieyibtn.rx.tap.subscribe(onNext: { [weak self] in
+            self?.xieyiblock?()
+        }).disposed(by: disposeBag)
+        
         loginBtn.rx.tap.subscribe(onNext: { [weak self] in
             self?.block1?()
         }).disposed(by: disposeBag)

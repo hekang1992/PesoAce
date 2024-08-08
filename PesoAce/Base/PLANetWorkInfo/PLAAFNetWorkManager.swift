@@ -32,7 +32,7 @@ class PLAAFNetWorkManager: NSObject {
     let headers: HTTPHeaders = [
         "Accept": "application/json;",
         "Connection": "keep-alive",
-        "Content-Type": "application/x-www-form-urlencoded;text/javascript;text/plain;multipart/form-data"]
+        "Content-Type": "application/x-www-form-urlencoded;text/javascript;text/json;text/plain;multipart/form-data"]
     
     func requestAPI(params: [String: Any]?,
                     pageUrl: String,
@@ -94,7 +94,7 @@ class PLAAFNetWorkManager: NSObject {
             .validate()
             .responseData(completionHandler: { response in
                 switch response.result {
-                case .success(let success):
+                case .success(_):
                     if response.data == nil {
                         return
                     }

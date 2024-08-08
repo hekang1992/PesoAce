@@ -36,8 +36,10 @@ class PLALoginViewController: PLABaseViewController {
         loginView.block1 = { [weak self]  in
             self?.loginInfo()
         }
+        loginView.xieyiblock = { [weak self]  in
+            MBProgressHUD.wj_showPlainText("协议", view: nil)
+        }
     }
-    
     
     
 }

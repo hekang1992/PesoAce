@@ -17,6 +17,8 @@ class PLAFaceView: UIView {
     var block1: ((UIButton) -> Void)?
     
     var block2: ((UIButton) -> Void)?
+    
+    var block3: ((UIButton) -> Void)?
 
     lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
@@ -202,9 +204,10 @@ class PLAFaceView: UIView {
             self?.block?()
         }).disposed(by: disp)
         
+        //datup
         idBtn.rx.tap.subscribe(onNext: { [weak self ] in
             if let self = self {
-                self.block1?(self.idBtn1)
+                self.block3?(self.idBtn1)
             }
         }).disposed(by: disp)
         
