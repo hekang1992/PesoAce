@@ -152,6 +152,13 @@ extension PLAFaceViewController: UIImagePickerControllerDelegate, UINavigationCo
         popInfoView.block = { [weak self] in
             self?.dismiss(animated: true)
         }
+        popInfoView.saveblock = { [weak self] in
+            self?.saveInfo()
+        }
+    }
+    
+    func saveInfo() {
+        
     }
     
 }

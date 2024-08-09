@@ -14,6 +14,8 @@ class PLAPMInfoView: UIView {
     
     var block: (() -> Void)?
     
+    var saveblock: (() -> Void)?
+    
     lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.showsHorizontalScrollIndicator = false
@@ -124,6 +126,9 @@ class PLAPMInfoView: UIView {
         
         canBtn.rx.tap.subscribe(onNext: { [weak self] in
             self?.block?()
+        }).disposed(by: disp)
+        sendBtn.rx.tap.subscribe(onNext: { [weak self] in
+            self?.saveblock?()
         }).disposed(by: disp)
     }
     
