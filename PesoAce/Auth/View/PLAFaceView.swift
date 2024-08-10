@@ -19,6 +19,8 @@ class PLAFaceView: UIView {
     var block2: ((UIButton) -> Void)?
     
     var block3: ((UIButton) -> Void)?
+    
+    var block4: ((UIButton) -> Void)?
 
     lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
@@ -69,7 +71,7 @@ class PLAFaceView: UIView {
     lazy var idBtn1: UIButton = {
         let idBtn = UIButton(type: .custom)
         idBtn.adjustsImageWhenHighlighted = false
-        idBtn.setBackgroundImage(UIImage(named: "Group 39988"), for: .normal)
+//        idBtn.setBackgroundImage(UIImage(named: "Group 39988"), for: .normal)
         return idBtn
     }()
     
@@ -109,6 +111,7 @@ class PLAFaceView: UIView {
     
     lazy var loginBtn: UIButton = {
         let loginBtn = UIButton(type: .custom)
+        loginBtn.isEnabled = false
         loginBtn.setTitle("Submit and next", for: .normal)
         loginBtn.backgroundColor = UIColor.init(css: "#F4F7FF")
         return loginBtn
@@ -234,6 +237,14 @@ class PLAFaceView: UIView {
                 self.block2?(self.faceBtn1)
             }
         }).disposed(by: disp)
+        
+        
+        loginBtn.rx.tap.subscribe(onNext: { [weak self ] in
+            if let self = self {
+                self.block4?(self.loginBtn)
+            }
+        }).disposed(by: disp)
+        
     }
     
     required init?(coder: NSCoder) {

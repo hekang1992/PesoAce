@@ -6,9 +6,10 @@
 //
 
 import UIKit
+import RxSwift
 
 class PLAPCommonView: UIView {
-
+    
     lazy var tlabel: UILabel = {
         let tlabel = UILabel.createLabel(font: UIFont(name: regular_font, size: 14.px())!, textColor: UIColor.init(css: "#A9A9A9"), textAlignment: .left)
         return tlabel
@@ -58,6 +59,10 @@ class PLAPCommonView: UIView {
 }
 
 class PLAPClickView: UIView {
+    
+    var block: ((UIButton) -> Void)?
+    
+    lazy var disp = DisposeBag()
     
     lazy var tlabel: UILabel = {
         let tlabel = UILabel.createLabel(font: UIFont(name: regular_font, size: 14.px())!, textColor: UIColor.init(css: "#A9A9A9"), textAlignment: .left)
@@ -112,6 +117,12 @@ class PLAPClickView: UIView {
         tectBtn.snp.makeConstraints { make in
             make.edges.equalToSuperview().inset(UIEdgeInsets(top: 0, left: 16.px(), bottom: 0, right: 16.px()))
         }
+        
+        tectBtn.rx.tap.subscribe(onNext: { [weak self] in
+            if let self = self {
+                self.block?(self.tectBtn)
+            }
+        }).disposed(by: disp)
     }
     
     required init?(coder: NSCoder) {

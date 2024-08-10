@@ -14,6 +14,8 @@ class PLAPMInfoView: UIView {
     
     var block: (() -> Void)?
     
+    var block1: ((UIButton) -> Void)?
+    
     var saveblock: (() -> Void)?
     
     lazy var scrollView: UIScrollView = {
@@ -127,9 +129,14 @@ class PLAPMInfoView: UIView {
         canBtn.rx.tap.subscribe(onNext: { [weak self] in
             self?.block?()
         }).disposed(by: disp)
+        
         sendBtn.rx.tap.subscribe(onNext: { [weak self] in
             self?.saveblock?()
         }).disposed(by: disp)
+        
+        dateView.block = { [weak self] btn in
+            self?.block1?(btn)
+        }
     }
     
     required init?(coder: NSCoder) {

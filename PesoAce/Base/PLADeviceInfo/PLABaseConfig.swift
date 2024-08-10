@@ -115,21 +115,20 @@ extension UIColor {
 
 class loadingView: UIView {
     
-    lazy var grayView: UIView = {
-        let view = UIView()
-        view.backgroundColor = UIColor.black.withAlphaComponent(0.25)
-        return view
-    }()
-    
     lazy var hudView: LottieAnimationView = {
         let hudView = LottieAnimationView(name: "loading.json", bundle: Bundle.main)
         hudView.animationSpeed = 2
         hudView.loopMode = .loop
         hudView.play()
-        
         hudView.layer.cornerRadius = 15.px()
         hudView.backgroundColor = .black.withAlphaComponent(0.85)
         return hudView
+    }()
+    
+    lazy var grayView: UIView = {
+        let view = UIView()
+        view.backgroundColor = UIColor.black.withAlphaComponent(0.25)
+        return view
     }()
     
     override init(frame: CGRect) {
@@ -145,12 +144,12 @@ class loadingView: UIView {
     private func setupViews() {
         addSubview(grayView)
         grayView.addSubview(hudView)
-        grayView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
-        }
         hudView.snp.makeConstraints { make in
             make.center.equalToSuperview()
             make.size.equalTo(CGSize(width: 100.px(), height: 100.px()))
+        }
+        grayView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
         }
     }
 }
@@ -171,7 +170,7 @@ class ViewHud {
     }
     
     static func hideLoadView() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
             loadView.removeFromSuperview()
         }
     }

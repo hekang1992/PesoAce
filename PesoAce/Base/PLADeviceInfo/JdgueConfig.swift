@@ -56,6 +56,9 @@ class JudgeConfig: NSObject {
             vc.navigationController?.pushViewController(faceVc, animated: true)
             break
         case "afterwards2":
+            let personalVc = PLAPersonAlViewController()
+            personalVc.productID = productID
+            vc.navigationController?.pushViewController(personalVc, animated: true)
             break
         case "afterwards3":
             break

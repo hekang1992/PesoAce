@@ -55,7 +55,6 @@ class PLALoginFactory: NSObject {
 
 extension PLALoginFactory {
     
-    
     static func getAppVersion() -> String {
         if let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String {
             return version

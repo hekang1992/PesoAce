@@ -21,6 +21,7 @@ class wallpaperModel: HandyJSON {
     var lurch: String?
     var remem: String?
     var minarets: String?
+    var orbital: String?
     var asthma: String?
     var liq: String?
     var fracture: String?
@@ -28,11 +29,17 @@ class wallpaperModel: HandyJSON {
     var jokingly: jokinglyModel?
     var cleaner: [cleanerModel]?
     var al: alModel?
+    var lum: [lumModel]?
+}
+
+class lumModel: HandyJSON {
+    required init() {}
 }
 
 class alModel: HandyJSON {
     required init() {}
     var rail: String?
+    var minarets: String?
 }
 
 class cleanerModel: HandyJSON {

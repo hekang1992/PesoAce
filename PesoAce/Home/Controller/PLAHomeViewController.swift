@@ -45,11 +45,16 @@ class PLAHomeViewController: PLABaseViewController {
 extension PLAHomeViewController {
     
     func leftVc() {
-        let vc = PLALeftSideViewController()
-        gy_showSide({ (config) in
-            config.animationType = .translationMask
-            config.sideRelative = 0.68
-        }, vc)
+        if IS_LOGIN {
+            let vc = PLALeftSideViewController()
+            gy_showSide({ (config) in
+                config.animationType = .translationMask
+                config.sideRelative = 0.68
+            }, vc)
+        }else {
+            let loginVc = PLALoginViewController()
+            self.navigationController?.pushViewController(loginVc, animated: true)
+        }
     }
     
     @objc func handleRefresh() {
