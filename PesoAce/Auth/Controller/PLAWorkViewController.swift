@@ -1,8 +1,8 @@
 //
-//  PLAPersonAlViewController.swift
+//  PLAWorkViewController.swift
 //  PesoAce
 //
-//  Created by apple on 2024/8/10.
+//  Created by apple on 2024/8/11.
 //
 
 import UIKit
@@ -10,7 +10,7 @@ import HandyJSON
 import BRPickerView
 import MBProgressHUD_WJExtension
 
-class PLAPersonAlViewController: PLABaseViewController {
+class PLAWorkViewController: PLABaseViewController {
     
     var productID: String?
     
@@ -20,6 +20,8 @@ class PLAPersonAlViewController: PLABaseViewController {
     
     lazy var perView: PLAPersonInfoXView = {
         let perView = PLAPersonInfoXView()
+        perView.titleLabel.text = "Work Infomation"
+        perView.stLabel1.text = "Work Infomation"
         return perView
     }()
     
@@ -54,11 +56,11 @@ class PLAPersonAlViewController: PLABaseViewController {
     
 }
 
-extension PLAPersonAlViewController {
+extension PLAWorkViewController {
     
     func personalApi() {
         ViewHud.addLoadView()
-        PLAAFNetWorkManager.shared.requestAPI(params: ["reputedly": productID ?? "", "shifou": "2", "upload": "1"], pageUrl: "/ace/cruiser/worrying/turned", method: .post) { [weak self] baseModel in
+        PLAAFNetWorkManager.shared.requestAPI(params: ["reputedly": productID ?? "", "shifou": "2", "upload": "1"], pageUrl: "/ace/remember/brought/welfare", method: .post) { [weak self] baseModel in
             ViewHud.hideLoadView()
             if let greasy = baseModel.greasy, greasy == 0 || greasy == 00 {
                 guard let model = JSONDeserializer<wallpaperModel>.deserializeFrom(dict: baseModel.wallpaper) else { return }
@@ -153,7 +155,7 @@ extension PLAPersonAlViewController {
         dict?["hemorrhage"] = "1"
         dict?["brought"] = "2"
         ViewHud.addLoadView()
-        PLAAFNetWorkManager.shared.requestAPI(params: dict, pageUrl: "/ace/corner/considered/greatest", method: .post) { [weak self] baseModel in
+        PLAAFNetWorkManager.shared.requestAPI(params: dict, pageUrl: "/ace/railroads/truck/swivel", method: .post) { [weak self] baseModel in
             ViewHud.hideLoadView()
             if baseModel.greasy == 0 || baseModel.greasy == 00 {
                 if let self = self {

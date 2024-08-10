@@ -206,7 +206,6 @@ extension PLAFaceViewController: UIImagePickerControllerDelegate, UINavigationCo
         datePickerView.selectDate = NSDate.br_setYear(Int(three)!, month: Int(two)!, day: Int(one)!)
         datePickerView.maxDate = Date()
         datePickerView.resultBlock = { [weak self] selectDate, selectValue in
-            print("selectValue>>>>>\(selectValue ?? "")")
             let timeArray = selectValue!.components(separatedBy: "-")
             let year = timeArray[0]
             let mon = timeArray[1]

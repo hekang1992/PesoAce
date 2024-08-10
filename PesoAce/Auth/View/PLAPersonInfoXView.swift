@@ -14,6 +14,14 @@ class PLAPersonInfoXView: UIView {
     
     var block: (() -> Void)?
     
+    var block1: ((UIButton, lumModel) -> Void)?
+    
+    var block3: ((UIButton, lumModel) -> Void)?
+    
+    var block4: ((UIButton, lumModel) -> Void)?
+    
+    var saveblock: (() -> Void)?
+    
     var scrollDistance: CGFloat = 0
     
     var modelArray: [lumModel]?
@@ -83,7 +91,8 @@ class PLAPersonInfoXView: UIView {
         tableView.backgroundColor = .clear
         tableView.showsVerticalScrollIndicator = false
         tableView.showsHorizontalScrollIndicator = false
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "UITableViewCell")
+        tableView.register(PLAShuRuKuangCell.self, forCellReuseIdentifier: "PLAShuRuKuangCell")
+        tableView.register(PLAAnNiuCell.self, forCellReuseIdentifier: "PLAAnNiuCell")
         return tableView
     }()
     
@@ -132,40 +141,77 @@ extension PLAPersonInfoXView: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "UITableViewCell", for: indexPath)
-        cell.textLabel?.text = "fdasfas"
-        return cell
+        guard let modelArray = modelArray,!modelArray.isEmpty else { return UITableViewCell() }
+        let model = modelArray[indexPath.row]
+        switch model.pendu {
+        case "themselves1":
+            if let cell = tableView.dequeueReusableCell(withIdentifier: "PLAAnNiuCell", for: indexPath) as? PLAAnNiuCell {
+                cell.model = model
+                cell.selectionStyle = .none
+                cell.backgroundColor = .clear
+                cell.block = { [weak self] btn in
+                    self?.block1?(btn, model)
+                }
+                return cell
+            }
+        case "themselves2":
+            if let cell = tableView.dequeueReusableCell(withIdentifier: "PLAShuRuKuangCell", for: indexPath) as? PLAShuRuKuangCell {
+                cell.model = model
+                cell.selectionStyle = .none
+                cell.backgroundColor = .clear
+                return cell
+            }
+        case "themselves3":
+            if let cell = tableView.dequeueReusableCell(withIdentifier: "PLAAnNiuCell", for: indexPath) as? PLAAnNiuCell {
+                cell.model = model
+                cell.selectionStyle = .none
+                cell.backgroundColor = .clear
+                cell.block = { [weak self] btn in
+                    self?.block3?(btn, model)
+                }
+                return cell
+            }
+        case "themselves4":
+            if let cell = tableView.dequeueReusableCell(withIdentifier: "PLAAnNiuCell", for: indexPath) as? PLAAnNiuCell {
+                cell.model = model
+                cell.selectionStyle = .none
+                cell.backgroundColor = .clear
+                cell.block = { [weak self] btn in
+                    self?.block4?(btn, model)
+                }
+                return cell
+            }
+        default:
+            return UITableViewCell()
+        }
+        return UITableViewCell()
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        if let modelArray = modelArray, !modelArray.isEmpty {
-            let headView = UIView()
-            headView.addSubview(stView)
-            stView.addSubview(stLabel)
-            headView.addSubview(stLabel1)
-            headView.addSubview(stLabel2)
-            stView.snp.makeConstraints { make in
-                make.top.equalToSuperview()
-                make.size.equalTo(CGSize(width: 89.px(), height: 28.px()))
-                make.left.equalToSuperview().offset(24.px())
-            }
-            stLabel.snp.makeConstraints { make in
-                make.edges.equalToSuperview()
-            }
-            stLabel1.snp.makeConstraints { make in
-                make.top.equalTo(stLabel.snp.bottom).offset(24.px())
-                make.left.equalToSuperview().offset(24.px())
-                make.height.equalTo(28.px())
-            }
-            stLabel2.snp.makeConstraints { make in
-                make.top.equalTo(stLabel1.snp.bottom).offset(9.px())
-                make.left.equalToSuperview().offset(20.px())
-                make.height.equalTo(28.px())
-            }
-            return headView
-        }else {
-            return nil
+        let headView = UIView()
+        headView.addSubview(stView)
+        stView.addSubview(stLabel)
+        headView.addSubview(stLabel1)
+        headView.addSubview(stLabel2)
+        stView.snp.makeConstraints { make in
+            make.top.equalToSuperview()
+            make.size.equalTo(CGSize(width: 89.px(), height: 28.px()))
+            make.left.equalToSuperview().offset(24.px())
         }
+        stLabel.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+        stLabel1.snp.makeConstraints { make in
+            make.top.equalTo(stLabel.snp.bottom).offset(24.px())
+            make.left.equalToSuperview().offset(24.px())
+            make.height.equalTo(28.px())
+        }
+        stLabel2.snp.makeConstraints { make in
+            make.top.equalTo(stLabel1.snp.bottom).offset(9.px())
+            make.left.equalToSuperview().offset(20.px())
+            make.height.equalTo(28.px())
+        }
+        return headView
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -177,29 +223,34 @@ extension PLAPersonInfoXView: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        
-        let headView = UIView()
-        let imageView = UIImageView()
-        imageView.image = UIImage(named: "Grouserff")
-        headView.addSubview(imageView)
-        headView.addSubview(nextBtn)
-        imageView.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.size.equalTo(CGSize(width: 160.px(), height: 20.px()))
-            make.top.equalToSuperview().offset(16.px())
+        if let modelArray = modelArray, !modelArray.isEmpty {
+            let headView = UIView()
+            let imageView = UIImageView()
+            imageView.image = UIImage(named: "Grouserff")
+            headView.addSubview(imageView)
+            headView.addSubview(nextBtn)
+            imageView.snp.makeConstraints { make in
+                make.centerX.equalToSuperview()
+                make.size.equalTo(CGSize(width: 160.px(), height: 20.px()))
+                make.top.equalToSuperview().offset(16.px())
+            }
+            nextBtn.snp.makeConstraints { make in
+                make.centerX.equalToSuperview()
+                make.top.equalTo(imageView.snp.bottom).offset(12.px())
+                make.size.equalTo(CGSize(width: 312.px(), height: 57.px()))
+            }
+            nextBtn.rx.tap.subscribe(onNext: { [weak self] in
+                self?.saveblock?()
+            }).disposed(by: disp)
+            return headView
+        }else {
+            return nil
         }
-        nextBtn.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.top.equalTo(imageView.snp.bottom).offset(12.px())
-            make.size.equalTo(CGSize(width: 312.px(), height: 57.px()))
-        }
-        return headView
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let offset = scrollView.contentOffset.y + scrollView.adjustedContentInset.top
         let alpha = max(0, min(1, offset / 160.px()))
-        print("alpha>>>>>>\(alpha)")
         self.titleLabel.alpha = alpha
     }
     

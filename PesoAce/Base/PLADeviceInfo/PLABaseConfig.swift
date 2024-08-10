@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 import Lottie
+import BRPickerView
 
 let regular_font = "MADETommySoft"
 let black_font = "MADETommySoft-Black"
@@ -211,5 +212,97 @@ class DeviceStatusHeightManager {
     
     static var tabBarHeight: CGFloat {
         return 49 + safeAreaBottomHeight
+    }
+}
+
+
+class enmuModel {
+    static func enumOneArr(dataSourceArr: [Any]) -> [BRProvinceModel] {
+        var result = [BRProvinceModel]()
+        for proviceDic in dataSourceArr {
+            guard let proviceDic = proviceDic as? significantModel else {
+                continue
+            }
+            let proviceModel = BRProvinceModel()
+            proviceModel.code = proviceDic.vacuumed
+            proviceModel.name = proviceDic.asthma
+            proviceModel.index = dataSourceArr.firstIndex(where: { $0 as AnyObject === proviceDic as AnyObject }) ?? 0
+            result.append(proviceModel)
+        }
+        return result
+    }
+}
+
+//class erjiModel {
+//    static func geterjiArr(dataSourceArr: [Any]) -> [BRProvinceModel] {
+//        var tempArr1 = [BRProvinceModel]()
+//        for proviceDic in dataSourceArr {
+//            guard let proviceDic = proviceDic as? unfavourableModel else {
+//                continue
+//            }
+//            let proviceModel = BRProvinceModel()
+//            proviceModel.code = proviceDic.acerbities
+//            proviceModel.name = proviceDic.faults
+//            proviceModel.index = dataSourceArr.firstIndex(where: { $0 as AnyObject === proviceDic as AnyObject }) ?? 0
+//            let cityList = proviceDic.unfavourable ?? proviceDic.unfavourable ?? []
+//            var tempArr2 = [BRCityModel]()
+//            for cityDic in cityList {
+//                let cityModel = BRCityModel()
+//                cityModel.code = cityDic.acerbities
+//                cityModel.name = cityDic.faults
+//                cityModel.index = cityList.firstIndex(where: { $0 as AnyObject === cityDic as AnyObject }) ?? 0
+//                let areaList = cityDic.unfavourable ?? cityDic.unfavourable ?? []
+//                var tempArr3 = [BRAreaModel]()
+//                for areaDic in areaList {
+//                    let areaModel = BRAreaModel()
+//                    areaModel.code = areaDic.acerbities
+//                    areaModel.name = areaDic.faults
+//                    areaModel.index = areaList.firstIndex(where: { $0 as AnyObject === areaDic as AnyObject }) ?? 0
+//                    tempArr3.append(areaModel)
+//                }
+//                cityModel.arealist = tempArr3
+//                tempArr2.append(cityModel)
+//            }
+//            proviceModel.citylist = tempArr2
+//            tempArr1.append(proviceModel)
+//        }
+//        return tempArr1
+//    }
+//}
+
+class CityXuanZe {
+    static func cityModelArray(dataSourceArr: [Any]) -> [BRProvinceModel] {
+        var tempArr1 = [BRProvinceModel]()
+        for proviceDic in dataSourceArr {
+            guard let proviceDic = proviceDic as? cleanerModel else {
+                continue
+            }
+            let proviceModel = BRProvinceModel()
+            proviceModel.code = proviceDic.bellyaches
+            proviceModel.name = proviceDic.asthma
+            proviceModel.index = dataSourceArr.firstIndex(where: { $0 as AnyObject === proviceDic as AnyObject }) ?? 0
+            let cityList = proviceDic.cleaner ?? proviceDic.cleaner ?? []
+            var tempArr2 = [BRCityModel]()
+            for cityDic in cityList {
+                let cityModel = BRCityModel()
+                cityModel.code = cityDic.bellyaches
+                cityModel.name = cityDic.asthma
+                cityModel.index = cityList.firstIndex(where: { $0 as AnyObject === cityDic as AnyObject }) ?? 0
+                let areaList = cityDic.cleaner ?? cityDic.cleaner ?? []
+                var tempArr3 = [BRAreaModel]()
+                for areaDic in areaList {
+                    let areaModel = BRAreaModel()
+                    areaModel.code = areaDic.bellyaches
+                    areaModel.name = areaDic.asthma
+                    areaModel.index = areaList.firstIndex(where: { $0 as AnyObject === areaDic as AnyObject }) ?? 0
+                    tempArr3.append(areaModel)
+                }
+                cityModel.arealist = tempArr3
+                tempArr2.append(cityModel)
+            }
+            proviceModel.citylist = tempArr2
+            tempArr1.append(proviceModel)
+        }
+        return tempArr1
     }
 }

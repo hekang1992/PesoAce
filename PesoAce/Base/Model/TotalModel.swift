@@ -34,6 +34,19 @@ class wallpaperModel: HandyJSON {
 
 class lumModel: HandyJSON {
     required init() {}
+    var faisal: String?
+    var landlord: String?
+    var greasy: String?//key
+    var pendu: String?//type
+    var shalwar: String?//回血
+    var vacuumed: String?//回血key
+    var significant: [significantModel]?
+}
+
+class significantModel: HandyJSON {
+    required init() {}
+    var asthma: String?
+    var vacuumed: String?
 }
 
 class alModel: HandyJSON {
@@ -44,6 +57,7 @@ class alModel: HandyJSON {
 
 class cleanerModel: HandyJSON {
     required init() {}
+    var bellyaches: String?
     var asthma: String?
     var pic_url: String?
     var biryani: String?
@@ -51,6 +65,7 @@ class cleanerModel: HandyJSON {
     var pooling: String?
     var oozed: String?
     var thwiiiiit: String?//跳转地址
+    var cleaner: [cleanerModel]?
 }
 
 class jokinglyModel: HandyJSON {

@@ -83,13 +83,11 @@ extension PLAAuthIdView: UICollectionViewDelegate, UICollectionViewDataSource {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PLACollectionViewCell", for: indexPath) as? PLACollectionViewCell else {
             fatalError("PLACollectionViewCell")
         }
-        print("indexPath.row>>>>>\(indexPath.row)")
         cell.model = modelArray?[indexPath.row]
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("indexPath.row>>>>>>>>\(indexPath.row)")
         if let model = modelArray?[indexPath.row] {
             self.clickblock?(model)
         }

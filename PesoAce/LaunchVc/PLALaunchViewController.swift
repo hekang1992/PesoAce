@@ -40,12 +40,12 @@ extension PLALaunchViewController {
                 print("无网络连接")
                 break
             case .wifi:
-                print("网络>>>>>>>WIFI")
+                print(">>>>>>>WIFI")
                 NotificationCenter.default.post(name: NSNotification.Name(ROOT_VC), object: nil)
                 break
             case .cellular:
                 NotificationCenter.default.post(name: NSNotification.Name(ROOT_VC), object: nil)
-                print("网络>>>>>>>4G/5G")
+                print(">>>>>>>4G/5G")
                 break
             }
         }
