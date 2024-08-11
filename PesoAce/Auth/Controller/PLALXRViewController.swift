@@ -23,7 +23,7 @@ class PLALXRViewController: PLABaseViewController {
         pickerVc.displayedPropertyKeys = [CNContactPhoneNumbersKey]
         return pickerVc
     }()
-
+    
     var btn: UIButton?
     
     var model: cleanerModel?
@@ -32,7 +32,7 @@ class PLALXRViewController: PLABaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
         getLianxi()
         view.addSubview(lianxirenView)
@@ -54,17 +54,16 @@ class PLALXRViewController: PLABaseViewController {
             self?.alertlianxi(btn, model)
         }
         lianxirenView.saveblock = { [weak self] in
-            let array = self?.modelArray?.map({ model in
-                var result: [String: Any] = [:]
-                result["escapes"] = model.escapes ?? ""
-                result["asthma"] = model.asthma ?? ""
-                result["bubbling"] = model.bubbling ?? ""
-                result["plastics"] = model.plastics ?? ""
-                return result
-            })
-            if let modelrray = array {
-                self?.saveLianxiren(modelrray)
+            guard let self = self, let modelArray = self.modelArray else { return }
+            let resultArray = modelArray.map { model -> [String: Any] in
+                return [
+                    "escapes": model.escapes ?? "",
+                    "asthma": model.asthma ?? "",
+                    "bubbling": model.bubbling ?? "",
+                    "plastics": model.plastics ?? ""
+                ]
             }
+            self.saveLianxiren(resultArray)
         }
     }
 }
@@ -86,7 +85,7 @@ extension PLALXRViewController: CNContactPickerDelegate {
         } errorBlock: { error in
             ViewHud.hideLoadView()
         }
-
+        
     }
     
     func popLastEnum(_ model: BRAddressPickerMode, _ btn : UIButton, _ array: [BRProvinceModel], _ modelDate: cleanerModel) {

@@ -79,38 +79,42 @@ extension PLAWorkViewController {
         addressPickerView.pickerMode = model
         addressPickerView.selectIndexs = [0, 0, 0]
         addressPickerView.dataSourceArr = array
+        
         addressPickerView.resultBlock = { province, city, area in
-            
-            let provinceCode = province?.code ?? ""
-            let cityCode = city?.code ?? ""
-            let areaCode = area?.code ?? ""
-            
             let provinceName = province?.name ?? ""
             let cityName = city?.name ?? ""
             let areaName = area?.name ?? ""
             
-            var addressString: String = ""
-            var code: String = ""
-            if cityName.isEmpty {
+            let addressString: String
+            let code: String
+            
+            switch (provinceName.isEmpty, cityName.isEmpty, areaName.isEmpty) {
+            case (false, true, _):
                 addressString = provinceName
-                code = provinceCode
-            }else if areaName.isEmpty {
-                addressString = provinceName + " - " + cityName
-                code = provinceCode + " - " + cityCode
-            }else {
-                addressString = provinceName + " - " + cityName + " - " + areaName
-                code = provinceCode + " - " + cityCode + " - " + areaCode
+                code = province?.code ?? ""
+            case (false, false, true):
+                addressString = "\(provinceName) - \(cityName)"
+                code = "\(province?.code ?? "") - \(city?.code ?? "")"
+            case (false, false, false):
+                addressString = "\(provinceName) - \(cityName) - \(areaName)"
+                code = "\(province?.code ?? "") - \(city?.code ?? "") - \(area?.code ?? "")"
+            default:
+                addressString = ""
+                code = ""
             }
+            
             modelDate.shalwar = addressString
             modelDate.vacuumed = code
-            btn.setTitle(modelDate.shalwar ?? "", for: .normal)
-            btn.setTitleColor(UIColor.init(css: "#2681FB"), for: .normal)
+            btn.setTitle(addressString, for: .normal)
+            btn.setTitleColor(UIColor(css: "#2681FB"), for: .normal)
         }
+        
         let customStyle = BRPickerStyle()
         customStyle.pickerColor = .white
         customStyle.pickerTextFont = UIFont(name: black_font, size: 18.px())
-        customStyle.selectRowTextColor = UIColor.init(css: "#2681FB")
+        customStyle.selectRowTextColor = UIColor(css: "#2681FB")
         addressPickerView.pickerStyle = customStyle
+        
         addressPickerView.show()
     }
     
