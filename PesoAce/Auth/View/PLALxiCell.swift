@@ -14,7 +14,7 @@ class PLALxiCell: UITableViewCell {
     
     var block1: ((UIButton, cleanerModel) -> Void)?
     
-    var block2: ((UIButton) -> Void)?
+    var block2: ((UIButton, cleanerModel) -> Void)?
 
     lazy var titleLabel: UILabel = {
         let titleLabel = UILabel.createLabel(font: UIFont(name: regular_font, size: 14.px())!, textColor: UIColor.init(css: "#A9A9A9"), textAlignment: .left)
@@ -96,7 +96,8 @@ class PLALxiCell: UITableViewCell {
         }).disposed(by: disp)
         btn1.rx.tap.subscribe(onNext: { [weak self] in
             if let self = self {
-                self.block2?(self.btn)
+                guard let model = self.model else { return }
+                self.block2?(self.btn1, model)
             }
         }).disposed(by: disp)
     }

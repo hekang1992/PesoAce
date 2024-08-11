@@ -16,7 +16,7 @@ class PLALxiView: UIView {
     
     var block1: ((UIButton, cleanerModel) -> Void)?
     
-    var block2: ((UIButton) -> Void)?
+    var block2: ((UIButton, cleanerModel) -> Void)?
     
     var saveblock: (() -> Void)?
     
@@ -71,14 +71,6 @@ class PLALxiView: UIView {
         return stLabel
     }()
     
-    lazy var loginBtn: UIButton = {
-        let loginBtn = UIButton(type: .custom)
-        loginBtn.isEnabled = false
-        loginBtn.setTitle("Submit and next", for: .normal)
-        loginBtn.backgroundColor = UIColor.init(css: "#F4F7FF")
-        return loginBtn
-    }()
-    
     lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
         tableView.delegate = self
@@ -98,7 +90,6 @@ class PLALxiView: UIView {
         addSubview(canBtn)
         addSubview(titleLabel)
         addSubview(tableView)
-        
         canBtn.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(DeviceStatusHeightManager.statusBarHeight + 10.px())
             make.size.equalTo(CGSize(width: 24.px(), height: 24.px()))
@@ -146,8 +137,8 @@ extension PLALxiView: UITableViewDelegate, UITableViewDataSource {
         cell.block1 = { [weak self] btn, model in
             self?.block1?(btn, model)
         }
-        cell.block2 = { [weak self] btn in
-            self?.block2?(btn)
+        cell.block2 = { [weak self] btn, model in
+            self?.block2?(btn, model)
         }
         return cell
         

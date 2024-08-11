@@ -26,6 +26,8 @@
 		186C4CBC2C628223007CDAF1 /* PLAAuthIdView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186C4CBB2C628223007CDAF1 /* PLAAuthIdView.swift */; };
 		1881135A2C68DD1A00AAD9AA /* PLALxiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188113592C68DD1A00AAD9AA /* PLALxiView.swift */; };
 		1881135C2C68DE3F00AAD9AA /* PLALxiCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1881135B2C68DE3F00AAD9AA /* PLALxiCell.swift */; };
+		1881135E2C68F4E400AAD9AA /* PLAAllMoneyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1881135D2C68F4E400AAD9AA /* PLAAllMoneyViewController.swift */; };
+		188113602C68F57600AAD9AA /* PLAAllMoneyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1881135F2C68F57600AAD9AA /* PLAAllMoneyView.swift */; };
 		1884D1B42C667C6000B9E836 /* PLAPersonAlViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1884D1B32C667C6000B9E836 /* PLAPersonAlViewController.swift */; };
 		1884D1B62C66808900B9E836 /* PLAPersonInfoXView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1884D1B52C66808900B9E836 /* PLAPersonInfoXView.swift */; };
 		18982DF32C5E165A0036F819 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18982DF22C5E165A0036F819 /* AppDelegate.swift */; };
@@ -80,6 +82,8 @@
 		186C4CBB2C628223007CDAF1 /* PLAAuthIdView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PLAAuthIdView.swift; sourceTree = "<group>"; };
 		188113592C68DD1A00AAD9AA /* PLALxiView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PLALxiView.swift; sourceTree = "<group>"; };
 		1881135B2C68DE3F00AAD9AA /* PLALxiCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PLALxiCell.swift; sourceTree = "<group>"; };
+		1881135D2C68F4E400AAD9AA /* PLAAllMoneyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PLAAllMoneyViewController.swift; sourceTree = "<group>"; };
+		1881135F2C68F57600AAD9AA /* PLAAllMoneyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PLAAllMoneyView.swift; sourceTree = "<group>"; };
 		1884D1B32C667C6000B9E836 /* PLAPersonAlViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PLAPersonAlViewController.swift; sourceTree = "<group>"; };
 		1884D1B52C66808900B9E836 /* PLAPersonInfoXView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PLAPersonInfoXView.swift; sourceTree = "<group>"; };
 		18982DEF2C5E165A0036F819 /* PesoAce.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PesoAce.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -155,6 +159,7 @@
 				182CF0DB2C67C68F007D5538 /* PLAAnNiuCell.swift */,
 				188113592C68DD1A00AAD9AA /* PLALxiView.swift */,
 				1881135B2C68DE3F00AAD9AA /* PLALxiCell.swift */,
+				1881135F2C68F57600AAD9AA /* PLAAllMoneyView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -167,6 +172,7 @@
 				1884D1B32C667C6000B9E836 /* PLAPersonAlViewController.swift */,
 				182CF0DD2C67DD92007D5538 /* PLAWorkViewController.swift */,
 				182CF0DF2C67E023007D5538 /* PLALXRViewController.swift */,
+				1881135D2C68F4E400AAD9AA /* PLAAllMoneyViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -504,6 +510,7 @@
 				18982E3F2C6106D60036F819 /* PLAHomeOneView.swift in Sources */,
 				18982E2A2C5FD5F50036F819 /* PLAHomeViewController.swift in Sources */,
 				18982E262C5F4F670036F819 /* PLABaseConfig.swift in Sources */,
+				1881135E2C68F4E400AAD9AA /* PLAAllMoneyViewController.swift in Sources */,
 				186C4CB82C6273FD007CDAF1 /* PLAEmptyView.swift in Sources */,
 				182CF0DA2C67C675007D5538 /* PLAShuRuKuangCell.swift in Sources */,
 				186C4CBC2C628223007CDAF1 /* PLAAuthIdView.swift in Sources */,
@@ -523,6 +530,7 @@
 				182CF0DE2C67DD92007D5538 /* PLAWorkViewController.swift in Sources */,
 				186C4CB22C626BFD007CDAF1 /* PLAOrderListView.swift in Sources */,
 				18982E1D2C5F4A9B0036F819 /* PLAAFNetWorkManager.swift in Sources */,
+				188113602C68F57600AAD9AA /* PLAAllMoneyView.swift in Sources */,
 				18982E452C6120570036F819 /* PLALeftSideViewController.swift in Sources */,
 				186C4CB42C626C81007CDAF1 /* PLAOrderListNormalCell.swift in Sources */,
 				18982E1B2C5E28890036F819 /* PLABaseViewController.swift in Sources */,

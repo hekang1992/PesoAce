@@ -71,6 +71,9 @@ class JudgeConfig: NSObject {
             vc.navigationController?.pushViewController(lianxiVc, animated: true)
             break
         case "afterwards5":
+            let moneyVc = PLAAllMoneyViewController()
+            moneyVc.productID = productID
+            vc.navigationController?.pushViewController(moneyVc, animated: true)
             break
         default:
             break

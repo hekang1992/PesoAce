@@ -9,13 +9,27 @@ import UIKit
 import HandyJSON
 import BRPickerView
 import ContactsUI
+import MBProgressHUD_WJExtension
 
 class PLALXRViewController: PLABaseViewController {
     
     var productID: String?
     
     lazy var lianxirenView = PLALxiView()
+    
+    lazy var pickerVc: CNContactPickerViewController = {
+        let pickerVc = CNContactPickerViewController()
+        pickerVc.delegate = self
+        pickerVc.displayedPropertyKeys = [CNContactPhoneNumbersKey]
+        return pickerVc
+    }()
 
+    var btn: UIButton?
+    
+    var model: cleanerModel?
+    
+    var modelArray: [cleanerModel]?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -34,14 +48,29 @@ class PLALXRViewController: PLABaseViewController {
                 self?.popLastEnum(.province, btn, modelArray, model)
             }
         }
-        lianxirenView.block2 = { [weak self] btn in
-
+        lianxirenView.block2 = { [weak self] btn, model in
+            self?.btn = btn
+            self?.model = model
+            self?.alertlianxi(btn, model)
+        }
+        lianxirenView.saveblock = { [weak self] in
+            let array = self?.modelArray?.map({ model in
+                var result: [String: Any] = [:]
+                result["escapes"] = model.escapes ?? ""
+                result["asthma"] = model.asthma ?? ""
+                result["bubbling"] = model.bubbling ?? ""
+                result["plastics"] = model.plastics ?? ""
+                return result
+            })
+            if let modelrray = array {
+                self?.saveLianxiren(modelrray)
+            }
         }
     }
 }
 
 
-extension PLALXRViewController {
+extension PLALXRViewController: CNContactPickerDelegate {
     
     func getLianxi() {
         ViewHud.addLoadView()
@@ -49,7 +78,9 @@ extension PLALXRViewController {
             ViewHud.hideLoadView()
             if baseModel.greasy == 0 || baseModel.greasy == 00 {
                 let model = JSONDeserializer<wallpaperModel>.deserializeFrom(dict: baseModel.wallpaper)
-                self?.lianxirenView.modelArray = model?.burns?.cleaner
+                let modelArray = model?.burns?.cleaner
+                self?.modelArray = modelArray
+                self?.lianxirenView.modelArray = modelArray
                 self?.lianxirenView.tableView.reloadData()
             }
         } errorBlock: { error in
@@ -96,6 +127,48 @@ extension PLALXRViewController {
         customStyle.selectRowTextColor = UIColor.init(css: "#2681FB")
         addressPickerView.pickerStyle = customStyle
         addressPickerView.show()
+    }
+    
+    func alertlianxi(_ btn: UIButton, _ emodel: cleanerModel) {
+        present(pickerVc, animated: true, completion: nil)
+    }
+    
+    func contactPicker(_ picker: CNContactPickerViewController, didSelect contact: CNContact) {
+        let nameStr = contact.givenName + " " + contact.familyName
+        if let phoneNumber = contact.phoneNumbers.first?.value {
+            let numberStr = phoneNumber.stringValue
+            if let btn = self.btn {
+                btn.setTitleColor(UIColor.init(css: "#2681FB"), for: .normal)
+                btn.setTitle(nameStr + "-" + numberStr, for: .normal)
+                model?.asthma = nameStr
+                model?.escapes = numberStr
+            }
+        }
+    }
+    
+    func contactPickerDidCancel(_ picker: CNContactPickerViewController) {
+        print("Contact selection canceled")
+    }
+    
+    func saveLianxiren(_ array: [[String: Any]] ) {
+        ViewHud.addLoadView()
+        if let jsonshuju = try? JSONSerialization.data(withJSONObject: array, options: []) {
+            if let jsonzifu = String(data: jsonshuju, encoding: .utf8){
+                let dict = ["reputedly": productID ?? "", "lianxiwo": "haode", "wallpaper": jsonzifu, "buyaolianxi": "no"]
+                PLAAFNetWorkManager.shared.uploadDataAPI(params: dict, pageUrl: "/ace/thinking/besting/afghanistanfarid", method: .post) { [weak self] baseModel in
+                    ViewHud.hideLoadView()
+                    if baseModel.greasy == 0 || baseModel.greasy == 00 {
+                        if let self = self {
+                            JudgeConfig.productDetailInfo(productID ?? "", form: self)
+                        }
+                    }else {
+                        MBProgressHUD.wj_showPlainText(baseModel.formica ?? "", view: nil)
+                    }
+                } errorBlock: { error in
+                    ViewHud.hideLoadView()
+                }
+            }
+        }
     }
     
 }

@@ -65,6 +65,7 @@ class cleanerModel: HandyJSON {
     required init() {}
     var bellyaches: String?
     var asthma: String?
+    var escapes: String?
     var pic_url: String?
     var biryani: String?
     var wordlessly: String?
