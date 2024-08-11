@@ -26,15 +26,20 @@ class PLAHomeViewController: PLABaseViewController {
             make.edges.equalToSuperview()
         }
         oneView.applyBlock = { [weak self] in
-            self?.shenqing(self?.model?.bellyaches ?? "")
+            if IS_LOGIN {
+                self?.shenqing(self?.model?.bellyaches ?? "")
+            }else {
+                let loginVc = PLALoginViewController()
+                self?.navigationController?.pushViewController(loginVc, animated: true)
+            }
         }
         oneView.leftBlock = { [weak self] in
             self?.leftVc()
         }
         let header = MJRefreshNormalHeader(refreshingTarget: self, refreshingAction: #selector(handleRefresh))
-            oneView.scrollView.mj_header = header
+        oneView.scrollView.mj_header = header
     }
-
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         homedata()

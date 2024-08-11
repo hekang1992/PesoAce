@@ -30,6 +30,12 @@ class wallpaperModel: HandyJSON {
     var cleaner: [cleanerModel]?
     var al: alModel?
     var lum: [lumModel]?
+    var burns: burnsmodel?
+}
+
+class burnsmodel: HandyJSON {
+    required init() {}
+    var cleaner: [cleanerModel]?
 }
 
 class lumModel: HandyJSON {
@@ -65,7 +71,11 @@ class cleanerModel: HandyJSON {
     var pooling: String?
     var oozed: String?
     var thwiiiiit: String?//跳转地址
+    var plastics: String?
+    var riches: String?
+    var bubbling: String?
     var cleaner: [cleanerModel]?
+    var pakols: [significantModel]?
 }
 
 class jokinglyModel: HandyJSON {

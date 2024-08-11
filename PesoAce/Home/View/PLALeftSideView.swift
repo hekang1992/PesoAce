@@ -57,7 +57,13 @@ class PLALeftSideView: UIView {
     
     lazy var helloLabel: UILabel = {
         let helloLabel = UILabel.createLabel(font: UIFont(name: black_font, size: 24.px())!, textColor: UIColor.init(css: "#222222"), textAlignment: .center)
-        helloLabel.text = "Hello!"
+        helloLabel.numberOfLines = 0
+        if IS_LOGIN {
+            let phone = UserDefaults.standard.object(forKey: PLA_LOGIN) as! String
+            helloLabel.text = "Hello!\n\(phone)"
+        }else {
+            helloLabel.text = "Hello!"
+        }
         return helloLabel
     }()
     
@@ -141,7 +147,7 @@ class PLALeftSideView: UIView {
         helloLabel.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.top.equalTo(bgImageView.snp.bottom).offset(18.px())
-            make.height.equalTo(26.px())
+            make.left.equalToSuperview().offset(24.px())
         }
         helloLabel1.snp.makeConstraints { make in
             make.centerX.equalToSuperview()

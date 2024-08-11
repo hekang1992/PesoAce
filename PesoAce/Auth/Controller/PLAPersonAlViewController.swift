@@ -102,7 +102,7 @@ extension PLAPersonAlViewController {
             modelDate.shalwar = addressString
             modelDate.vacuumed = code
             btn.setTitle(modelDate.shalwar ?? "", for: .normal)
-            btn.setTitleColor(.black, for: .normal)
+            btn.setTitleColor(UIColor.init(css: "#2681FB"), for: .normal)
         }
         let customStyle = BRPickerStyle()
         customStyle.pickerColor = .white

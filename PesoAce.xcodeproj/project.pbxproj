@@ -24,6 +24,8 @@
 		186C4CB82C6273FD007CDAF1 /* PLAEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186C4CB72C6273FD007CDAF1 /* PLAEmptyView.swift */; };
 		186C4CBA2C6281D5007CDAF1 /* PLAAuThAbcController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186C4CB92C6281D5007CDAF1 /* PLAAuThAbcController.swift */; };
 		186C4CBC2C628223007CDAF1 /* PLAAuthIdView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186C4CBB2C628223007CDAF1 /* PLAAuthIdView.swift */; };
+		1881135A2C68DD1A00AAD9AA /* PLALxiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188113592C68DD1A00AAD9AA /* PLALxiView.swift */; };
+		1881135C2C68DE3F00AAD9AA /* PLALxiCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1881135B2C68DE3F00AAD9AA /* PLALxiCell.swift */; };
 		1884D1B42C667C6000B9E836 /* PLAPersonAlViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1884D1B32C667C6000B9E836 /* PLAPersonAlViewController.swift */; };
 		1884D1B62C66808900B9E836 /* PLAPersonInfoXView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1884D1B52C66808900B9E836 /* PLAPersonInfoXView.swift */; };
 		18982DF32C5E165A0036F819 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18982DF22C5E165A0036F819 /* AppDelegate.swift */; };
@@ -76,6 +78,8 @@
 		186C4CB72C6273FD007CDAF1 /* PLAEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PLAEmptyView.swift; sourceTree = "<group>"; };
 		186C4CB92C6281D5007CDAF1 /* PLAAuThAbcController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PLAAuThAbcController.swift; sourceTree = "<group>"; };
 		186C4CBB2C628223007CDAF1 /* PLAAuthIdView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PLAAuthIdView.swift; sourceTree = "<group>"; };
+		188113592C68DD1A00AAD9AA /* PLALxiView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PLALxiView.swift; sourceTree = "<group>"; };
+		1881135B2C68DE3F00AAD9AA /* PLALxiCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PLALxiCell.swift; sourceTree = "<group>"; };
 		1884D1B32C667C6000B9E836 /* PLAPersonAlViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PLAPersonAlViewController.swift; sourceTree = "<group>"; };
 		1884D1B52C66808900B9E836 /* PLAPersonInfoXView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PLAPersonInfoXView.swift; sourceTree = "<group>"; };
 		18982DEF2C5E165A0036F819 /* PesoAce.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PesoAce.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -149,6 +153,8 @@
 				1884D1B52C66808900B9E836 /* PLAPersonInfoXView.swift */,
 				182CF0D92C67C675007D5538 /* PLAShuRuKuangCell.swift */,
 				182CF0DB2C67C68F007D5538 /* PLAAnNiuCell.swift */,
+				188113592C68DD1A00AAD9AA /* PLALxiView.swift */,
+				1881135B2C68DE3F00AAD9AA /* PLALxiCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -491,6 +497,7 @@
 				18982DF32C5E165A0036F819 /* AppDelegate.swift in Sources */,
 				182CF0D82C67BA5C007D5538 /* PLAOutView.swift in Sources */,
 				186C4CB02C62662A007CDAF1 /* PLAOrderListViewController.swift in Sources */,
+				1881135C2C68DE3F00AAD9AA /* PLALxiCell.swift in Sources */,
 				186C4CA62C62479B007CDAF1 /* PLAFaceViewController.swift in Sources */,
 				186C4CA82C6247B8007CDAF1 /* PLAFaceView.swift in Sources */,
 				1884D1B42C667C6000B9E836 /* PLAPersonAlViewController.swift in Sources */,
@@ -509,6 +516,7 @@
 				18982E112C5E1BC70036F819 /* NetInfoManager.swift in Sources */,
 				18982E152C5E263C0036F819 /* PLALaunchViewController.swift in Sources */,
 				18982E492C6121BC0036F819 /* PLALeftSideView.swift in Sources */,
+				1881135A2C68DD1A00AAD9AA /* PLALxiView.swift in Sources */,
 				18982E2E2C5FD7F90036F819 /* PLALoginView.swift in Sources */,
 				18982E172C5E26C90036F819 /* PLANavigationController.swift in Sources */,
 				18A2BC982C65107800BB5DAE /* PLAPhotoManager.swift in Sources */,

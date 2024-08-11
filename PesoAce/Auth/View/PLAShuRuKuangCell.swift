@@ -26,7 +26,7 @@ class PLAShuRuKuangCell: UITableViewCell {
         let nameField = UITextField()
         nameField.textAlignment = .left
         nameField.font = UIFont(name: regular_font, size: 18.px())
-        nameField.textColor = UIColor.init(css: "#000000")
+        nameField.textColor = UIColor.init(css: "#2681FB")
         nameField.addTarget(self, action: #selector(ngChanged(_:)), for: .editingChanged)
         return nameField
     }()
