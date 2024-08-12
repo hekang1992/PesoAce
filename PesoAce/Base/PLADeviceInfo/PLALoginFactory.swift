@@ -31,12 +31,12 @@ class PLALoginFactory: NSObject {
         let dict1 = ["greatness": "iOS",
                     "powerless": getAppVersion(),
                     "obey": Device.current.description,
-                     "muham": DeviceInfo.getIdfv(),
+                     "muham": DeviceInfo.getIDFV(),
                      "justice": UIDevice.current.systemVersion,
                      "bered": "lucky",
                      "remem": remem]
         
-        let dict2 = ["undulating": DeviceInfo.getIdfv(),
+        let dict2 = ["undulating": DeviceInfo.getIDFV(),
                      "boyfine": "1",
                      "apple": "ios",
                      "google": "and",

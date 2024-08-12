@@ -7,6 +7,7 @@
 
 import UIKit
 import IQKeyboardManagerSwift
+import AppTrackingTransparency
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -34,6 +35,34 @@ extension AppDelegate {
     func rootVcPush() {
         NotificationCenter.default.addObserver(self, selector: #selector(setUpRootVc(_ :)), name: NSNotification.Name(ROOT_VC), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(setlOAcationInfo(_ :)), name: NSNotification.Name(LOCATION_INFO), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(idfaInfo(_ :)), name: NSNotification.Name(IDFA_INFO), object: nil)
+    }
+    
+    @objc func idfaInfo(_ notification: Notification) {
+        if #available(iOS 14.0, *) {
+            ATTrackingManager.requestTrackingAuthorization { status in
+                switch status {
+                case .authorized:
+                    print("Tracking authorized")
+                    self.upidfa()
+                    break
+                case .denied:
+                    self.upidfa()
+                    print("Tracking denied")
+                    break
+                case .notDetermined:
+                    self.upidfa()
+                    print("Tracking not determined")
+                    break
+                case .restricted:
+                    print("Tracking restricted")
+                    break
+                @unknown default:
+                    print("Unknown status")
+                    break
+                }
+            }
+        }
     }
     
     @objc func setlOAcationInfo(_ notification: Notification) {
@@ -62,6 +91,15 @@ extension AppDelegate {
         }else {
             window?.rootViewController = PLANavigationController(rootViewController: PLALoginViewController())
         }
+    }
+    
+    func upidfa() {
+        PLAAFNetWorkManager.shared.requestAPI(params: ["mauve": "apple", "brushing": DeviceInfo.getIDFV(), "flossing": DeviceInfo.getIDFA(), "islogin": "0"], pageUrl: "/ace/business/rahim/shiny", method: .post) { baseModel in
+            
+        } errorBlock: { error in
+            
+        }
+
     }
     
     func getFontNames() {

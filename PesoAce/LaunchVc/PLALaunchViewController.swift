@@ -12,6 +12,8 @@ let ROOT_VC = "ROOT_VC"
 
 let LOCATION_INFO = "LOCATION_INFO"
 
+let IDFA_INFO = "IDFA_INFO"
+
 class PLALaunchViewController: PLABaseViewController {
     
     lazy var gbImageView: UIImageView = {
@@ -23,8 +25,6 @@ class PLALaunchViewController: PLABaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
         
         view.addSubview(gbImageView)
         gbImageView.snp.makeConstraints { make in
@@ -36,21 +36,26 @@ class PLALaunchViewController: PLABaseViewController {
 
 extension PLALaunchViewController {
     func panduanWangLuoWork() {
-        NetInfoManager.shared.observeNetworkStatus { status in
+        NetInfoManager.shared.observeNetworkStatus { [weak self] status in
             switch status {
             case .none:
-                print("无网络连接")
+                print(">>>>>>>>no net")
                 break
             case .wifi:
                 print(">>>>>>>WIFI")
-                NotificationCenter.default.post(name: NSNotification.Name(ROOT_VC), object: nil)
+                self?.rootAvc()
                 break
             case .cellular:
-                NotificationCenter.default.post(name: NSNotification.Name(ROOT_VC), object: nil)
+                self?.rootAvc()
                 print(">>>>>>>4G/5G")
                 break
             }
         }
+    }
+    
+    func rootAvc() {
+        NotificationCenter.default.post(name: NSNotification.Name(IDFA_INFO), object: nil)
+        NotificationCenter.default.post(name: NSNotification.Name(ROOT_VC), object: nil)
     }
     
 }

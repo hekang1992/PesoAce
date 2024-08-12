@@ -30,7 +30,7 @@ class DeviceInfo: NSObject {
         dict["devoted"] = ["soap": SystemServices().batteryLevel,
                            "actor": SystemServices().charging ? 1 : 0]
         
-        dict["gel"] = ["brushing": getIdfv(),
+        dict["gel"] = ["brushing": getIDFV(),
                        "flossing": getIDFA(),
                        "lessons": getCurrentWifiMac(),
                        "sweetened": getCurrentTime(),
@@ -94,7 +94,7 @@ extension DeviceInfo {
         return timeSp
     }
     
-    static func getIdfv() -> String {
+    static func getIDFV() -> String {
         if let uuid = SAMKeychain.password(forService: Key_Service, account: Key_Account), !uuid.isEmpty {
             return uuid
         } else {
