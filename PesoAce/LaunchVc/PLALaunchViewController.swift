@@ -10,6 +10,8 @@ import SnapKit
 
 let ROOT_VC = "ROOT_VC"
 
+let LOCATION_INFO = "LOCATION_INFO"
+
 class PLALaunchViewController: PLABaseViewController {
     
     lazy var gbImageView: UIImageView = {

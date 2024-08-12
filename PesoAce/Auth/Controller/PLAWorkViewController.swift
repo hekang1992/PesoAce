@@ -46,7 +46,10 @@ class PLAWorkViewController: PLABaseViewController {
             self?.cituAllInfo(btn, model)
         }
         perView.block4 = { [weak self] btn, model in //date
-            
+            if let significant = model.significant {
+                let modelArray = dateModel.geterjiArr(dataSourceArr: significant)
+                self?.popLastEnum(.city, btn, modelArray, model)
+            }
         }
         perView.saveblock = { [weak self] in
             self?.savePPPInfo()

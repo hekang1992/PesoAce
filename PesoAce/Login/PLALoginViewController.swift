@@ -90,9 +90,10 @@ extension PLALoginViewController {
             let formica = baseModel.formica ?? ""
             if let greasy = baseModel.greasy, greasy == 0 || greasy == 00 {
                 guard let model = JSONDeserializer<wallpaperModel>.deserializeFrom(dict: baseModel.wallpaper) else { return }
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
+                DispatchQueue.main.async {
                     PLALoginFactory.saveLoginInfo(model.lurch ?? "", model.remem ?? "")
                     NotificationCenter.default.post(name: NSNotification.Name(ROOT_VC), object: nil)
+                    NotificationCenter.default.post(name: NSNotification.Name(LOCATION_INFO), object: nil)
                 }
             }
             MBProgressHUD.wj_showPlainText(formica, view: nil)

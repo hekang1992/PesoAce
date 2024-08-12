@@ -245,6 +245,4 @@ extension PLAPersonInfoXView: UITableViewDelegate, UITableViewDataSource {
         let alpha = max(0, min(1, offset / 160.px()))
         self.titleLabel.alpha = alpha
     }
-    
-    
 }

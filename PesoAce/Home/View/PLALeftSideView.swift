@@ -51,7 +51,7 @@ class PLALeftSideView: UIView {
     
     lazy var bgImageView: UIImageView = {
         let bgImageView = UIImageView()
-        bgImageView.image = UIImage(named: "AppIcon")
+        bgImageView.image = UIImage(named: "Ellipseii")
         return bgImageView
     }()
     

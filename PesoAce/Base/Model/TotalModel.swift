@@ -31,6 +31,12 @@ class wallpaperModel: HandyJSON {
     var al: alModel?
     var lum: [lumModel]?
     var burns: burnsmodel?
+    var conscience: conscienceModel?
+}
+
+class conscienceModel: HandyJSON {
+    required init() {}
+    var safely: String?
 }
 
 class burnsmodel: HandyJSON {
@@ -47,12 +53,15 @@ class lumModel: HandyJSON {
     var shalwar: String?//回血
     var vacuumed: String?//回血key
     var significant: [significantModel]?
+    var lum: [lumModel]?
 }
 
 class significantModel: HandyJSON {
     required init() {}
     var asthma: String?
     var vacuumed: String?
+    var ponytail: String?
+    var significant: [significantModel]?
 }
 
 class alModel: HandyJSON {

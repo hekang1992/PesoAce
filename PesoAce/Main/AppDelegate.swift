@@ -33,6 +33,27 @@ extension AppDelegate {
     
     func rootVcPush() {
         NotificationCenter.default.addObserver(self, selector: #selector(setUpRootVc(_ :)), name: NSNotification.Name(ROOT_VC), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(setlOAcationInfo(_ :)), name: NSNotification.Name(LOCATION_INFO), object: nil)
+    }
+    
+    @objc func setlOAcationInfo(_ notification: Notification) {
+        PLALocation.shared.startUpdatingLocation { locationModel in
+            PLAAFNetWorkManager.shared.requestAPI(params: [
+                "scratched": locationModel.scratched,
+                "punched": locationModel.punched,
+                "align": locationModel.align,
+                "noticing": locationModel.noticing,
+                "ome": locationModel.ome,
+                "grasping": locationModel.grasping,
+                "slamming": locationModel.slamming,
+                "sinbad": "ph",
+                "swordfight": "sig"], pageUrl: "/ace/mouth/delayed/sprawling", method: .post) { baseModel in
+                
+            } errorBlock: { error in
+                
+            }
+
+        }
     }
     
     @objc func setUpRootVc(_ notification: Notification) {

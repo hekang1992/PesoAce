@@ -44,7 +44,10 @@ class PLAPersonAlViewController: PLABaseViewController {
             self?.cituAllInfo(btn, model)
         }
         perView.block4 = { [weak self] btn, model in //date
-            
+            if let significant = model.significant {
+                let modelArray = dateModel.geterjiArr(dataSourceArr: significant)
+                self?.popLastEnum(.city, btn, modelArray, model)
+            }
         }
         perView.saveblock = { [weak self] in
             self?.savePPPInfo()
@@ -59,13 +62,13 @@ extension PLAPersonAlViewController {
     func personalApi() {
         ViewHud.addLoadView()
         PLAAFNetWorkManager.shared.requestAPI(params: ["reputedly": productID ?? "", "shifou": "2", "upload": "1"], pageUrl: "/ace/cruiser/worrying/turned", method: .post) { [weak self] baseModel in
-            ViewHud.hideLoadView()
             if let greasy = baseModel.greasy, greasy == 0 || greasy == 00 {
                 guard let model = JSONDeserializer<wallpaperModel>.deserializeFrom(dict: baseModel.wallpaper) else { return }
                 self?.perView.modelArray = model.lum
                 self?.modelArray = model.lum
                 self?.perView.tableView.reloadData()
             }
+            ViewHud.hideLoadView()
         } errorBlock: { error in
             ViewHud.hideLoadView()
         }

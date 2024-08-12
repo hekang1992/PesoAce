@@ -70,6 +70,8 @@ class PLAShuRuKuangCell: UITableViewCell {
             let shalwar = model.shalwar ?? ""
             if !shalwar.isEmpty {
                 nameField.text = shalwar
+            }else {
+                nameField.text = ""
             }
         }
     }

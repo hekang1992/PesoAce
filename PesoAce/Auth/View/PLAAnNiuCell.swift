@@ -74,7 +74,10 @@ class PLAAnNiuCell: UITableViewCell {
             btn.setTitle(model.landlord ?? "", for: .normal)
             let shalwar = model.shalwar ?? ""
             if !shalwar.isEmpty {
+                btn.setTitleColor(UIColor.init(css: "#2681FB"), for: .normal)
                 btn.setTitle(model.shalwar ?? "", for: .normal)
+            }else {
+                btn.setTitleColor(UIColor.init(css: "#ACB7D6"), for: .normal)
             }
         }
     }
