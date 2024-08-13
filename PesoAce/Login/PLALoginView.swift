@@ -174,7 +174,6 @@ class PLALoginView: PLACommonView {
             make.bottom.equalToSuperview().offset(-50.px())
         }
         
-        
         xieyibtn.rx.tap.subscribe(onNext: { [weak self] in
             self?.xieyiblock?()
         }).disposed(by: disposeBag)
@@ -193,8 +192,8 @@ class PLALoginView: PLACommonView {
         }).disposed(by: disposeBag)
         phoneTx.rx.controlEvent(.editingDidBegin)
             .subscribe(onNext: { [weak self] in
-            self?.lineView1.backgroundColor = UIColor.init(css: "#2681FB")
-        }).disposed(by: disposeBag)
+                self?.lineView1.backgroundColor = UIColor.init(css: "#2681FB")
+            }).disposed(by: disposeBag)
         phoneTx.rx.controlEvent(.editingDidEnd)
             .subscribe(onNext: { [weak self] _ in
                 self?.lineView1.backgroundColor = UIColor.init(css: "#F5F5F5")
@@ -202,8 +201,8 @@ class PLALoginView: PLACommonView {
             .disposed(by: disposeBag)
         codeTx.rx.controlEvent(.editingDidBegin)
             .subscribe(onNext: { [weak self] in
-            self?.lineView2.backgroundColor = UIColor.init(css: "#2681FB")
-        }).disposed(by: disposeBag)
+                self?.lineView2.backgroundColor = UIColor.init(css: "#2681FB")
+            }).disposed(by: disposeBag)
         codeTx.rx.controlEvent(.editingDidEnd)
             .subscribe(onNext: { [weak self] _ in
                 self?.lineView2.backgroundColor = UIColor.init(css: "#F5F5F5")
@@ -214,6 +213,38 @@ class PLALoginView: PLACommonView {
                 self.block?(self.sendBtn)
             }
         }).disposed(by: disposeBag)
+        
+        
+        phoneTx
+            .rx
+            .text
+            .orEmpty
+            .map { text -> String in
+            if text.count > 10 {
+                let index = text.index(text.startIndex, offsetBy: 10)
+                return String(text[..<index])
+            } else {
+                return text
+            }
+        }
+        .bind(to: phoneTx.rx.text)
+        .disposed(by: disposeBag)
+        
+        codeTx
+            .rx
+            .text
+            .orEmpty
+            .map { text -> String in
+            if text.count > 6 {
+                let index = text.index(text.startIndex, offsetBy: 6)
+                return String(text[..<index])
+            } else {
+                return text
+            }
+        }
+        .bind(to: codeTx.rx.text)
+        .disposed(by: disposeBag)
+        
     }
     
     required init?(coder: NSCoder) {

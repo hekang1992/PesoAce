@@ -51,6 +51,7 @@ class lumModel: HandyJSON {
     var greasy: String?//key
     var pendu: String?//type
     var shalwar: String?//回血
+    var injuries: String?
     var vacuumed: String?//回血key
     var significant: [significantModel]?
     var lum: [lumModel]?

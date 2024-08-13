@@ -6,9 +6,15 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 class PLAShuRuKuangCell: UITableViewCell {
-
+    
+    private let disposeBag = DisposeBag()
+    
+    var model = BehaviorRelay<lumModel?>(value: nil)
+    
     lazy var titleLabel: UILabel = {
         let titleLabel = UILabel.createLabel(font: UIFont(name: regular_font, size: 14.px())!, textColor: UIColor.init(css: "#A9A9A9"), textAlignment: .left)
         return titleLabel
@@ -27,7 +33,6 @@ class PLAShuRuKuangCell: UITableViewCell {
         nameField.textAlignment = .left
         nameField.font = UIFont(name: regular_font, size: 18.px())
         nameField.textColor = UIColor.init(css: "#2681FB")
-        nameField.addTarget(self, action: #selector(ngChanged(_:)), for: .editingChanged)
         return nameField
     }()
     
@@ -52,40 +57,46 @@ class PLAShuRuKuangCell: UITableViewCell {
         nameField.snp.makeConstraints { make in
             make.edges.equalToSuperview().inset(UIEdgeInsets(top: 0, left: 16.px(), bottom: 0, right: 0))
         }
+        bindModel()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    var model: lumModel? {
-        didSet {
-            guard let model = model else { return }
-            titleLabel.text = model.faisal ?? ""
-            let attrString = NSMutableAttributedString(string: model.landlord ?? "", attributes: [
-                .foregroundColor: UIColor.init(css: "#ACB7D6") as Any,
-                .font: UIFont(name: regular_font, size: 16.px())!
-            ])
-            nameField.attributedPlaceholder = attrString
-            let shalwar = model.shalwar ?? ""
-            if !shalwar.isEmpty {
-                nameField.text = shalwar
-            }else {
-                nameField.text = ""
-            }
-        }
-    }
-    
+
 }
 
 extension PLAShuRuKuangCell {
     
-    @objc func ngChanged(_ textField: UITextField) {
-        if textField == nameField {
-            if let model = model {
-                model.shalwar = nameField.text
+    func bindModel() {
+        model.subscribe(onNext: { [weak self] model in
+            guard let self = self, let model = model else { return }
+            
+            self.titleLabel.text = model.faisal ?? ""
+            
+            let attrString = NSMutableAttributedString(string: model.landlord ?? "", attributes: [
+                .foregroundColor: UIColor(css: "#ACB7D6") as Any,
+                .font: UIFont(name: regular_font, size: 16.px())!
+            ])
+            self.nameField.attributedPlaceholder = attrString
+            
+            let shalwar = model.shalwar ?? ""
+            self.nameField.text = shalwar
+            
+            self.nameField.keyboardType = model.injuries == "1" ? .phonePad : .default
+            
+        }).disposed(by: disposeBag)
+        
+        nameField.rx.text
+            .orEmpty
+            .bind { [weak self] text in
+                guard let self = self else { return }
+                if let model = self.model.value {
+                    model.shalwar = text
+                    self.model.accept(model)
+                }
             }
-        }
+            .disposed(by: disposeBag)
     }
     
 }

@@ -7,13 +7,16 @@
 
 import UIKit
 import RxSwift
+import RxCocoa
 
 class PLAAnNiuCell: UITableViewCell {
     
     lazy var disp = DisposeBag()
     
     var block: ((UIButton) -> Void)?
-
+    
+    var model = BehaviorRelay<lumModel?>(value: nil)
+    
     lazy var titleLabel: UILabel = {
         let titleLabel = UILabel.createLabel(font: UIFont(name: regular_font, size: 14.px())!, textColor: UIColor.init(css: "#A9A9A9"), textAlignment: .left)
         return titleLabel
@@ -61,30 +64,31 @@ class PLAAnNiuCell: UITableViewCell {
                 self.block?(self.btn)
             }
         }).disposed(by: disp)
+        bindModel()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    var model: lumModel? {
-        didSet {
-            guard let model = model else { return }
-            titleLabel.text = model.faisal ?? ""
-            btn.setTitle(model.landlord ?? "", for: .normal)
-            let shalwar = model.shalwar ?? ""
-            if !shalwar.isEmpty {
-                btn.setTitleColor(UIColor.init(css: "#2681FB"), for: .normal)
-                btn.setTitle(model.shalwar ?? "", for: .normal)
-            }else {
-                btn.setTitleColor(UIColor.init(css: "#ACB7D6"), for: .normal)
-            }
-        }
-    }
-    
 }
 
 extension PLAAnNiuCell {
     
-    
+    func bindModel() {
+        model.subscribe(onNext: { [weak self] model in
+            guard let self = self, let model = model else { return }
+            
+            self.titleLabel.text = model.faisal ?? ""
+            self.btn.setTitle(model.landlord ?? "", for: .normal)
+            
+            let shalwar = model.shalwar ?? ""
+            if !shalwar.isEmpty {
+                self.btn.setTitleColor(UIColor(css: "#2681FB"), for: .normal)
+                self.btn.setTitle(shalwar, for: .normal)
+            } else {
+                self.btn.setTitleColor(UIColor(css: "#ACB7D6"), for: .normal)
+            }
+        }).disposed(by: disp)
+    }
 }

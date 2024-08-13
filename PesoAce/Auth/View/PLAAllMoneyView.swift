@@ -7,6 +7,7 @@
 
 import UIKit
 import RxSwift
+import RxCocoa
 
 class PLAAllMoneyView: UIView {
     
@@ -156,7 +157,7 @@ extension PLAAllMoneyView: UITableViewDelegate, UITableViewDataSource {
         switch model.pendu {
         case "themselves1":
             if let cell = tableView.dequeueReusableCell(withIdentifier: "PLAAnNiuCell", for: indexPath) as? PLAAnNiuCell {
-                cell.model = model
+                cell.model.accept(model)
                 cell.selectionStyle = .none
                 cell.backgroundColor = .clear
                 cell.block = { [weak self] btn in
@@ -166,14 +167,14 @@ extension PLAAllMoneyView: UITableViewDelegate, UITableViewDataSource {
             }
         case "themselves2":
             if let cell = tableView.dequeueReusableCell(withIdentifier: "PLAShuRuKuangCell", for: indexPath) as? PLAShuRuKuangCell {
-                cell.model = model
+                cell.model.accept(model)
                 cell.selectionStyle = .none
                 cell.backgroundColor = .clear
                 return cell
             }
         case "themselves3":
             if let cell = tableView.dequeueReusableCell(withIdentifier: "PLAAnNiuCell", for: indexPath) as? PLAAnNiuCell {
-                cell.model = model
+                cell.model.accept(model)
                 cell.selectionStyle = .none
                 cell.backgroundColor = .clear
                 cell.block = { [weak self] btn in
@@ -183,7 +184,7 @@ extension PLAAllMoneyView: UITableViewDelegate, UITableViewDataSource {
             }
         case "themselves4":
             if let cell = tableView.dequeueReusableCell(withIdentifier: "PLAAnNiuCell", for: indexPath) as? PLAAnNiuCell {
-                cell.model = model
+                cell.model.accept(model)
                 cell.selectionStyle = .none
                 cell.backgroundColor = .clear
                 cell.block = { [weak self] btn in
