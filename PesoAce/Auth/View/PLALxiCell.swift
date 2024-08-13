@@ -7,6 +7,7 @@
 
 import UIKit
 import RxSwift
+import RxCocoa
 
 class PLALxiCell: UITableViewCell {
 
@@ -15,6 +16,8 @@ class PLALxiCell: UITableViewCell {
     var block1: ((UIButton, cleanerModel) -> Void)?
     
     var block2: ((UIButton, cleanerModel) -> Void)?
+    
+    var model = BehaviorRelay<cleanerModel?>(value: nil)
 
     lazy var titleLabel: UILabel = {
         let titleLabel = UILabel.createLabel(font: UIFont(name: regular_font, size: 14.px())!, textColor: UIColor.init(css: "#A9A9A9"), textAlignment: .left)
@@ -90,27 +93,32 @@ class PLALxiCell: UITableViewCell {
         }
         btn.rx.tap.subscribe(onNext: { [weak self] in
             if let self = self {
-                guard let model = self.model else { return }
+                guard let model = self.model.value else { return }
                 self.block1?(self.btn, model)
             }
         }).disposed(by: disp)
         btn1.rx.tap.subscribe(onNext: { [weak self] in
             if let self = self {
-                guard let model = self.model else { return }
+                guard let model = self.model.value else { return }
                 self.block2?(self.btn1, model)
             }
         }).disposed(by: disp)
+        bindModel()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    var model: cleanerModel? {
-        didSet {
-            guard let model = model else { return }
-            titleLabel.text = model.riches ?? ""
-        }
-    }
 
+}
+
+extension PLALxiCell {
+    
+    func bindModel() {
+        model.subscribe(onNext: { [weak self] model in
+            guard let self = self, let model = model else { return }
+            titleLabel.text = model.riches ?? ""
+        }).disposed(by: disp)
+    }
+    
 }

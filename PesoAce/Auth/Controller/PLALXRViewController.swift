@@ -77,10 +77,11 @@ extension PLALXRViewController: CNContactPickerDelegate {
             ViewHud.hideLoadView()
             if baseModel.greasy == 0 || baseModel.greasy == 00 {
                 let model = JSONDeserializer<wallpaperModel>.deserializeFrom(dict: baseModel.wallpaper)
-                let modelArray = model?.burns?.cleaner
-                self?.modelArray = modelArray
-                self?.lianxirenView.modelArray = modelArray
-                self?.lianxirenView.tableView.reloadData()
+                if let modelArray = model?.burns?.cleaner {
+                    self?.modelArray = modelArray
+                    self?.lianxirenView.modelArray.accept(modelArray)
+                    self?.lianxirenView.tableView.reloadData()
+                }
             }
         } errorBlock: { error in
             ViewHud.hideLoadView()

@@ -78,10 +78,8 @@ extension PLAAnNiuCell {
     func bindModel() {
         model.subscribe(onNext: { [weak self] model in
             guard let self = self, let model = model else { return }
-            
             self.titleLabel.text = model.faisal ?? ""
             self.btn.setTitle(model.landlord ?? "", for: .normal)
-            
             let shalwar = model.shalwar ?? ""
             if !shalwar.isEmpty {
                 self.btn.setTitleColor(UIColor(css: "#2681FB"), for: .normal)

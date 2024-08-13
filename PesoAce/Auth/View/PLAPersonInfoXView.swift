@@ -114,6 +114,13 @@ class PLAPersonInfoXView: UIView {
         canBtn.rx.tap.subscribe(onNext: { [weak self] in
             self?.block?()
         }).disposed(by: disp)
+        tableView.rx.contentOffset
+            .map { offset in
+                let adjustedOffset = offset.y + self.tableView.adjustedContentInset.top
+                return max(0, min(1, adjustedOffset / 160.px()))
+            }
+            .bind(to: titleLabel.rx.alpha)
+            .disposed(by: disp)
     }
     
     required init?(coder: NSCoder) {
@@ -239,12 +246,6 @@ extension PLAPersonInfoXView: UITableViewDelegate, UITableViewDataSource {
         }else {
             return nil
         }
-    }
-    
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let offset = scrollView.contentOffset.y + scrollView.adjustedContentInset.top
-        let alpha = max(0, min(1, offset / 160.px()))
-        self.titleLabel.alpha = alpha
     }
     
 }
