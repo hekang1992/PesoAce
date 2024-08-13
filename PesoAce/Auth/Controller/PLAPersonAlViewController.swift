@@ -23,6 +23,8 @@ class PLAPersonAlViewController: PLABaseViewController {
         return perView
     }()
     
+    var start: String?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -53,6 +55,7 @@ class PLAPersonAlViewController: PLABaseViewController {
             self?.savePPPInfo()
         }
         personalApi()
+        start = DeviceInfo.getCurrentTime()
     }
     
 }
@@ -165,6 +168,7 @@ extension PLAPersonAlViewController {
             }else {
                 MBProgressHUD.wj_showPlainText(baseModel.formica ?? "", view: nil)
             }
+            JudgeConfig.maidianxinxi(self?.productID ?? "", "5", self?.start ?? "")
         } errorBlock: { error in
             ViewHud.hideLoadView()
         }

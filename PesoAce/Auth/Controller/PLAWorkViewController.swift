@@ -18,6 +18,8 @@ class PLAWorkViewController: PLABaseViewController {
     
     var modelArray: [lumModel]?
     
+    var start: String?
+    
     lazy var perView: PLAPersonInfoXView = {
         let perView = PLAPersonInfoXView()
         perView.titleLabel.text = "Work Infomation"
@@ -55,6 +57,7 @@ class PLAWorkViewController: PLABaseViewController {
             self?.savePPPInfo()
         }
         personalApi()
+        start = DeviceInfo.getCurrentTime()
     }
     
 }
@@ -171,6 +174,7 @@ extension PLAWorkViewController {
             }else {
                 MBProgressHUD.wj_showPlainText(baseModel.formica ?? "", view: nil)
             }
+            JudgeConfig.maidianxinxi(self?.productID ?? "", "6", self?.start ?? "")
         } errorBlock: { error in
             ViewHud.hideLoadView()
         }

@@ -12,6 +12,8 @@ import MBProgressHUD_WJExtension
 
 class JudgeConfig: NSObject {
     
+    static var start: String = DeviceInfo.getCurrentTime()
+    
     static func judue(_ str: String?, from vc: PLABaseViewController) {
         guard let str = str,
               let url = URL(string: str),
@@ -98,6 +100,7 @@ class JudgeConfig: NSObject {
                     pushWebVc(productUrl, form: vc)
                 }
             }
+            JudgeConfig.maidianxinxi(productID, "9", start)
         } errorBlock: { error in
             ViewHud.hideLoadView()
         }
@@ -112,7 +115,18 @@ class JudgeConfig: NSObject {
         vc.navigationController?.pushViewController(webVc, animated: true)
     }
     
-  static func createRequsetURL(baseURL: String, params: [String: String]) -> String? {
+    
+    static func maidianxinxi(_ proid: String, _ type: String, _ start: String){
+        let model = PLALocation.shared.locatinModel
+        PLAAFNetWorkManager.shared.requestAPI(params: ["login_apple": "1", "peck": proid, "jabbing": type, "nail": DeviceInfo.getIDFV(), "warmed": DeviceInfo.getIDFA(), "grasping": model.grasping, "ome": model.ome, "clarity": start, "curls": DeviceInfo.getCurrentTime(), "shining": "1"], pageUrl: "/ace/maplenow/margins/lovemaking", method: .post) { baseModel in
+            
+        } errorBlock: { error in
+            
+        }
+        
+    }
+    
+    static func createRequsetURL(baseURL: String, params: [String: String]) -> String? {
         guard var urlComponents = URLComponents(string: baseURL) else {
             return nil
         }

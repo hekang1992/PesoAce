@@ -39,6 +39,8 @@ class PLAFaceViewController: PLABaseViewController {
     
     var orbital: String?
     
+    var start: String?
+    
     lazy var idVc: PLAAuThAbcController = {
         let idVc = PLAAuThAbcController()
         return idVc
@@ -79,6 +81,7 @@ class PLAFaceViewController: PLABaseViewController {
         
         self.faceView.idBtn1.kf.setImage(with: URL(string: model?.pic_url ?? ""), for: .normal)
         getFaceInfo()
+        start = DeviceInfo.getCurrentTime()
     }
     
 }
@@ -141,6 +144,7 @@ extension PLAFaceViewController: UIImagePickerControllerDelegate, UINavigationCo
                         self?.popMessage(from: model)
                     }else {
                         self?.getFaceInfo()
+                        JudgeConfig.maidianxinxi(self?.productID ?? "", "4", self?.start ?? "")
                     }
                 }
             }
@@ -237,6 +241,7 @@ extension PLAFaceViewController: UIImagePickerControllerDelegate, UINavigationCo
                 })
             }
             MBProgressHUD.wj_showPlainText(formica, view: nil)
+            JudgeConfig.maidianxinxi(self?.productID ?? "", "3", self?.start ?? "")
         } errorBlock: { error in
             ViewHud.hideLoadView()
         }

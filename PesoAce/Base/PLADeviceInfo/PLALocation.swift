@@ -86,8 +86,8 @@ extension PLALocation: CLLocationManagerDelegate {
         let location = CLLocation(latitude: latitude, longitude: longitude)
         let model = LocationPModel()
         let geocoder = CLGeocoder()
-        model.grasping = latitude
-        model.ome = longitude
+        model.grasping = longitude
+        model.ome = latitude
         geocoder.reverseGeocodeLocation(location) { [weak self] (placemarks, error) in
             guard let self = self, 
                     let placemark = placemarks?.first else { return }

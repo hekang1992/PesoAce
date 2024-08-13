@@ -15,6 +15,8 @@ class PLAAllMoneyViewController: PLABaseViewController {
     
     var productID: String?
     
+    var start: String?
+    
     lazy var moneyView: PLAAllMoneyView = {
         let moneyView = PLAAllMoneyView()
         return moneyView
@@ -52,6 +54,7 @@ class PLAAllMoneyViewController: PLABaseViewController {
             .subscribe(onNext: { [weak self] index in
             self?.savebankInfo(index)
         }).disposed(by: disp)
+        start = DeviceInfo.getCurrentTime()
     }
 }
 
@@ -138,6 +141,7 @@ extension PLAAllMoneyViewController {
             }else {
                 MBProgressHUD.wj_showPlainText(baseModel.formica ?? "", view: nil)
             }
+            JudgeConfig.maidianxinxi(self?.productID ?? "", "8", self?.start ?? "")
         } errorBlock: { error in
             ViewHud.hideLoadView()
         }

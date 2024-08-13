@@ -30,11 +30,14 @@ class PLALXRViewController: PLABaseViewController {
     
     var modelArray: [cleanerModel]?
     
+    var start: String?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
         getLianxi()
+        start = DeviceInfo.getCurrentTime()
         view.addSubview(lianxirenView)
         lianxirenView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
@@ -164,6 +167,7 @@ extension PLALXRViewController: CNContactPickerDelegate {
                     }else {
                         MBProgressHUD.wj_showPlainText(baseModel.formica ?? "", view: nil)
                     }
+                    JudgeConfig.maidianxinxi(self?.productID ?? "", "7", self?.start ?? "")
                 } errorBlock: { error in
                     ViewHud.hideLoadView()
                 }

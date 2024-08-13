@@ -30,6 +30,11 @@ class PLALaunchViewController: PLABaseViewController {
         gbImageView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
+        if IS_LOGIN {
+            PLALocation.shared.startUpdatingLocation { locationModel in
+                
+            }
+        }
         panduanWangLuoWork()
     }
 }

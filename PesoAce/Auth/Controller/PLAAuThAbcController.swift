@@ -34,6 +34,7 @@ class PLAAuThAbcController: UIViewController {
             let faceVc = PLAFaceViewController()
             faceVc.model = model
             faceVc.productID = self?.productID ?? ""
+            JudgeConfig.maidianxinxi(self?.productID ?? "", "2", DeviceInfo.getCurrentTime())
             self?.navigationController?.pushViewController(faceVc, animated: true)
         }
         tupianInfo()
@@ -56,7 +57,6 @@ extension PLAAuThAbcController {
         } errorBlock: { error in
             ViewHud.hideLoadView()
         }
-
     }
     
 }

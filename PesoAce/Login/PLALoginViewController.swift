@@ -100,7 +100,6 @@ extension PLALoginViewController {
         } errorBlock: { error in
             ViewHud.hideLoadView()
         }
-        
     }
     
 }

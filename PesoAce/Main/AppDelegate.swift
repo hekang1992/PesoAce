@@ -13,7 +13,7 @@ import AppTrackingTransparency
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
-
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         window = UIWindow(frame: UIScreen.main.bounds)
         jianPanManager()
@@ -66,6 +66,18 @@ extension AppDelegate {
     }
     
     @objc func setlOAcationInfo(_ notification: Notification) {
+        let dispatchGroup = DispatchGroup()
+        dispatchGroup.enter()
+        shangchuanweixinxinxi {
+            dispatchGroup.leave()
+        }
+        dispatchGroup.notify(queue: .main) {
+            JudgeConfig.maidianxinxi("", "1", DeviceInfo.getCurrentTime())
+            self.shebeixinxi()
+        }
+    }
+    
+    func shangchuanweixinxinxi(completion: @escaping () -> Void) {
         PLALocation.shared.startUpdatingLocation { locationModel in
             PLAAFNetWorkManager.shared.requestAPI(params: [
                 "scratched": locationModel.scratched,
@@ -77,19 +89,33 @@ extension AppDelegate {
                 "slamming": locationModel.slamming,
                 "sinbad": "ph",
                 "swordfight": "sig"], pageUrl: "/ace/mouth/delayed/sprawling", method: .post) { baseModel in
+                    completion()
+                } errorBlock: { error in
+                    completion()
+                }
+        }
+    }
+    
+    func shebeixinxi() {
+        let dict = DeviceInfo.getDeviceInfo()
+        if let base64String = dictToBaseStr(dict) {
+            PLAAFNetWorkManager.shared.requestAPI(params: ["dowun": "1", "wallpaper": base64String], pageUrl: "/ace/placed/reached/small", method: .post) { baseModel in
                 
             } errorBlock: { error in
                 
             }
-
+            
         }
     }
     
-    @objc func setUpRootVc(_ notification: Notification) {
-        if IS_LOGIN {
-            window?.rootViewController = PLANavigationController(rootViewController: PLAHomeViewController())
-        }else {
-            window?.rootViewController = PLANavigationController(rootViewController: PLALoginViewController())
+    func dictToBaseStr(_ dict: [String: Any]) -> String? {
+        do {
+            let jsonData = try JSONSerialization.data(withJSONObject: dict)
+            let base64EncodedString = jsonData.base64EncodedString()
+            return base64EncodedString
+        } catch {
+            print(">>>>>>\(error)")
+            return nil
         }
     }
     
@@ -99,7 +125,15 @@ extension AppDelegate {
         } errorBlock: { error in
             
         }
-
+        
+    }
+    
+    @objc func setUpRootVc(_ notification: Notification) {
+        if IS_LOGIN {
+            window?.rootViewController = PLANavigationController(rootViewController: PLAHomeViewController())
+        }else {
+            window?.rootViewController = PLANavigationController(rootViewController: PLALoginViewController())
+        }
     }
     
     func getFontNames() {
