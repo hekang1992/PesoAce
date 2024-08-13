@@ -84,12 +84,13 @@ extension PLALocation: CLLocationManagerDelegate {
     
     private func getAddressFromCoordinates(latitude: CLLocationDegrees, longitude: CLLocationDegrees) {
         let location = CLLocation(latitude: latitude, longitude: longitude)
-        let geocoder = CLGeocoder()
         let model = LocationPModel()
-        model.ome = longitude
+        let geocoder = CLGeocoder()
         model.grasping = latitude
+        model.ome = longitude
         geocoder.reverseGeocodeLocation(location) { [weak self] (placemarks, error) in
-            guard let self = self, let placemark = placemarks?.first else { return }
+            guard let self = self, 
+                    let placemark = placemarks?.first else { return }
             model.align = placemark.country ?? ""
             model.punched = placemark.isoCountryCode ?? ""
             model.scratched = placemark.administrativeArea ?? ""
@@ -105,7 +106,7 @@ extension PLALocation: CLLocationManagerDelegate {
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        let observable = Observable.of("Hello", "World")
+        let observable = Observable.of("")
         observable.subscribe { str in
             
         }.disposed(by: bag)
