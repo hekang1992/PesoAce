@@ -26,6 +26,8 @@ class wallpaperModel: HandyJSON {
     var liq: String?
     var fracture: String?
     var tha: thaModel?
+    var spotless: thaModel?
+    var fast_list: thaModel?
     var jokingly: jokinglyModel?
     var cleaner: [cleanerModel]?
     var al: alModel?
@@ -104,4 +106,15 @@ class thaModel: HandyJSON {
 class improvementModel: HandyJSON {
     required init() {}
     var bellyaches: String? //产品ID
+    var margalla: String?//pic url
+    var minarets: String?//peourl
+    var mysel: String?
+    var paws: String?
+    var wheeled: String?
+    var productTags: String?
+    var amountMax: String?
+    var loanTermText: String?
+    var loan_rate: String?
+    var plans: String?
+    var buttonStatus: String?
 }

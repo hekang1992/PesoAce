@@ -78,7 +78,7 @@ class PLAPersonInfoXView: UIView {
         let tableView = UITableView(frame: .zero, style: .grouped)
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.estimatedRowHeight = 100
+        tableView.estimatedRowHeight = 80.px()
         tableView.rowHeight = UITableView.automaticDimension
         tableView.separatorStyle = .none
         tableView.backgroundColor = .clear
@@ -150,7 +150,11 @@ extension PLAPersonInfoXView: UITableViewDelegate, UITableViewDataSource {
                 cell.selectionStyle = .none
                 cell.backgroundColor = .clear
                 cell.block = { [weak self] btn in
-                    self?.block1?(btn, model)
+                    if model.significant?[0].significant != nil {
+                        self?.block4?(btn, model)
+                    }else {
+                        self?.block1?(btn, model)
+                    }
                 }
                 return cell
             }

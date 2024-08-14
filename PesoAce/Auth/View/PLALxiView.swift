@@ -73,7 +73,7 @@ class PLALxiView: UIView {
     
     lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
-        tableView.estimatedRowHeight = 100
+        tableView.estimatedRowHeight = 80.px()
         tableView.delegate = self
         tableView.rowHeight = UITableView.automaticDimension
         tableView.separatorStyle = .none

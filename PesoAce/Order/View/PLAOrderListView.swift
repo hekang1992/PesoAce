@@ -17,7 +17,7 @@ class PLAOrderListView: UIView {
         let tableView = UITableView(frame: .zero, style: .grouped)
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.estimatedRowHeight = 100.px()
+        tableView.estimatedRowHeight = 80.px()
         tableView.rowHeight = UITableView.automaticDimension
         tableView.separatorStyle = .none
         tableView.backgroundColor = UIColor.init(css: "#F6F6F7")

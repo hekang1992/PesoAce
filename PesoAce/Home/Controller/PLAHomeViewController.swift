@@ -14,6 +14,7 @@ import GYSide
 class PLAHomeViewController: PLABaseViewController {
     
     lazy var oneView = PLAHomeOneView()
+    lazy var mainView = PLAMainHomeView()
     
     var model: improvementModel?
     
@@ -22,9 +23,15 @@ class PLAHomeViewController: PLABaseViewController {
         
         // Do any additional setup after loading the view.
         view.addSubview(oneView)
+        view.addSubview(mainView)
         oneView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
+        mainView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+        self.oneView.isHidden = true
+        self.mainView.isHidden = true
         oneView.applyBlock = { [weak self] in
             if IS_LOGIN {
                 self?.shenqing(self?.model?.bellyaches ?? "")
@@ -36,8 +43,31 @@ class PLAHomeViewController: PLABaseViewController {
         oneView.leftBlock = { [weak self] in
             self?.leftVc()
         }
+        oneView.picBlock = { [weak self] url in
+            if let self = self {
+                if !url.isEmpty {
+                    JudgeConfig.judue(url, from: self)
+                }
+            }
+        }
+        mainView.proUrlBlock = { [weak self] proid in
+            if let self = self {
+                self.shenqing(proid)
+            }
+        }
+        mainView.leftBolck = { [weak self] in
+            self?.leftVc()
+        }
+        mainView.picBlock = { [weak self] url in
+            if let self = self {
+                if !url.isEmpty {
+                    JudgeConfig.judue(url, from: self)
+                }
+            }
+        }
         let header = MJRefreshNormalHeader(refreshingTarget: self, refreshingAction: #selector(handleRefresh))
         oneView.scrollView.mj_header = header
+        mainView.tableView.mj_header = header
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -72,11 +102,28 @@ extension PLAHomeViewController {
             ViewHud.hideLoadView()
             if let greasy = baseModel.greasy, greasy == 0 || greasy == 00 {
                 guard let model = JSONDeserializer<wallpaperModel>.deserializeFrom(dict: baseModel.wallpaper) else { return }
-                self?.model = model.tha?.improvement?.last
+                if model.fast_list != nil {
+                    self?.mainView.isHidden = false
+                    self?.oneView.isHidden = true
+                    if let array = model.fast_list?.improvement, let bb = model.spotless?.improvement {
+                        self?.mainView.modelArray.accept(array)
+                        self?.mainView.bannerArray = bb
+                    }
+                    self?.mainView.tableView.reloadData()
+                }else {
+                    self?.oneView.isHidden = false
+                    self?.mainView.isHidden = true
+                    self?.model = model.tha?.improvement?.last
+                    let modelArray = model.spotless?.improvement
+                    self?.oneView.modelArray = modelArray
+                }
             }
+            self?.mainView.tableView.mj_header?.endRefreshing()
             self?.oneView.scrollView.mj_header?.endRefreshing()
-        } errorBlock: { error in
+        } errorBlock: { [weak self] error in
             ViewHud.hideLoadView()
+            self?.mainView.tableView.mj_header?.endRefreshing()
+            self?.oneView.scrollView.mj_header?.endRefreshing()
         }
     }
     
