@@ -49,11 +49,19 @@ class PLALeftSideViewController: PLABaseViewController {
             let orderVc = PLAOrderViewController()
             self?.gy_sidePushViewController(viewController: orderVc)
         }
-        leftView.block4 = {
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue:"GYSideTapNotification"), object: nil)
+        leftView.block4 = { [weak self] in
+            let webVc = PLAWebViewController()
+            if let requestUrl = JudgeConfig.createRequsetURL(baseURL: "https://www.baidu.com", params: PLALoginFactory.getLoginParas()) {
+                webVc.productUrl = requestUrl
+            }
+            self?.gy_sidePushViewController(viewController: webVc)
         }
         leftView.block5 = { [weak self] in
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue:"GYSideTapNotification"), object: nil)
+            let webVc = PLAWebViewController()
+            if let requestUrl = JudgeConfig.createRequsetURL(baseURL: "https://www.sina.com.cn", params: PLALoginFactory.getLoginParas()) {
+                webVc.productUrl = requestUrl
+            }
+            self?.gy_sidePushViewController(viewController: webVc)
         }
         leftView.block6 = { [weak self] in
             self?.delOut()

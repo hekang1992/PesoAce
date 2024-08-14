@@ -75,7 +75,7 @@ class PLAFaceViewController: PLABaseViewController {
         
         faceView.block4 = { [weak self ] btn in
             if let self = self {
-                JudgeConfig.productDetailInfo(productID ?? "", form: self)
+                JudgeConfig.productDetailInfo(productID ?? "", "", form: self)
             }
         }
         
@@ -208,7 +208,7 @@ extension PLAFaceViewController: UIImagePickerControllerDelegate, UINavigationCo
     }
     
     func settitme(_ btn: UIButton) {
-        guard let timeStr = btn.titleLabel?.text else { return }
+        let timeStr = btn.titleLabel?.text ?? "11-11-1960"
         let timeArray = timeStr.components(separatedBy: "-")
         let one = timeArray[0]
         let two = timeArray[1]
@@ -217,7 +217,7 @@ extension PLAFaceViewController: UIImagePickerControllerDelegate, UINavigationCo
         let datePickerView = BRDatePickerView()
         datePickerView.pickerMode = .YMD
         datePickerView.title = "Date of birth"
-        datePickerView.minDate = NSDate.br_setYear(1840, month: 1, day: 1)
+        datePickerView.minDate = NSDate.br_setYear(1910, month: 11, day: 11)
         datePickerView.selectDate = NSDate.br_setYear(Int(three)!, month: Int(two)!, day: Int(one)!)
         datePickerView.maxDate = Date()
         datePickerView.resultBlock = { [weak self] selectDate, selectValue in

@@ -20,8 +20,10 @@ class PLAPhotoManager: NSObject {
     func checkPhotoLibraryPermissions(completion: @escaping (Bool) -> Void) {
         let photoAuthorizationStatus = PHPhotoLibrary.authorizationStatus()
         switch photoAuthorizationStatus {
-        case .authorized, .limited:
+        case .authorized:
             completion(true)
+        case .limited:
+            completion(false)
         case .notDetermined:
             PHPhotoLibrary.requestAuthorization { status in
                 DispatchQueue.main.async {
@@ -104,5 +106,4 @@ class PLAPhotoManager: NSObject {
         })
         viewController.present(alert, animated: true, completion: nil)
     }
-    
 }

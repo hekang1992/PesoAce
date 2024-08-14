@@ -19,19 +19,19 @@ class JudgeConfig: NSObject {
               let url = URL(string: str),
               let sch = url.scheme else { return }
         if sch.hasPrefix("http")  {
-            pushWebVc(str, form: vc)
+            pushWebVc(str, "", form: vc)
         }else if sch.hasPrefix("ace") {
             let path = url.path
             if path.contains("/afflictions") {// 产品详情
                 guard let query = url.query else { return }
                 let arr = query.components(separatedBy: "=")
                 let reputedly = arr.last ?? ""
-                productDetailInfo(reputedly, form: vc)
+                productDetailInfo(reputedly, "", form: vc)
             }
         }
     }
     
-    static func productDetailInfo(_ productID: String, form vc: PLABaseViewController) {
+    static func productDetailInfo(_ productID: String, _ type: String , form vc: PLABaseViewController) {
         ViewHud.addLoadView()
         PLAAFNetWorkManager.shared.requestAPI(params: ["reputedly": productID], pageUrl: "/ace/stood/kamal/antide", method: .post) { baseModel in
             let formica = baseModel.formica ?? ""
@@ -43,7 +43,7 @@ class JudgeConfig: NSObject {
                 if !nextStep.isEmpty {
                     nextStepVc(nextStep, productID, process, form: vc)
                 }else {
-                    nextOrderid(safely, productID, form: vc)
+                    nextOrderid(safely, type, productID, form: vc)
                 }
             }else {
                 MBProgressHUD.wj_showPlainText(formica, view: nil)
@@ -91,7 +91,7 @@ class JudgeConfig: NSObject {
         }
     }
     
-    static func nextOrderid(_ type: String, _ productID: String, form vc: PLABaseViewController) {
+    static func nextOrderid(_ type: String, _ tt: String, _ productID: String, form vc: PLABaseViewController) {
         ViewHud.addLoadView()
         PLAAFNetWorkManager.shared.requestAPI(params: ["wounded": "2",
                                                        "wider": type,
@@ -103,7 +103,7 @@ class JudgeConfig: NSObject {
             if baseModel.greasy == 0 || baseModel.greasy == 00 {
                 if let model = JSONDeserializer<wallpaperModel>.deserializeFrom(dict: baseModel.wallpaper) {
                     let productUrl = model.minarets ?? ""
-                    pushWebVc(productUrl, form: vc)
+                    pushWebVc(productUrl, tt, form: vc)
                 }
             }
             JudgeConfig.maidianxinxi(productID, "9", start)
@@ -113,9 +113,10 @@ class JudgeConfig: NSObject {
         
     }
     
-    static func pushWebVc(_ url: String, form vc: PLABaseViewController) {
+    static func pushWebVc(_ url: String, _ type: String, form vc: PLABaseViewController) {
         let webVc = PLAWebViewController()
         if let requestUrl = createRequsetURL(baseURL: url, params: PLALoginFactory.getLoginParas()) {
+            webVc.type = type
             webVc.productUrl = requestUrl
         }
         vc.navigationController?.pushViewController(webVc, animated: true)

@@ -166,7 +166,7 @@ extension PLAPersonAlViewController {
             ViewHud.hideLoadView()
             if baseModel.greasy == 0 || baseModel.greasy == 00 {
                 if let self = self {
-                    JudgeConfig.productDetailInfo(productID ?? "", form: self)
+                    JudgeConfig.productDetailInfo(productID ?? "", "", form: self)
                 }
             }else {
                 MBProgressHUD.wj_showPlainText(baseModel.formica ?? "", view: nil)

@@ -139,7 +139,7 @@ extension PLAAllMoneyViewController {
             ViewHud.hideLoadView()
             if baseModel.greasy == 0 || baseModel.greasy == 00 {
                 if let self = self {
-                    JudgeConfig.productDetailInfo(productID ?? "", form: self)
+                    JudgeConfig.productDetailInfo(productID ?? "", "moneyall", form: self)
                 }
                 JudgeConfig.maidianxinxi(self?.productID ?? "", "8", self?.start ?? "")
             }else {
