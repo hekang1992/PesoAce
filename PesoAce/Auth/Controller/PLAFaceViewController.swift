@@ -80,7 +80,9 @@ class PLAFaceViewController: PLABaseViewController {
         }
         
         self.faceView.idBtn1.kf.setImage(with: URL(string: model?.pic_url ?? ""), for: .normal)
-        getFaceInfo()
+        getFaceInfo {
+            
+        }
         start = DeviceInfo.getCurrentTime()
     }
     
@@ -89,7 +91,7 @@ class PLAFaceViewController: PLABaseViewController {
 
 extension PLAFaceViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
-    func getFaceInfo() {
+    func getFaceInfo(completion: @escaping () -> Void) {
         ViewHud.addLoadView()
         PLAAFNetWorkManager.shared.requestAPI(params: ["reputedly": productID ?? "", "face": "1"], pageUrl: "/ace/someones/because/glanced", method: .get) { [weak self] baseModel in
             ViewHud.hideLoadView()
@@ -107,7 +109,9 @@ extension PLAFaceViewController: UIImagePickerControllerDelegate, UINavigationCo
                     self?.faceView.loginBtn.backgroundColor = UIColor.init(css: "#2681FB")
                 }
             }
+            completion()
         } errorBlock: { error in
+            completion()
             ViewHud.hideLoadView()
         }
         
@@ -116,7 +120,7 @@ extension PLAFaceViewController: UIImagePickerControllerDelegate, UINavigationCo
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage
-        let data = Data.compressImageQuality(image: image!, maxLength: 1800)
+        let data = Data.compressImageQuality(image: image!, maxLength: 1200)
         picker.dismiss(animated: true) { [weak self] in
             self?.shangchuantup(data!,image!)
         }
@@ -143,8 +147,15 @@ extension PLAFaceViewController: UIImagePickerControllerDelegate, UINavigationCo
                     if self?.isFace == "0" {
                         self?.popMessage(from: model)
                     }else {
-                        self?.getFaceInfo()
-                        JudgeConfig.maidianxinxi(self?.productID ?? "", "4", self?.start ?? "")
+                        #warning("todo funk")
+                        let dispatchGroup = DispatchGroup()
+                        dispatchGroup.enter()
+                        self?.getFaceInfo {
+                            dispatchGroup.leave()
+                        }
+                        dispatchGroup.notify(queue: .main) {
+                            JudgeConfig.maidianxinxi(self?.productID ?? "", "4", self?.start ?? "")
+                        }
                     }
                 }
             }
@@ -237,7 +248,9 @@ extension PLAFaceViewController: UIImagePickerControllerDelegate, UINavigationCo
             let formica = baseModel.formica ?? ""
             if baseModel.greasy == 0 || baseModel.greasy == 00 {
                 self?.dismiss(animated: true, completion: {
-                    self?.getFaceInfo()
+                    self?.getFaceInfo {
+                        
+                    }
                 })
             }
             MBProgressHUD.wj_showPlainText(formica, view: nil)
@@ -245,7 +258,7 @@ extension PLAFaceViewController: UIImagePickerControllerDelegate, UINavigationCo
         } errorBlock: { error in
             ViewHud.hideLoadView()
         }
-
+        
     }
     
     func popRenlian() {

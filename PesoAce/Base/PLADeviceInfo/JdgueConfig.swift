@@ -38,9 +38,10 @@ class JudgeConfig: NSObject {
             if let greasy = baseModel.greasy, greasy == 0 || greasy == 00 {
                 guard let model = JSONDeserializer<wallpaperModel>.deserializeFrom(dict: baseModel.wallpaper) else { return }
                 let nextStep = model.jokingly?.outgrown ?? ""
+                let process = model.jokingly?.process ?? ""
                 let safely = model.conscience?.safely ?? ""
                 if !nextStep.isEmpty {
-                    nextStepVc(nextStep, productID, form: vc)
+                    nextStepVc(nextStep, productID, process, form: vc)
                 }else {
                     nextOrderid(safely, productID, form: vc)
                 }
@@ -53,31 +54,36 @@ class JudgeConfig: NSObject {
         }
     }
     
-    static func nextStepVc(_ type: String, _ productID: String, form vc: PLABaseViewController) {
+    static func nextStepVc(_ type: String, _ productID: String, _ process: String, form vc: PLABaseViewController) {
         switch type {
         case "afterwards1":
             let faceVc = PLAAuThAbcController()
             faceVc.productID = productID
+            faceVc.setp = process
             vc.navigationController?.pushViewController(faceVc, animated: true)
             break
         case "afterwards2":
             let personalVc = PLAPersonAlViewController()
             personalVc.productID = productID
+            personalVc.setp = process
             vc.navigationController?.pushViewController(personalVc, animated: true)
             break
         case "afterwards3":
             let workVc = PLAWorkViewController()
             workVc.productID = productID
+            workVc.setp = process
             vc.navigationController?.pushViewController(workVc, animated: true)
             break
         case "afterwards4":
             let lianxiVc = PLALXRViewController()
             lianxiVc.productID = productID
+            lianxiVc.setp = process
             vc.navigationController?.pushViewController(lianxiVc, animated: true)
             break
         case "afterwards5":
             let moneyVc = PLAAllMoneyViewController()
             moneyVc.productID = productID
+            moneyVc.setp = process
             vc.navigationController?.pushViewController(moneyVc, animated: true)
             break
         default:

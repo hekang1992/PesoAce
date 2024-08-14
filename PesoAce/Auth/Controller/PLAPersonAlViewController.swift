@@ -20,10 +20,13 @@ class PLAPersonAlViewController: PLABaseViewController {
     
     lazy var perView: PLAPersonInfoXView = {
         let perView = PLAPersonInfoXView()
+        perView.stLabel.text = setp ?? ""
         return perView
     }()
     
     var start: String?
+    
+    var setp: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()

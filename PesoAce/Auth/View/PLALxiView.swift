@@ -55,7 +55,7 @@ class PLALxiView: UIView {
     
     lazy var stLabel: UILabel = {
         let label = UILabel.createLabel(font: UIFont(name: regular_font, size: 12.px())!, textColor: UIColor(css: "#2681FB"), textAlignment: .center)
-        label.text = "Progress: 1/5"
+        label.text = "Progress: 0/5"
         return label
     }()
     

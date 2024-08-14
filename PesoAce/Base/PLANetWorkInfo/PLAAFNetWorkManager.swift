@@ -66,21 +66,28 @@ class PLAAFNetWorkManager: NSObject {
     override init() {
         super.init()
         requestSubject
-            .throttle(.seconds(2), scheduler: MainScheduler.instance)
+//            .distinctUntilChanged { (previous, current) -> Bool in
+//                print("previousurl>>>>>>\(previous.pageUrl)")
+//                print("currentsurl>>>>>>\(current.pageUrl)")
+//                if current.pageUrl == "/ace/someones/because/glanced" {
+//                    return false
+//                } else {
+//                    return previous.pageUrl == current.pageUrl
+//                }
+//            }
+//            .throttle(.seconds(2), scheduler: MainScheduler.instance)
             .subscribe(onNext: { [weak self] (params, pageUrl, method, complete, errorBlock) in
                 self?.performRequestAPI(params: params, pageUrl: pageUrl, method: method, complete: complete, errorBlock: errorBlock)
             })
             .disposed(by: disposeBag)
         
         uploadImageSubject
-            .throttle(.seconds(2), scheduler: MainScheduler.instance)
             .subscribe(onNext: { [weak self] (params, pageUrl, method, data, complete, errorBlock) in
                 self?.performUploadImageAPI(params: params, pageUrl: pageUrl, method: method, data: data, complete: complete, errorBlock: errorBlock)
             })
             .disposed(by: disposeBag)
         
         uploadDataSubject
-            .throttle(.seconds(2), scheduler: MainScheduler.instance)
             .subscribe(onNext: { [weak self] (params, pageUrl, method, complete, errorBlock) in
                 self?.performUploadDataAPI(params: params, pageUrl: pageUrl, method: method, complete: complete, errorBlock: errorBlock)
             })
@@ -132,7 +139,7 @@ class PLAAFNetWorkManager: NSObject {
                         }
                         if let contentToSerialize = model?.wallpaper, let data = try? JSONSerialization.data(withJSONObject: contentToSerialize, options: []) {
                             let jsonString = String(data: data, encoding:.utf8)
-                            print(">>>>>>>>>>>>>>>\(jsonString ?? "")")
+                            //                            print(">>>>>>>>>>>>>>>\(jsonString ?? "")")
                         }
                     }
                 case .failure(let error):

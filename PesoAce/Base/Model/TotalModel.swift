@@ -92,6 +92,7 @@ class cleanerModel: HandyJSON {
 class jokinglyModel: HandyJSON {
     required init() {}
     var outgrown: String?
+    var process: String?
 }
 
 class thaModel: HandyJSON {

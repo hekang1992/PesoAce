@@ -15,6 +15,8 @@ class PLALXRViewController: PLABaseViewController {
     
     var productID: String?
     
+    var setp: String?
+    
     lazy var lianxirenView = PLALxiView()
     
     lazy var pickerVc: CNContactPickerViewController = {
@@ -42,6 +44,7 @@ class PLALXRViewController: PLABaseViewController {
         lianxirenView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
+        lianxirenView.stLabel.text = setp ?? ""
         lianxirenView.block = { [weak self] in
             self?.navigationController?.popToRootViewController(animated: true)
         }

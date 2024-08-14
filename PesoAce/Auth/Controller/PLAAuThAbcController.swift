@@ -18,6 +18,8 @@ class PLAAuThAbcController: UIViewController {
     }()
     
     var productID: String?
+    
+    var setp: String?
 
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -20,10 +20,13 @@ class PLAWorkViewController: PLABaseViewController {
     
     var start: String?
     
+    var setp: String?
+    
     lazy var perView: PLAPersonInfoXView = {
         let perView = PLAPersonInfoXView()
         perView.titleLabel.text = "Work Infomation"
         perView.stLabel1.text = "Work Infomation"
+        perView.stLabel.text = setp ?? ""
         return perView
     }()
     

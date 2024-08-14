@@ -134,7 +134,7 @@ class PLALoginView: PLACommonView {
         }
         phoneTx.snp.makeConstraints { make in
             make.top.equalTo(hiLabel2.snp.top)
-            make.right.equalToSuperview().offset(-50.px())
+            make.right.equalToSuperview().offset(-10.px())
             make.left.equalTo(lineView.snp.right).offset(12.px())
             make.height.equalTo(22.px())
         }
