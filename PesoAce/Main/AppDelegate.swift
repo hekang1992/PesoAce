@@ -39,27 +39,29 @@ extension AppDelegate {
     }
     
     @objc func idfaInfo(_ notification: Notification) {
-        if #available(iOS 14.0, *) {
-            ATTrackingManager.requestTrackingAuthorization { status in
-                switch status {
-                case .authorized:
-                    print("Tracking authorized")
-                    self.upidfa()
-                    break
-                case .denied:
-                    self.upidfa()
-                    print("Tracking denied")
-                    break
-                case .notDetermined:
-                    self.upidfa()
-                    print("Tracking not determined")
-                    break
-                case .restricted:
-                    print("Tracking restricted")
-                    break
-                @unknown default:
-                    print("Unknown status")
-                    break
+        DispatchQueue.main.async {
+            if #available(iOS 14.0, *) {
+                ATTrackingManager.requestTrackingAuthorization { status in
+                    switch status {
+                    case .authorized:
+                        print("Tracking authorized")
+                        self.upidfa()
+                        break
+                    case .denied:
+                        self.upidfa()
+                        print("Tracking denied")
+                        break
+                    case .notDetermined:
+                        self.upidfa()
+                        print("Tracking not determined")
+                        break
+                    case .restricted:
+                        print("Tracking restricted")
+                        break
+                    @unknown default:
+                        print("Unknown status")
+                        break
+                    }
                 }
             }
         }
