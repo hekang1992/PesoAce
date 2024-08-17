@@ -88,6 +88,12 @@ class JudgeConfig: NSObject {
             moneyVc.setp = process
             vc.navigationController?.pushViewController(moneyVc, animated: true)
             break
+        case "afterwards6":
+            let jiaVc = PLAJiaLianxiViewController()
+            jiaVc.productID = productID
+            jiaVc.setp = process
+            vc.navigationController?.pushViewController(jiaVc, animated: true)
+            break
         default:
             break
         }

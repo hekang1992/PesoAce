@@ -13,15 +13,16 @@ class PLALxiView: UIView {
     
     private let disposeBag = DisposeBag()
     
-    // RxSwift blocks
     var block: (() -> Void)?
+    
     var block1: ((UIButton, cleanerModel) -> Void)?
+    
     var block2: ((UIButton, cleanerModel) -> Void)?
+    
     var saveblock: (() -> Void)?
     
     var scrollDistance: CGFloat = 0
     
-    // Use BehaviorRelay to manage modelArray
     var modelArray = BehaviorRelay<[cleanerModel]>(value: [])
     
     lazy var nextBtn: UIButton = {
@@ -134,7 +135,6 @@ class PLALxiView: UIView {
             }
             .disposed(by: disposeBag)
         
-        // Bind contentOffset to titleLabel alpha
         tableView.rx.contentOffset
             .map { offset in
                 let adjustedOffset = offset.y + self.tableView.adjustedContentInset.top
@@ -142,15 +142,13 @@ class PLALxiView: UIView {
             }
             .bind(to: titleLabel.rx.alpha)
             .disposed(by: disposeBag)
-        
-        // Bind canBtn tap
+    
         canBtn.rx.tap
             .subscribe(onNext: { [weak self] in
                 self?.block?()
             })
             .disposed(by: disposeBag)
         
-        // Bind nextBtn tap
         nextBtn.rx.tap
             .subscribe(onNext: { [weak self] in
                 self?.saveblock?()
