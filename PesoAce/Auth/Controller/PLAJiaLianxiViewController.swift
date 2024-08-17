@@ -179,8 +179,13 @@ extension PLAJiaLianxiViewController: CNContactPickerDelegate {
             })
             ViewHud.addLoadView()
             dict?["reputedly"] = productID ?? ""
-            PLAAFNetWorkManager.shared.uploadDataAPI(params: dict, pageUrl: "/ace/garden/would/shelf", method: .post) { baseModel in
+            PLAAFNetWorkManager.shared.uploadDataAPI(params: dict, pageUrl: "/ace/garden/would/shelf", method: .post) { [weak self] baseModel in
                 ViewHud.hideLoadView()
+                if baseModel.greasy == 0 || baseModel.greasy == 00 {
+                    if let self = self {
+                        JudgeConfig.productDetailInfo(productID ?? "", "", form: self)
+                    }
+                }
             } errorBlock: { error in
                 ViewHud.hideLoadView()
             }
