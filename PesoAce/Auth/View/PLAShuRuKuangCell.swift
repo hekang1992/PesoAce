@@ -15,6 +15,8 @@ class PLAShuRuKuangCell: UITableViewCell {
     
     var model = BehaviorRelay<lumModel?>(value: nil)
     
+    var ffmodel = BehaviorRelay<cleanerModel?>(value: nil)
+    
     lazy var titleLabel: UILabel = {
         let titleLabel = UILabel.createLabel(font: UIFont(name: regular_font, size: 14.px())!, textColor: UIColor.init(css: "#A9A9A9"), textAlignment: .left)
         return titleLabel
@@ -71,20 +73,15 @@ extension PLAShuRuKuangCell {
     func bindModel() {
         model.subscribe(onNext: { [weak self] model in
             guard let self = self, let model = model else { return }
-            
             self.titleLabel.text = model.faisal ?? ""
-            
             let attrString = NSMutableAttributedString(string: model.landlord ?? "", attributes: [
                 .foregroundColor: UIColor(css: "#ACB7D6") as Any,
                 .font: UIFont(name: regular_font, size: 16.px())!
             ])
             self.nameField.attributedPlaceholder = attrString
-            
             let shalwar = model.shalwar ?? ""
             self.nameField.text = shalwar
-            
             self.nameField.keyboardType = model.injuries == "1" ? .phonePad : .default
-            
         }).disposed(by: disposeBag)
         
         nameField.rx.text
@@ -93,10 +90,24 @@ extension PLAShuRuKuangCell {
                 guard let self = self else { return }
                 if let model = self.model.value {
                     model.shalwar = text
-                    self.model.accept(model)
+                }else {
+                    ffmodel.value?.shalwar = text
                 }
             }
             .disposed(by: disposeBag)
+        
+        ffmodel.subscribe(onNext: { [weak self] model in
+            guard let self = self, let model = model else { return }
+            self.titleLabel.text = model.faisal ?? ""
+            let attrString = NSMutableAttributedString(string: model.landlord ?? "", attributes: [
+                .foregroundColor: UIColor(css: "#ACB7D6") as Any,
+                .font: UIFont(name: regular_font, size: 16.px())!
+            ])
+            self.nameField.attributedPlaceholder = attrString
+            let shalwar = model.shalwar ?? ""
+            self.nameField.text = shalwar
+            self.nameField.keyboardType = model.injuries == "1" ? .phonePad : .default
+        }).disposed(by: disposeBag)
     }
     
 }

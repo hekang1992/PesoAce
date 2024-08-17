@@ -45,10 +45,10 @@ class PLAAllMoneyViewController: PLABaseViewController {
         moneyView.block = { [weak self] in
             self?.navigationController?.popToRootViewController(animated: true)
         }
-        moneyView.block1 = { [weak self] btn, model in //enmu
+        moneyView.block1 = {btn, model in //enmu
             if let significant = model.significant {
                 let modelArray = enmuModel.enumOneArr(dataSourceArr: significant)
-                self?.popLastEnum(.province, btn, modelArray, model)
+                PopLastNumCifig.popLastEnum(.province, btn, modelArray, model)
             }
         }
         moneyView.saveblock = { [weak self] index in
@@ -80,47 +80,6 @@ extension PLAAllMoneyViewController {
             ViewHud.hideLoadView()
         }
 
-    }
-    
-    func popLastEnum(_ model: BRAddressPickerMode, _ btn : UIButton, _ array: [BRProvinceModel], _ modelDate: lumModel) {
-        let addressPickerView = BRAddressPickerView()
-        addressPickerView.title = modelDate.landlord ?? ""
-        addressPickerView.pickerMode = model
-        addressPickerView.selectIndexs = [0, 0, 0]
-        addressPickerView.dataSourceArr = array
-        addressPickerView.resultBlock = { province, city, area in
-            
-            let provinceCode = province?.code ?? ""
-            let cityCode = city?.code ?? ""
-            let areaCode = area?.code ?? ""
-            
-            let provinceName = province?.name ?? ""
-            let cityName = city?.name ?? ""
-            let areaName = area?.name ?? ""
-            
-            var addressString: String = ""
-            var code: String = ""
-            if cityName.isEmpty {
-                addressString = provinceName
-                code = provinceCode
-            }else if areaName.isEmpty {
-                addressString = provinceName + " - " + cityName
-                code = provinceCode + " - " + cityCode
-            }else {
-                addressString = provinceName + " - " + cityName + " - " + areaName
-                code = provinceCode + " - " + cityCode + " - " + areaCode
-            }
-            modelDate.shalwar = addressString
-            modelDate.vacuumed = code
-            btn.setTitle(modelDate.shalwar ?? "", for: .normal)
-            btn.setTitleColor(UIColor.init(css: "#2681FB"), for: .normal)
-        }
-        let customStyle = BRPickerStyle()
-        customStyle.pickerColor = .white
-        customStyle.pickerTextFont = UIFont(name: black_font, size: 18.px())
-        customStyle.selectRowTextColor = UIColor.init(css: "#2681FB")
-        addressPickerView.pickerStyle = customStyle
-        addressPickerView.show()
     }
     
     func savebankInfo(_ index: Int) {

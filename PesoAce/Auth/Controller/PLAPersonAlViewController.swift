@@ -39,19 +39,19 @@ class PLAPersonAlViewController: PLABaseViewController {
         perView.block = { [weak self] in
             self?.navigationController?.popToRootViewController(animated: true)
         }
-        perView.block1 = { [weak self] btn, model in //enmu
+        perView.block1 = { btn, model in //enmu
             if let significant = model.significant {
                 let modelArray = enmuModel.enumOneArr(dataSourceArr: significant)
-                self?.popLastEnum(.province, btn, modelArray, model)
+                PopLastNumCifig.popLastEnum(.province, btn, modelArray, model)
             }
         }
         perView.block3 = { [weak self] btn, model in //city
             self?.cituAllInfo(btn, model)
         }
-        perView.block4 = { [weak self] btn, model in //date
+        perView.block4 = { btn, model in //date
             if let significant = model.significant {
                 let modelArray = dateModel.geterjiArr(dataSourceArr: significant)
-                self?.popLastEnum(.city, btn, modelArray, model)
+                PopLastNumCifig.popLastEnum(.city, btn, modelArray, model)
             }
         }
         perView.saveblock = { [weak self] in
@@ -80,51 +80,10 @@ extension PLAPersonAlViewController {
         }
     }
     
-    func popLastEnum(_ model: BRAddressPickerMode, _ btn : UIButton, _ array: [BRProvinceModel], _ modelDate: lumModel) {
-        let addressPickerView = BRAddressPickerView()
-        addressPickerView.title = modelDate.landlord ?? ""
-        addressPickerView.pickerMode = model
-        addressPickerView.selectIndexs = [0, 0, 0]
-        addressPickerView.dataSourceArr = array
-        addressPickerView.resultBlock = { province, city, area in
-            
-            let provinceCode = province?.code ?? ""
-            let cityCode = city?.code ?? ""
-            let areaCode = area?.code ?? ""
-            
-            let provinceName = province?.name ?? ""
-            let cityName = city?.name ?? ""
-            let areaName = area?.name ?? ""
-            
-            var addressString: String = ""
-            var code: String = ""
-            if cityName.isEmpty {
-                addressString = provinceName
-                code = provinceCode
-            }else if areaName.isEmpty {
-                addressString = provinceName + " - " + cityName
-                code = provinceCode + " - " + cityCode
-            }else {
-                addressString = provinceName + " - " + cityName + " - " + areaName
-                code = provinceCode + " - " + cityCode + " - " + areaCode
-            }
-            modelDate.shalwar = addressString
-            modelDate.vacuumed = code
-            btn.setTitle(modelDate.shalwar ?? "", for: .normal)
-            btn.setTitleColor(UIColor.init(css: "#2681FB"), for: .normal)
-        }
-        let customStyle = BRPickerStyle()
-        customStyle.pickerColor = .white
-        customStyle.pickerTextFont = UIFont(name: black_font, size: 18.px())
-        customStyle.selectRowTextColor = UIColor.init(css: "#2681FB")
-        addressPickerView.pickerStyle = customStyle
-        addressPickerView.show()
-    }
-    
     func cituAllInfo(_ btn: UIButton, _ lmodel: lumModel) {
         if cleaner != nil {
             let modelArray = CityXuanZe.cityModelArray(dataSourceArr: cleaner!)
-            self.popLastEnum(.area, btn, modelArray, lmodel)
+            PopLastNumCifig.popLastEnum(.area, btn, modelArray, lmodel)
         }else {
             ViewHud.addLoadView()
             PLAAFNetWorkManager.shared.requestAPI(params: ["city": "1"], pageUrl: "/ace/looked/right/overshadowed", method: .get) { [weak self] baseModel in
@@ -136,7 +95,7 @@ extension PLAPersonAlViewController {
                         self?.cleaner = model.cleaner
                         if let cleaner = model.cleaner {
                             let modelArray = CityXuanZe.cityModelArray(dataSourceArr: cleaner)
-                            self?.popLastEnum(.area, btn, modelArray, lmodel)
+                            PopLastNumCifig.popLastEnum(.area, btn, modelArray, lmodel)
                         }
                     }
                 }
@@ -175,6 +134,56 @@ extension PLAPersonAlViewController {
         } errorBlock: { error in
             ViewHud.hideLoadView()
         }
+    }
+    
+}
+
+
+class PopLastNumCifig {
+    
+   static func popLastEnum(_ model: BRAddressPickerMode, _ btn : UIButton, _ array: [BRProvinceModel], _ modelDate: lumModel) {
+        let addressPickerView = BRAddressPickerView()
+        addressPickerView.title = modelDate.landlord ?? ""
+        addressPickerView.pickerMode = model
+        addressPickerView.selectIndexs = [0, 0, 0]
+        addressPickerView.dataSourceArr = array
+        
+        addressPickerView.resultBlock = { province, city, area in
+            let provinceName = province?.name ?? ""
+            let cityName = city?.name ?? ""
+            let areaName = area?.name ?? ""
+            
+            let addressString: String
+            let code: String
+            
+            switch (provinceName.isEmpty, cityName.isEmpty, areaName.isEmpty) {
+            case (false, true, _):
+                addressString = provinceName
+                code = province?.code ?? ""
+            case (false, false, true):
+                addressString = "\(provinceName) - \(cityName)"
+                code = "\(province?.code ?? "") - \(city?.code ?? "")"
+            case (false, false, false):
+                addressString = "\(provinceName) - \(cityName) - \(areaName)"
+                code = "\(province?.code ?? "") - \(city?.code ?? "") - \(area?.code ?? "")"
+            default:
+                addressString = ""
+                code = ""
+            }
+            
+            modelDate.shalwar = addressString
+            modelDate.vacuumed = code
+            btn.setTitle(addressString, for: .normal)
+            btn.setTitleColor(UIColor(css: "#2681FB"), for: .normal)
+        }
+        
+        let customStyle = BRPickerStyle()
+        customStyle.pickerColor = .white
+        customStyle.pickerTextFont = UIFont(name: black_font, size: 18.px())
+        customStyle.selectRowTextColor = UIColor(css: "#2681FB")
+        addressPickerView.pickerStyle = customStyle
+        
+        addressPickerView.show()
     }
     
 }

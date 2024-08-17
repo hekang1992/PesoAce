@@ -65,6 +65,7 @@
 		18E0B0B22C6521500083BCD4 /* PLAPCommonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E0B0B12C6521500083BCD4 /* PLAPCommonView.swift */; };
 		7350D1742C6FAA550031257F /* PLAChangeBankViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7350D1732C6FAA550031257F /* PLAChangeBankViewController.swift */; };
 		73CFF5752C709A58001EECE4 /* PLAJiaLianxiViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73CFF5742C709A58001EECE4 /* PLAJiaLianxiViewController.swift */; };
+		73CFF5772C70CDFF001EECE4 /* PLAJiaLianxiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73CFF5762C70CDFF001EECE4 /* PLAJiaLianxiView.swift */; };
 		73F80D4F2C6FAFE6004682D4 /* PLAChangeBankView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73F80D4E2C6FAFE6004682D4 /* PLAChangeBankView.swift */; };
 		73F80D512C6FB188004682D4 /* PLAChangeBankCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73F80D502C6FB188004682D4 /* PLAChangeBankCell.swift */; };
 		7A111470DB6E396641AE5453 /* Pods_PesoAce.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA7B7D9C7C765427C57192B0 /* Pods_PesoAce.framework */; };
@@ -134,6 +135,7 @@
 		5DBA2829A6F9E91179DC6C59 /* Pods-PesoAce.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PesoAce.release.xcconfig"; path = "Target Support Files/Pods-PesoAce/Pods-PesoAce.release.xcconfig"; sourceTree = "<group>"; };
 		7350D1732C6FAA550031257F /* PLAChangeBankViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PLAChangeBankViewController.swift; sourceTree = "<group>"; };
 		73CFF5742C709A58001EECE4 /* PLAJiaLianxiViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PLAJiaLianxiViewController.swift; sourceTree = "<group>"; };
+		73CFF5762C70CDFF001EECE4 /* PLAJiaLianxiView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PLAJiaLianxiView.swift; sourceTree = "<group>"; };
 		73F80D4E2C6FAFE6004682D4 /* PLAChangeBankView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PLAChangeBankView.swift; sourceTree = "<group>"; };
 		73F80D502C6FB188004682D4 /* PLAChangeBankCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PLAChangeBankCell.swift; sourceTree = "<group>"; };
 		CA7B7D9C7C765427C57192B0 /* Pods_PesoAce.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PesoAce.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -176,6 +178,7 @@
 				188113592C68DD1A00AAD9AA /* PLALxiView.swift */,
 				1881135B2C68DE3F00AAD9AA /* PLALxiCell.swift */,
 				1881135F2C68F57600AAD9AA /* PLAAllMoneyView.swift */,
+				73CFF5762C70CDFF001EECE4 /* PLAJiaLianxiView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -567,6 +570,7 @@
 				18A2BC982C65107800BB5DAE /* PLAPhotoManager.swift in Sources */,
 				182CF0DE2C67DD92007D5538 /* PLAWorkViewController.swift in Sources */,
 				186C4CB22C626BFD007CDAF1 /* PLAOrderListView.swift in Sources */,
+				73CFF5772C70CDFF001EECE4 /* PLAJiaLianxiView.swift in Sources */,
 				18982E1D2C5F4A9B0036F819 /* PLAAFNetWorkManager.swift in Sources */,
 				188113602C68F57600AAD9AA /* PLAAllMoneyView.swift in Sources */,
 				18982E452C6120570036F819 /* PLALeftSideViewController.swift in Sources */,

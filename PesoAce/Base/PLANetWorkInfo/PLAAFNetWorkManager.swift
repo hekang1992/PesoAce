@@ -66,16 +66,16 @@ class PLAAFNetWorkManager: NSObject {
     override init() {
         super.init()
         requestSubject
-//            .distinctUntilChanged { (previous, current) -> Bool in
-//                print("previousurl>>>>>>\(previous.pageUrl)")
-//                print("currentsurl>>>>>>\(current.pageUrl)")
-//                if current.pageUrl == "/ace/someones/because/glanced" {
-//                    return false
-//                } else {
-//                    return previous.pageUrl == current.pageUrl
-//                }
-//            }
-//            .throttle(.seconds(2), scheduler: MainScheduler.instance)
+        //            .distinctUntilChanged { (previous, current) -> Bool in
+        //                print("previousurl>>>>>>\(previous.pageUrl)")
+        //                print("currentsurl>>>>>>\(current.pageUrl)")
+        //                if current.pageUrl == "/ace/someones/because/glanced" {
+        //                    return false
+        //                } else {
+        //                    return previous.pageUrl == current.pageUrl
+        //                }
+        //            }
+        //            .throttle(.seconds(2), scheduler: MainScheduler.instance)
             .subscribe(onNext: { [weak self] (params, pageUrl, method, complete, errorBlock) in
                 self?.performRequestAPI(params: params, pageUrl: pageUrl, method: method, complete: complete, errorBlock: errorBlock)
             })
@@ -138,7 +138,7 @@ class PLAAFNetWorkManager: NSObject {
                             errorBlock("failure")
                         }
                         if let contentToSerialize = model?.wallpaper, let data = try? JSONSerialization.data(withJSONObject: contentToSerialize, options: []) {
-                            let jsonString = String(data: data, encoding:.utf8)
+                            //                            let jsonString = String(data: data, encoding:.utf8)
                             //                            print(">>>>>>>>>>>>>>>\(jsonString ?? "")")
                         }
                     }

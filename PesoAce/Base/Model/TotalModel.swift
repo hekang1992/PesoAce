@@ -93,6 +93,15 @@ class cleanerModel: HandyJSON {
     var pakols: [significantModel]?
     var millah: String?
     var improvement: [improvementModel]?
+    var faisal: String?
+    var landlord: String?
+    var greasy: String?//key
+    var pendu: String?//type
+    var shalwar: String?//回血
+    var injuries: String?
+    var vacuumed: String?//回血key
+    var significant: [significantModel]?
+    var lum: [lumModel]?
 }
 
 class jokinglyModel: HandyJSON {
