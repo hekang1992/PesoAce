@@ -12,7 +12,6 @@ class PLALeftSideViewController: PLABaseViewController {
     
     lazy var leftView = PLALeftSideView()
     
-    
     lazy var logoutView: PLAOutView = {
         let logoutView = PLAOutView(frame: self.view.bounds)
         return logoutView
@@ -65,6 +64,10 @@ class PLALeftSideViewController: PLABaseViewController {
         }
         leftView.block6 = { [weak self] in
             self?.delOut()
+        }
+        leftView.block7 = { [weak self] in
+            let bankVc = PLAChangeBankViewController()
+            self?.gy_sidePushViewController(viewController: bankVc)
         }
     }
     

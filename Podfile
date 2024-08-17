@@ -42,6 +42,8 @@ target 'PesoAce' do
   pod 'TYAlertController', '~> 1.2.0'
   
   pod 'RxCocoa', '~> 6.6.0'
+  
+  pod 'RxDataSources', '~> 5.0.0'
 
   pod "GYSide", '~> 0.0.5'
   

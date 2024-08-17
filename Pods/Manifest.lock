@@ -13,6 +13,7 @@ PODS:
   - BRPickerView/StringPickerView (2.8.1):
     - BRPickerView/Base
   - DeviceKit (5.2.2)
+  - Differentiator (5.0.0)
   - GKCycleScrollView (1.2.2)
   - GYSide (0.0.5)
   - HandyJSON (5.0.2)
@@ -26,6 +27,10 @@ PODS:
   - RxCocoa (6.6.0):
     - RxRelay (= 6.6.0)
     - RxSwift (= 6.6.0)
+  - RxDataSources (5.0.0):
+    - Differentiator (~> 5.0)
+    - RxCocoa (~> 6.0)
+    - RxSwift (~> 6.0)
   - RxRelay (6.6.0):
     - RxSwift (= 6.6.0)
   - RxSwift (6.6.0)
@@ -49,6 +54,7 @@ DEPENDENCIES:
   - MJRefresh (~> 3.7.6)
   - ReachabilitySwift (~> 5.0.0)
   - RxCocoa (~> 6.6.0)
+  - RxDataSources (~> 5.0.0)
   - RxSwift (~> 6.6.0)
   - SAMKeychain (~> 1.5.3)
   - SnapKit (~> 5.7.1)
@@ -60,6 +66,7 @@ SPEC REPOS:
     - Alamofire
     - BRPickerView
     - DeviceKit
+    - Differentiator
     - GKCycleScrollView
     - GYSide
     - HandyJSON
@@ -71,6 +78,7 @@ SPEC REPOS:
     - MJRefresh
     - ReachabilitySwift
     - RxCocoa
+    - RxDataSources
     - RxRelay
     - RxSwift
     - SAMKeychain
@@ -82,6 +90,7 @@ SPEC CHECKSUMS:
   Alamofire: 3ca42e259043ee0dc5c0cdd76c4bc568b8e42af7
   BRPickerView: 2531a2d4d0fea0b57a1c738de215af0f88863a2f
   DeviceKit: e36aaf2a0d142ef0b4fac2007649a4414af234be
+  Differentiator: e8497ceab83c1b10ca233716d547b9af21b9344d
   GKCycleScrollView: ecc033c0d1376f28f7441f0275e9a9d515da9a6f
   GYSide: 672895491bf7a809f0631dd8a122ab5d1d601aae
   HandyJSON: 9e4e236f5d2dbefad5155a77417bbea438201c03
@@ -93,6 +102,7 @@ SPEC CHECKSUMS:
   MJRefresh: 2fe7fb43a5167ceda20bb7e63f130c04fd1814a5
   ReachabilitySwift: 985039c6f7b23a1da463388634119492ff86c825
   RxCocoa: 44a80de90e25b739b5aeaae3c8c371a32e3343cc
+  RxDataSources: aa47cc1ed6c500fa0dfecac5c979b723542d79cf
   RxRelay: 45eaa5db8ee4fb50e5ebd57deec0159e97fa51e6
   RxSwift: a4b44f7d24599f674deebd1818eab82e58410632
   SAMKeychain: 483e1c9f32984d50ca961e26818a534283b4cd5c
@@ -100,6 +110,6 @@ SPEC CHECKSUMS:
   SystemServices: 7af348493ece8951449b476c41532df72569b181
   TYAlertController: c121090edb0bea7426f987da94cdddd81eef4231
 
-PODFILE CHECKSUM: eaf833272fb550882c085cac146406d13398c6c2
+PODFILE CHECKSUM: c572ab9e33d13dcd16706b590a344ba27a0d4b43
 
 COCOAPODS: 1.15.2

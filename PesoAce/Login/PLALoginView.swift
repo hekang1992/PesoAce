@@ -10,7 +10,9 @@ import UIKit
 class PLALoginView: PLACommonView {
     
     var block: ((UIButton) -> Void)?
+    
     var block1: (() -> Void)?
+    
     var xieyiblock: (() -> Void)?
     
     lazy var hiLabel: UILabel = {
@@ -133,15 +135,15 @@ class PLALoginView: PLACommonView {
             make.top.equalTo(hiLabel2.snp.top).offset(6.px())
         }
         phoneTx.snp.makeConstraints { make in
-            make.top.equalTo(hiLabel2.snp.top)
-            make.right.equalToSuperview().offset(-10.px())
+            make.top.equalTo(hiLabel2.snp.top).offset(-8.px())
+            make.width.equalTo(240.px())
             make.left.equalTo(lineView.snp.right).offset(12.px())
-            make.height.equalTo(22.px())
+            make.centerY.equalTo(hiLabel2.snp.centerY)
         }
         lineView1.snp.makeConstraints { make in
             make.height.equalTo(2.px())
             make.left.equalToSuperview().offset(24.px())
-            make.top.equalTo(phoneTx.snp.bottom).offset(14.px())
+            make.top.equalTo(phoneTx.snp.bottom).offset(8.px())
             make.centerX.equalToSuperview()
         }
         codeTx.snp.makeConstraints { make in

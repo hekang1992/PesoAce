@@ -150,6 +150,7 @@ extension PLAPersonInfoXView: UITableViewDelegate, UITableViewDataSource {
                 cell.selectionStyle = .none
                 cell.backgroundColor = .clear
                 cell.block = { [weak self] btn in
+                    self?.endEditing(true)
                     if model.significant?[0].significant != nil {
                         self?.block4?(btn, model)
                     }else {
@@ -171,6 +172,7 @@ extension PLAPersonInfoXView: UITableViewDelegate, UITableViewDataSource {
                 cell.selectionStyle = .none
                 cell.backgroundColor = .clear
                 cell.block = { [weak self] btn in
+                    self?.endEditing(true)
                     self?.block3?(btn, model)
                 }
                 return cell
@@ -181,6 +183,7 @@ extension PLAPersonInfoXView: UITableViewDelegate, UITableViewDataSource {
                 cell.selectionStyle = .none
                 cell.backgroundColor = .clear
                 cell.block = { [weak self] btn in
+                    self?.endEditing(true)
                     self?.block4?(btn, model)
                 }
                 return cell

@@ -63,6 +63,9 @@
 		18D2BC5C2C6A4DF0006BAEDB /* PLALocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D2BC5B2C6A4DF0006BAEDB /* PLALocation.swift */; };
 		18E0B0B02C651F190083BCD4 /* PLAPMInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E0B0AF2C651F190083BCD4 /* PLAPMInfoView.swift */; };
 		18E0B0B22C6521500083BCD4 /* PLAPCommonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E0B0B12C6521500083BCD4 /* PLAPCommonView.swift */; };
+		7350D1742C6FAA550031257F /* PLAChangeBankViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7350D1732C6FAA550031257F /* PLAChangeBankViewController.swift */; };
+		73F80D4F2C6FAFE6004682D4 /* PLAChangeBankView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73F80D4E2C6FAFE6004682D4 /* PLAChangeBankView.swift */; };
+		73F80D512C6FB188004682D4 /* PLAChangeBankCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73F80D502C6FB188004682D4 /* PLAChangeBankCell.swift */; };
 		7A111470DB6E396641AE5453 /* Pods_PesoAce.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA7B7D9C7C765427C57192B0 /* Pods_PesoAce.framework */; };
 /* End PBXBuildFile section */
 
@@ -128,6 +131,9 @@
 		18E0B0B12C6521500083BCD4 /* PLAPCommonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PLAPCommonView.swift; sourceTree = "<group>"; };
 		28450693720077835F00ECDB /* Pods-PesoAce.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PesoAce.debug.xcconfig"; path = "Target Support Files/Pods-PesoAce/Pods-PesoAce.debug.xcconfig"; sourceTree = "<group>"; };
 		5DBA2829A6F9E91179DC6C59 /* Pods-PesoAce.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PesoAce.release.xcconfig"; path = "Target Support Files/Pods-PesoAce/Pods-PesoAce.release.xcconfig"; sourceTree = "<group>"; };
+		7350D1732C6FAA550031257F /* PLAChangeBankViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PLAChangeBankViewController.swift; sourceTree = "<group>"; };
+		73F80D4E2C6FAFE6004682D4 /* PLAChangeBankView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PLAChangeBankView.swift; sourceTree = "<group>"; };
+		73F80D502C6FB188004682D4 /* PLAChangeBankCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PLAChangeBankCell.swift; sourceTree = "<group>"; };
 		CA7B7D9C7C765427C57192B0 /* Pods_PesoAce.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PesoAce.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -353,6 +359,7 @@
 			children = (
 				18982E292C5FD5F50036F819 /* PLAHomeViewController.swift */,
 				18982E442C6120570036F819 /* PLALeftSideViewController.swift */,
+				7350D1732C6FAA550031257F /* PLAChangeBankViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -366,6 +373,8 @@
 				18982E4A2C6127490036F819 /* PLAJianTouView.swift */,
 				18982E482C6121BC0036F819 /* PLALeftSideView.swift */,
 				182CF0D72C67BA5C007D5538 /* PLAOutView.swift */,
+				73F80D4E2C6FAFE6004682D4 /* PLAChangeBankView.swift */,
+				73F80D502C6FB188004682D4 /* PLAChangeBankCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -523,8 +532,10 @@
 				18982E2C2C5FD65E0036F819 /* PLACommonView.swift in Sources */,
 				18982DF32C5E165A0036F819 /* AppDelegate.swift in Sources */,
 				182CF0D82C67BA5C007D5538 /* PLAOutView.swift in Sources */,
+				7350D1742C6FAA550031257F /* PLAChangeBankViewController.swift in Sources */,
 				186C4CB02C62662A007CDAF1 /* PLAOrderListViewController.swift in Sources */,
 				1881135C2C68DE3F00AAD9AA /* PLALxiCell.swift in Sources */,
+				73F80D4F2C6FAFE6004682D4 /* PLAChangeBankView.swift in Sources */,
 				186C4CA62C62479B007CDAF1 /* PLAFaceViewController.swift in Sources */,
 				186C4CA82C6247B8007CDAF1 /* PLAFaceView.swift in Sources */,
 				1884D1B42C667C6000B9E836 /* PLAPersonAlViewController.swift in Sources */,
@@ -558,6 +569,7 @@
 				186C4CB42C626C81007CDAF1 /* PLAOrderListNormalCell.swift in Sources */,
 				18982E1B2C5E28890036F819 /* PLABaseViewController.swift in Sources */,
 				186C4CBA2C6281D5007CDAF1 /* PLAAuThAbcController.swift in Sources */,
+				73F80D512C6FB188004682D4 /* PLAChangeBankCell.swift in Sources */,
 				186C4CAE2C624F2D007CDAF1 /* PLAOrderView.swift in Sources */,
 				186C4CB62C626C8D007CDAF1 /* PLAOrderListCell.swift in Sources */,
 				182CF0DC2C67C68F007D5538 /* PLAAnNiuCell.swift in Sources */,
@@ -697,9 +709,11 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = PesoAce/PesoAce.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = LVNFNCZAX5;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 2F6XZMZ52M;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PesoAce/Info.plist;
@@ -718,9 +732,10 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.wentao.ald;
+				PRODUCT_BUNDLE_IDENTIFIER = com.zhuanyong.test;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = test;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
@@ -739,9 +754,11 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = PesoAce/PesoAce.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = LVNFNCZAX5;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 2F6XZMZ52M;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PesoAce/Info.plist;
@@ -760,9 +777,10 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.wentao.ald;
+				PRODUCT_BUNDLE_IDENTIFIER = com.zhuanyong.test;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = test;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;

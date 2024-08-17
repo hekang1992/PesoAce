@@ -89,6 +89,8 @@ class cleanerModel: HandyJSON {
     var bubbling: String?
     var cleaner: [cleanerModel]?
     var pakols: [significantModel]?
+    var millah: String?
+    var improvement: [improvementModel]?
 }
 
 class jokinglyModel: HandyJSON {
@@ -117,4 +119,7 @@ class improvementModel: HandyJSON {
     var loan_rate: String?
     var plans: String?
     var buttonStatus: String?
+    var podge: String?//kahao
+    var repeating: String?//bank name
+    var signaling: String?//select
 }

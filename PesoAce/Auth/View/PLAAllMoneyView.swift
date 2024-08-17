@@ -161,6 +161,7 @@ extension PLAAllMoneyView: UITableViewDelegate, UITableViewDataSource {
                 cell.selectionStyle = .none
                 cell.backgroundColor = .clear
                 cell.block = { [weak self] btn in
+                    self?.endEditing(true)
                     self?.block1?(btn, model)
                 }
                 return cell
@@ -178,6 +179,7 @@ extension PLAAllMoneyView: UITableViewDelegate, UITableViewDataSource {
                 cell.selectionStyle = .none
                 cell.backgroundColor = .clear
                 cell.block = { [weak self] btn in
+                    self?.endEditing(true)
                     self?.block3?(btn, model)
                 }
                 return cell
@@ -188,6 +190,7 @@ extension PLAAllMoneyView: UITableViewDelegate, UITableViewDataSource {
                 cell.selectionStyle = .none
                 cell.backgroundColor = .clear
                 cell.block = { [weak self] btn in
+                    self?.endEditing(true)
                     self?.block4?(btn, model)
                 }
                 return cell

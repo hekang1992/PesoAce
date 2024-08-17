@@ -16,6 +16,8 @@ class PLAHomeViewController: PLABaseViewController {
     lazy var oneView = PLAHomeOneView()
     lazy var mainView = PLAMainHomeView()
     
+    var header: MJRefreshNormalHeader?
+    
     var model: improvementModel?
     
     override func viewDidLoad() {
@@ -65,9 +67,7 @@ class PLAHomeViewController: PLABaseViewController {
                 }
             }
         }
-        let header = MJRefreshNormalHeader(refreshingTarget: self, refreshingAction: #selector(handleRefresh))
-        oneView.scrollView.mj_header = header
-        mainView.tableView.mj_header = header
+        header = MJRefreshNormalHeader(refreshingTarget: self, refreshingAction: #selector(handleRefresh))
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -110,12 +110,14 @@ extension PLAHomeViewController {
                         self?.mainView.bannerArray = bb
                     }
                     self?.mainView.tableView.reloadData()
+                    self?.mainView.tableView.mj_header = self?.header
                 }else {
                     self?.oneView.isHidden = false
                     self?.mainView.isHidden = true
                     self?.model = model.tha?.improvement?.last
                     let modelArray = model.spotless?.improvement
                     self?.oneView.modelArray = modelArray
+                    self?.oneView.scrollView.mj_header = self?.header
                 }
             }
             self?.mainView.tableView.mj_header?.endRefreshing()
