@@ -31,6 +31,8 @@ class PLAChangeBankView: UIView {
     
     var block1: (() -> Void)?
     
+    var block2: ((improvementModel) -> Void)?
+    
     var modelArray = BehaviorRelay<[CleanerSectionModel]>(value: [])
     
     let dataSource = RxTableViewSectionedReloadDataSource<CleanerSectionModel>(
@@ -101,6 +103,11 @@ class PLAChangeBankView: UIView {
         modelArray
             .bind(to: tableView.rx.items(dataSource: dataSource))
             .disposed(by: disp)
+        tableView.rx.modelSelected(CleanerSectionModel.Item.self).subscribe { [weak self] model in
+            if let self = self {
+                self.block2?(model)
+            }
+        }.disposed(by: disp)
     }
     
     required init?(coder: NSCoder) {

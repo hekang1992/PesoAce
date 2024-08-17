@@ -7,6 +7,7 @@
 
 import UIKit
 import HandyJSON
+import MBProgressHUD_WJExtension
 
 class PLAChangeBankViewController: PLABaseViewController {
     
@@ -33,7 +34,11 @@ class PLAChangeBankViewController: PLABaseViewController {
         }
         cbankView.block1 = { [weak self] in
             let moneyVc = PLAAllMoneyViewController()
+            moneyVc.h5type = "1"
             self?.navigationController?.pushViewController(moneyVc, animated: true)
+        }
+        cbankView.block2 = { [weak self] model in
+            self?.changeBankInfo(model)
         }
     }
     
@@ -81,6 +86,22 @@ extension PLAChangeBankViewController {
             }
         }
         
+    }
+    
+    func changeBankInfo(_ model: improvementModel) {
+        ViewHud.addLoadView()
+        PLAAFNetWorkManager.shared.requestAPI(params: ["bankNo": model.podge ?? "", "fade": model.fade ?? "", "wider": "", "changeBank": "1"], pageUrl: "/ace/dipping/kidneys/things", method: .post) { [weak self] baseModel in
+            ViewHud.hideLoadView()
+            if baseModel.greasy == 0 || baseModel.greasy == 00 {
+                if let model = JSONDeserializer<wallpaperModel>.deserializeFrom(dict: baseModel.wallpaper), let self = self {
+                    self.bankInfo()
+                    JudgeConfig.judue(model.beige ?? "", from: self)
+                }                
+            }
+            MBProgressHUD.wj_showPlainText(baseModel.formica ?? "", view: nil)
+        } errorBlock: { error in
+            ViewHud.hideLoadView()
+        }
     }
     
 }

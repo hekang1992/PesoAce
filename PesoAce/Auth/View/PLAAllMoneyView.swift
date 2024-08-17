@@ -52,7 +52,7 @@ class PLAAllMoneyView: UIView {
     
     lazy var titleLabel: UILabel = {
         let titleLabel = UILabel.createLabel(font: UIFont(name: regular_font, size: 14.px())!, textColor: UIColor.init(css: "#2D2D2D"), textAlignment: .center)
-        titleLabel.text = "Contacts Infomation"
+        titleLabel.text = "Receiving Account"
         titleLabel.alpha = 0
         return titleLabel
     }()
@@ -77,7 +77,7 @@ class PLAAllMoneyView: UIView {
     
     lazy var stLabel1: UILabel = {
         let stLabel = UILabel.createLabel(font: UIFont(name: black_font, size: 24.px())!, textColor: UIColor.init(css: "#000000"), textAlignment: .left)
-        stLabel.text = "Contacts Infomation"
+        stLabel.text = "Receiving Account"
         return stLabel
     }()
     

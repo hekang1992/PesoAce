@@ -18,6 +18,8 @@ class BaseModel: HandyJSON {
 
 class wallpaperModel: HandyJSON {
     required init() {}
+    var fade: String?
+    var beige: String?
     var lurch: String?
     var remem: String?
     var minarets: String?
@@ -119,6 +121,7 @@ class improvementModel: HandyJSON {
     var loan_rate: String?
     var plans: String?
     var buttonStatus: String?
+    var fade: String?
     var podge: String?//kahao
     var repeating: String?//bank name
     var signaling: String?//select

@@ -28,6 +28,8 @@ class JudgeConfig: NSObject {
                 let reputedly = arr.last ?? ""
                 productDetailInfo(reputedly, "", form: vc)
             }
+        }else {
+            return
         }
     }
     
