@@ -51,7 +51,7 @@ class PLAFaceView: UIView {
     
     lazy var stLabel1: UILabel = {
         let stLabel = UILabel.createLabel(font: UIFont(name: black_font, size: 24.px())!, textColor: UIColor.init(css: "#000000"), textAlignment: .left)
-        stLabel.text = "verify identity"
+        stLabel.text = "Verify identity"
         return stLabel
     }()
     

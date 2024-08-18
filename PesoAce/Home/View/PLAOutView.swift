@@ -67,7 +67,6 @@ class PLAOutView: UIView {
         bgView.addSubview(nameLabel1)
         bgView.addSubview(sureBtn)
         bgView.addSubview(canBtn)
-        
         bgView.snp.makeConstraints { make in
             make.center.equalToSuperview()
             make.size.equalTo(CGSize(width: 279.px(), height: 203.px()))
@@ -80,7 +79,7 @@ class PLAOutView: UIView {
         nameLabel1.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.top.equalTo(nameLabel.snp.bottom).offset(12.px())
-            make.left.equalToSuperview().offset(51.px())
+            make.left.equalToSuperview().offset(21.px())
         }
         sureBtn.snp.makeConstraints { make in
             make.left.equalToSuperview().offset(20.px())

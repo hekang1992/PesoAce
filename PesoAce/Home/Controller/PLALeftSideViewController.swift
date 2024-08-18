@@ -23,7 +23,7 @@ class PLALeftSideViewController: PLABaseViewController {
         delView.sureBtn.setTitleColor(UIColor.init(css: "#F44444"), for: .normal)
         delView.nameLabel.text = "Deleting an account"
         delView.nameLabel.textColor = UIColor.init(css: "#F44444")
-        delView.nameLabel1.text = "Are you sure you want to delete your account?"
+        delView.nameLabel1.text = "Are you sure you want to delete this account? This action will permanently remove all your personal information, data records, and account settings, and they cannot be recovered. Please proceed with caution."
         return delView
     }()
     
@@ -94,6 +94,9 @@ extension PLALeftSideViewController {
     }
     
     func delOut() {
+        delView.bgView.snp.updateConstraints { make in
+            make.height.equalTo(270.px())
+        }
         let alertVc = TYAlertController(alert: delView, preferredStyle: .alert, transitionAnimation: .fade)
         self.present(alertVc!, animated: true)
         delView.block1 = { [weak self] in
