@@ -59,8 +59,10 @@ extension PLALaunchViewController {
     }
     
     func rootAvc() {
-        NotificationCenter.default.post(name: NSNotification.Name(IDFA_INFO), object: nil)
         NotificationCenter.default.post(name: NSNotification.Name(ROOT_VC), object: nil)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+            NotificationCenter.default.post(name: NSNotification.Name(IDFA_INFO), object: nil)
+        }
     }
     
 }
