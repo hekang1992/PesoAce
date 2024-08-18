@@ -65,7 +65,7 @@ class PLAFaceViewController: PLABaseViewController {
                 if self.shifoushangchuanid == "1" {
                     self.popRenlian()
                 }else {
-                    MBProgressHUD.wj_showPlainText("请先上传ID证件", view: nil)
+                    MBProgressHUD.wj_showPlainText("Please upload your ID document first", view: nil)
                 }
             }
         }
@@ -147,7 +147,6 @@ extension PLAFaceViewController: UIImagePickerControllerDelegate, UINavigationCo
                     if self?.isFace == "0" {
                         self?.popMessage(from: model)
                     }else {
-                        #warning("todo funk")
                         let dispatchGroup = DispatchGroup()
                         dispatchGroup.enter()
                         self?.getFaceInfo {

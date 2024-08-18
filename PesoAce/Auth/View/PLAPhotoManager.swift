@@ -58,7 +58,7 @@ class PLAPhotoManager: NSObject {
     func presentPhoto(from viewController: UIViewController) {
         checkPhotoLibraryPermissions { [weak self] granted in
             guard granted else {
-                self?.showSettingsAlert(from: viewController, for: "相册")
+                self?.showSettingsAlert(from: viewController, for: "Photo Album")
                 return
             }
             self?.showImagePicker(from: viewController, sourceType: .photoLibrary, isfront: "")
@@ -68,7 +68,7 @@ class PLAPhotoManager: NSObject {
     func presentCamera(from viewController: UIViewController, isfront: String) {
         checkCameraPermissions { [weak self] granted in
             guard granted else {
-                self?.showSettingsAlert(from: viewController, for: "相机")
+                self?.showSettingsAlert(from: viewController, for: "Camera")
                 return
             }
             self?.showImagePicker(from: viewController, sourceType: .camera, isfront: isfront)
@@ -94,12 +94,12 @@ class PLAPhotoManager: NSObject {
     
     private func showSettingsAlert(from viewController: UIViewController, for feature: String) {
         let alert = UIAlertController(
-            title: "\(feature) 权限已关闭",
-            message: "请在设置中启用 \(feature) 权限以使用此功能。",
+            title: "\(feature) Access has been disabled",
+            message: "Please enable it in settings \(feature) Permission to use this feature",
             preferredStyle: .alert
         )
-        alert.addAction(UIAlertAction(title: "取消", style: .cancel, handler: nil))
-        alert.addAction(UIAlertAction(title: "设置", style: .default) { _ in
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: "Setting", style: .default) { _ in
             if let appSettings = URL(string: UIApplication.openSettingsURLString) {
                 UIApplication.shared.open(appSettings, options: [:], completionHandler: nil)
             }

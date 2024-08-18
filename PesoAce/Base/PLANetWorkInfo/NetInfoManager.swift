@@ -16,13 +16,13 @@ class NetInfoManager {
         case cellular
     }
     
+    typealias NetworkStatusHandler = (NetworkStatus) -> Void
+    
     var typeSty: String = "NONE"
     
     static let shared = NetInfoManager()
     
     private let reachability = try!Reachability()
-    
-    typealias NetworkStatusHandler = (NetworkStatus) -> Void
     
     private var networkStatusHandler: NetworkStatusHandler?
     

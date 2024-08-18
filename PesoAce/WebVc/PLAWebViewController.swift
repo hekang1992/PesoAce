@@ -10,7 +10,7 @@ import WebKit
 import RxSwift
 
 class PLAWebViewController: PLABaseViewController {
-
+    
     var productUrl: String?
     
     let disp = DisposeBag()
@@ -39,14 +39,14 @@ class PLAWebViewController: PLABaseViewController {
         webView.scrollView.showsVerticalScrollIndicator = false
         webView.scrollView.showsHorizontalScrollIndicator = false
         webView.scrollView.contentInsetAdjustmentBehavior = .never
-//        webView.addObserver(self, forKeyPath: #keyPath(WKWebView.estimatedProgress), options: .new, context: nil)
-//        webView.addObserver(self, forKeyPath: #keyPath(WKWebView.title), options: .new, context: nil)
+        //        webView.addObserver(self, forKeyPath: #keyPath(WKWebView.estimatedProgress), options: .new, context: nil)
+        //        webView.addObserver(self, forKeyPath: #keyPath(WKWebView.title), options: .new, context: nil)
         return webView
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         view.addSubview(webView)
         view.addSubview(backBtn)
         webView.snp.makeConstraints { make in
@@ -71,16 +71,25 @@ class PLAWebViewController: PLABaseViewController {
                 if self?.type == "moneyall" {
                     self?.navigationController?.popToRootViewController(animated: true)
                 }else {
+                    
                     self?.navigationController?.popViewController(animated: true)
                 }
             }
         }).disposed(by: disp)
+        
+//        if self.type == "moneyall" {
+//            self.navigationController?.interactivePopGestureRecognizer?.isEnabled = false
+//            let edgePanGesture = UIScreenEdgePanGestureRecognizer(target: self, action: #selector(handleEdgePanGesture(_:)))
+//            edgePanGesture.edges = .left
+//            self.view.addGestureRecognizer(edgePanGesture)
+//        }else {
+//            self.navigationController?.interactivePopGestureRecognizer?.isEnabled = true
+//        }
     }
-
+    
 }
 
 extension PLAWebViewController: WKScriptMessageHandler, WKNavigationDelegate {
-    
     
     func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
         
@@ -101,7 +110,7 @@ extension PLAWebViewController: WKScriptMessageHandler, WKNavigationDelegate {
             if UIApplication.shared.canOpenURL(url) {
                 UIApplication.shared.open(url, options: [:], completionHandler: nil)
             } else {
-//                MBProgressHUD.show(text: "WhatsApp is not installed. Please install it.")
+                
             }
         }
         if urlStr.hasPrefix("mailto:") || urlStr.hasPrefix("whatsapp:") {
