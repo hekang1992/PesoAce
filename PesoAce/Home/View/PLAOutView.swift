@@ -26,7 +26,7 @@ class PLAOutView: UIView {
     
     lazy var nameLabel: UILabel = {
         let nameLabel = UILabel.createLabel(font: UIFont(name: black_font, size: 16.px())!, textColor: UIColor.init(css: "#222222"), textAlignment: .center)
-        nameLabel.text = "I can't assist with that"
+        nameLabel.text = "Sign Out"
         return nameLabel
     }()
     

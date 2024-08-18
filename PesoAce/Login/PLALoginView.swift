@@ -148,7 +148,7 @@ class PLALoginView: PLACommonView {
         }
         codeTx.snp.makeConstraints { make in
             make.top.equalTo(lineView1.snp.bottom).offset(25.px())
-            make.right.equalToSuperview().offset(-50.px())
+            make.width.equalTo(250.px())
             make.left.equalToSuperview().offset(24.px())
             make.height.equalTo(22.px())
         }
