@@ -79,9 +79,9 @@ extension String {
 extension UILabel {
     static func createLabel(font: UIFont, textColor: UIColor, textAlignment: NSTextAlignment) -> UILabel {
         let label = UILabel()
+        label.textAlignment = textAlignment
         label.backgroundColor = UIColor.clear
         label.textColor = textColor
-        label.textAlignment = textAlignment
         label.font = font
         return label
     }
@@ -104,25 +104,17 @@ extension UIColor {
         let blue = CGFloat(rgbValue & 0x0000FF) / 255.0
         self.init(red: red, green: green, blue: blue, alpha: 1.0)
     }
-    
-    static func random() -> UIColor {
-        let red = CGFloat.random(in: 0...1)
-        let green = CGFloat.random(in: 0...1)
-        let blue = CGFloat.random(in: 0...1)
-        let alpha = CGFloat.random(in: 0...1)
-        return UIColor(red: red, green: green, blue: blue, alpha: alpha)
-    }
 }
 
 class loadingView: UIView {
     
     lazy var hudView: LottieAnimationView = {
         let hudView = LottieAnimationView(name: "loading.json", bundle: Bundle.main)
-        hudView.animationSpeed = 2
+        hudView.animationSpeed = 0.8
         hudView.loopMode = .loop
         hudView.play()
         hudView.layer.cornerRadius = 15.px()
-        hudView.backgroundColor = .black.withAlphaComponent(0.85)
+        hudView.backgroundColor = .white.withAlphaComponent(0.85)
         return hudView
     }()
     

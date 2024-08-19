@@ -10,16 +10,6 @@ import HandyJSON
 import Alamofire
 import RxSwift
 
-//- 接口文档：http://8.222.151.243:8091/php_peso_ace_ios/
-//- 混淆转义地址: http://8.222.151.243:8091/decode.php#
-//- 混淆key：php_peso_ace_ios
-//- h5地址: http://8.220.140.28
-//- api地址: http://8.220.140.28/aceapi
-//- ui地址：
-//- 万能验证码：202406
-//- 测试账号： 9111222301 ~ 9111222333
-
-
 let baseUrl = "http://8.220.140.28/aceapi"
 
 class PLAAFNetWorkManager: NSObject {
@@ -66,16 +56,6 @@ class PLAAFNetWorkManager: NSObject {
     override init() {
         super.init()
         requestSubject
-        //            .distinctUntilChanged { (previous, current) -> Bool in
-        //                print("previousurl>>>>>>\(previous.pageUrl)")
-        //                print("currentsurl>>>>>>\(current.pageUrl)")
-        //                if current.pageUrl == "/ace/someones/because/glanced" {
-        //                    return false
-        //                } else {
-        //                    return previous.pageUrl == current.pageUrl
-        //                }
-        //            }
-        //            .throttle(.seconds(2), scheduler: MainScheduler.instance)
             .subscribe(onNext: { [weak self] (params, pageUrl, method, complete, errorBlock) in
                 self?.performRequestAPI(params: params, pageUrl: pageUrl, method: method, complete: complete, errorBlock: errorBlock)
             })
@@ -138,8 +118,8 @@ class PLAAFNetWorkManager: NSObject {
                             errorBlock("failure")
                         }
                         if let contentToSerialize = model?.wallpaper, let data = try? JSONSerialization.data(withJSONObject: contentToSerialize, options: []) {
-                            //                            let jsonString = String(data: data, encoding:.utf8)
-                            //                            print(">>>>>>>>>>>>>>>\(jsonString ?? "")")
+                            let jsonString = String(data: data, encoding:.utf8)
+                            print("data>>>>>>>>>>>>>>>\(jsonString ?? "")")
                         }
                     }
                 case .failure(let error):

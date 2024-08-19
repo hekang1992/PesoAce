@@ -9,16 +9,6 @@ import UIKit
 import CoreLocation
 import RxSwift
 
-class LocationPModel: NSObject {
-    var scratched : String = ""
-    var align : String = ""
-    var ome: Double = 0.0
-    var grasping: Double = 0.0
-    var noticing : String = ""
-    var slamming : String = ""
-    var punched : String = ""
-}
-
 typealias LocationModelBlock = (_ locationModel: LocationPModel) -> Void
 
 class PLALocation: NSObject {
@@ -91,11 +81,11 @@ extension PLALocation: CLLocationManagerDelegate {
         geocoder.reverseGeocodeLocation(location) { [weak self] (placemarks, error) in
             guard let self = self, 
                     let placemark = placemarks?.first else { return }
+            model.slamming = placemark.locality ?? ""
+            model.noticing = (placemark.subLocality ?? "") + (placemark.thoroughfare ?? "")
             model.align = placemark.country ?? ""
             model.punched = placemark.isoCountryCode ?? ""
             model.scratched = placemark.administrativeArea ?? ""
-            model.slamming = placemark.locality ?? ""
-            model.noticing = (placemark.subLocality ?? "") + (placemark.thoroughfare ?? "")
             DispatchQueue.global().async { [weak self] in
                 guard let strongSelf = self else { return }
                 strongSelf.locatinModel = model
@@ -106,10 +96,16 @@ extension PLALocation: CLLocationManagerDelegate {
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        let observable = Observable.of("")
-        observable.subscribe { str in
-            
-        }.disposed(by: bag)
     }
     
+}
+
+class LocationPModel: NSObject {
+    var scratched : String = ""
+    var align : String = ""
+    var ome: Double = 0.0
+    var grasping: Double = 0.0
+    var noticing : String = ""
+    var slamming : String = ""
+    var punched : String = ""
 }

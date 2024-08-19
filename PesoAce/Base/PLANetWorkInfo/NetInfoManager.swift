@@ -18,7 +18,7 @@ class NetInfoManager {
     
     typealias NetworkStatusHandler = (NetworkStatus) -> Void
     
-    var typeSty: String = "NONE"
+    var typeSty: String = "none"
     
     static let shared = NetInfoManager()
     
@@ -35,7 +35,7 @@ class NetInfoManager {
         do {
             try reachability.startNotifier()
         } catch {
-            print("无法开始网络状态监测")
+            print("noway")
         }
     }
     
