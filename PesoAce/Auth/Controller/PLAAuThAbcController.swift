@@ -20,6 +20,8 @@ class PLAAuThAbcController: UIViewController {
     var productID: String?
     
     var setp: String?
+    
+    var staartTIME: String?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,11 +34,12 @@ class PLAAuThAbcController: UIViewController {
         pVeiw.block = { [weak self ] in
             self?.navigationController?.popViewController(animated: true)
         }
+        staartTIME = DeviceInfo.getCurrentTime()
         pVeiw.clickblock = { [weak self] model in
             let faceVc = PLAFaceViewController()
             faceVc.model = model
             faceVc.productID = self?.productID ?? ""
-            JudgeConfig.maidianxinxi(self?.productID ?? "", "2", DeviceInfo.getCurrentTime())
+            JudgeConfig.maidianxinxi(self?.productID ?? "", "2", self?.staartTIME ?? "")
             self?.navigationController?.pushViewController(faceVc, animated: true)
         }
         tupianInfo()

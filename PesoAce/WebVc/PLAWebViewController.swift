@@ -78,22 +78,22 @@ class PLAWebViewController: PLABaseViewController {
     }
     
     private func setupUI() {
-        view.addSubview(topView)
-        topView.addSubview(backButton)
-        topView.addSubview(titleLabel)
         view.addSubview(webView)
+        view.addSubview(topView)
+        view.addSubview(backButton)
+        view.addSubview(titleLabel)
         topView.snp.makeConstraints { make in
             make.top.left.right.equalToSuperview()
             make.height.equalTo(DeviceStatusHeightManager.statusBarHeight + 44.px())
         }
         backButton.snp.makeConstraints { make in
-            make.bottom.equalToSuperview().offset(-14.px())
+            make.bottom.equalTo(topView.snp.bottom).offset(-14.px())
             make.size.equalTo(CGSize(width: 19.px(), height: 19.px()))
             make.left.equalToSuperview().offset(28.px())
         }
         titleLabel.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.bottom.equalToSuperview().offset(-10.px())
+            make.bottom.equalTo(topView.snp.bottom).offset(-10.px())
             make.height.equalTo(24.px())
         }
         webView.snp.makeConstraints { make in
@@ -241,6 +241,10 @@ extension PLAWebViewController: WKScriptMessageHandler, WKNavigationDelegate {
             self.topView.backgroundColor = UIColor.init(css: "#EEF4FA")
         }else {
             normalConf()
+            self.topView.alpha = 0
+            self.webView.snp.remakeConstraints { make in
+                make.edges.equalToSuperview()
+            }
         }
     }
     

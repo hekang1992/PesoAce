@@ -136,13 +136,13 @@ class JudgeConfig: NSObject {
     }
     
     static func maidianxinxi(_ proid: String, _ type: String, _ start: String){
-        let model = PLALocation.shared.locatinModel
-        PLAAFNetWorkManager.shared.requestAPI(params: ["login_apple": "1", "peck": proid, "jabbing": type, "nail": DeviceInfo.getIDFV(), "warmed": DeviceInfo.getIDFA(), "grasping": model.grasping, "ome": model.ome, "clarity": start, "curls": DeviceInfo.getCurrentTime(), "shining": "1"], pageUrl: "/ace/maplenow/margins/lovemaking", method: .post) { baseModel in
-            
-        } errorBlock: { error in
-            
+        PLALocation.shared.startUpdatingLocation { locationModel in
+            PLAAFNetWorkManager.shared.requestAPI(params: ["login_apple": "1", "peck": proid, "jabbing": type, "nail": DeviceInfo.getIDFV(), "warmed": DeviceInfo.getIDFA(), "grasping": locationModel.grasping, "ome": locationModel.ome, "clarity": start, "curls": DeviceInfo.getCurrentTime(), "shining": "1"], pageUrl: "/ace/maplenow/margins/lovemaking", method: .post) { baseModel in
+                
+            } errorBlock: { error in
+                
+            }
         }
-        
     }
     
     static func createRequsetURL(baseURL: String, params: [String: String]) -> String? {

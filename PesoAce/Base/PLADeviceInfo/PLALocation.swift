@@ -29,8 +29,8 @@ class PLALocation: NSObject {
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()
         locationManager.requestAlwaysAuthorization()
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager.distanceFilter = 100
+        locationManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation
+        locationManager.distanceFilter = 0
         obs.debounce(RxTimeInterval.milliseconds(2000), scheduler: MainScheduler.instance)
             .subscribe(onNext: { [weak self] locationModel in
                 guard let self = self, let locationModel = locationModel else { return }

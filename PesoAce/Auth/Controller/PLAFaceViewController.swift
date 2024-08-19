@@ -41,6 +41,8 @@ class PLAFaceViewController: PLABaseViewController {
     
     var start: String?
     
+    var startface: String?
+    
     lazy var idVc: PLAAuThAbcController = {
         let idVc = PLAAuThAbcController()
         return idVc
@@ -83,7 +85,6 @@ class PLAFaceViewController: PLABaseViewController {
         getFaceInfo {
             
         }
-        start = DeviceInfo.getCurrentTime()
     }
     
 }
@@ -153,7 +154,7 @@ extension PLAFaceViewController: UIImagePickerControllerDelegate, UINavigationCo
                             dispatchGroup.leave()
                         }
                         dispatchGroup.notify(queue: .main) {
-                            JudgeConfig.maidianxinxi(self?.productID ?? "", "4", self?.start ?? "")
+                            JudgeConfig.maidianxinxi(self?.productID ?? "", "4", self?.startface ?? "")
                         }
                     }
                 }
@@ -166,6 +167,7 @@ extension PLAFaceViewController: UIImagePickerControllerDelegate, UINavigationCo
     }
     
     func popP() {
+        self.start = DeviceInfo.getCurrentTime()
         let alertVc = TYAlertController(alert: popView, preferredStyle: .actionSheet)
         self.present(alertVc!, animated: true)
         popView.block = { [weak self] in
@@ -271,6 +273,7 @@ extension PLAFaceViewController: UIImagePickerControllerDelegate, UINavigationCo
             self?.dismiss(animated: true, completion: {
                 if let self = self {
                     self.isFace = "1"
+                    self.startface = DeviceInfo.getCurrentTime()
                     PLAPhotoManager.shared.presentCamera(from: self, isfront: "1")
                 }
             })

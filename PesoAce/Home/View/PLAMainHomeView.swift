@@ -125,8 +125,6 @@ class PLAMainHomeView: UIView {
         }
     }
     
-    
-    
 }
 
 
@@ -151,18 +149,82 @@ extension PLAMainHomeView: GKCycleScrollViewDelegate, GKCycleScrollViewDataSourc
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 155.px()
+        return 155.px() + 13.px() + 56.px()
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let scrollTexts = ["Text 1", "Text 2", "Text 3"]
+        let scrollLabelView = VerticalScrollLabelView(frame: .zero, texts: scrollTexts)
+        scrollLabelView.backgroundColor = .red
         let headView = UIView()
         headView.addSubview(bannerView)
+        headView.addSubview(scrollLabelView)
         bannerView.snp.makeConstraints { make in
-            make.edges.equalToSuperview().inset(UIEdgeInsets(top: 0, left: 0, bottom: 16.px(), right: 0))
+            make.left.top.right.equalToSuperview()
+            make.height.equalTo(139.px())
+        }
+        scrollLabelView.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.left.equalToSuperview().offset(16.px())
+            make.top.equalTo(bannerView.snp.bottom).offset(13.px())
+            make.height.equalTo(56.px())
         }
         return headView
     }
     
 }
 
+
+class VerticalScrollLabelView: UIView {
+    private var labels: [UILabel] = []
+    private var currentIndex: Int = 0
+    private var timer: Timer?
+    
+    init(frame: CGRect, texts: [String]) {
+        super.init(frame: frame)
+        clipsToBounds = true
+        setupLabels(texts: texts)
+        startScrolling()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func setupLabels(texts: [String]) {
+        for (index, text) in texts.enumerated() {
+            let label = UILabel(frame: CGRect(x: 0, y: CGFloat(index) * self.bounds.height, width: self.bounds.width, height: self.bounds.height))
+            label.text = text
+            label.textAlignment = .center
+            label.font = UIFont.systemFont(ofSize: 16)
+            labels.append(label)
+            if index == 0 {
+                self.addSubview(label)
+            }
+        }
+    }
+    
+    private func startScrolling() {
+        timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(scrollText), userInfo: nil, repeats: true)
+    }
+    
+    @objc private func scrollText() {
+        let nextIndex = (currentIndex + 1) % labels.count
+        let currentLabel = labels[currentIndex]
+        let nextLabel = labels[nextIndex]
+        nextLabel.frame = CGRect(x: 0, y: self.bounds.height, width: self.bounds.width, height: self.bounds.height)
+        self.addSubview(nextLabel)
+        UIView.animate(withDuration: 0.5, animations: {
+            currentLabel.frame = CGRect(x: 0, y: -self.bounds.height, width: self.bounds.width, height: self.bounds.height)
+            nextLabel.frame = self.bounds
+        }, completion: { _ in
+            currentLabel.removeFromSuperview()
+            self.currentIndex = nextIndex
+        })
+    }
+    
+    deinit {
+        timer?.invalidate()
+    }
+}
 
