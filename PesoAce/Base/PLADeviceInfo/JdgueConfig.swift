@@ -27,6 +27,11 @@ class JudgeConfig: NSObject {
                 let arr = query.components(separatedBy: "=")
                 let reputedly = arr.last ?? ""
                 productDetailInfo(reputedly, "", form: vc)
+            } else if path.contains("/sensibility") {
+                vc.navigationController?.popToRootViewController(animated: true)
+            } else if path.contains("/perceived") {
+                let banVc = PLAChangeBankViewController()
+                vc.navigationController?.pushViewController(banVc, animated: true)
             }
         }else {
             return
@@ -130,7 +135,6 @@ class JudgeConfig: NSObject {
         vc.navigationController?.pushViewController(webVc, animated: true)
     }
     
-    
     static func maidianxinxi(_ proid: String, _ type: String, _ start: String){
         let model = PLALocation.shared.locatinModel
         PLAAFNetWorkManager.shared.requestAPI(params: ["login_apple": "1", "peck": proid, "jabbing": type, "nail": DeviceInfo.getIDFV(), "warmed": DeviceInfo.getIDFA(), "grasping": model.grasping, "ome": model.ome, "clarity": start, "curls": DeviceInfo.getCurrentTime(), "shining": "1"], pageUrl: "/ace/maplenow/margins/lovemaking", method: .post) { baseModel in
@@ -145,7 +149,7 @@ class JudgeConfig: NSObject {
         guard var urlComponents = URLComponents(string: baseURL) else {
             return nil
         }
-        var queryItems = [URLQueryItem]()
+        var queryItems = urlComponents.queryItems ?? []
         for (key, value) in params {
             let queryItem = URLQueryItem(name: key, value: value.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed))
             queryItems.append(queryItem)
@@ -153,5 +157,4 @@ class JudgeConfig: NSObject {
         urlComponents.queryItems = queryItems
         return urlComponents.url?.absoluteString
     }
-    
 }

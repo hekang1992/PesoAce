@@ -8,6 +8,8 @@
 import UIKit
 import WebKit
 import RxSwift
+import StoreKit
+import MBProgressHUD_WJExtension
 
 class PLAWebViewController: PLABaseViewController {
     
@@ -26,7 +28,7 @@ class PLAWebViewController: PLABaseViewController {
     lazy var webView: WKWebView = {
         let configuration = WKWebViewConfiguration()
         let userContentController = WKUserContentController()
-        let scriptNames = ["toOccasion", "partlyDissipated", "flightEven", "toEscape", "drewHerDown", "faceToBurn"]
+        let scriptNames = ["toOccasion", "partlyDissipated", "flightEven", "toEscape", "drewHerDown", "faceToBurn", "HeaderType"]
         for scriptName in scriptNames {
             userContentController.add(self, name: scriptName)
         }
@@ -76,15 +78,8 @@ class PLAWebViewController: PLABaseViewController {
                 }
             }
         }).disposed(by: disp)
-        
-//        if self.type == "moneyall" {
-//            self.navigationController?.interactivePopGestureRecognizer?.isEnabled = false
-//            let edgePanGesture = UIScreenEdgePanGestureRecognizer(target: self, action: #selector(handleEdgePanGesture(_:)))
-//            edgePanGesture.edges = .left
-//            self.view.addGestureRecognizer(edgePanGesture)
-//        }else {
-//            self.navigationController?.interactivePopGestureRecognizer?.isEnabled = true
-//        }
+        self.navigationController?.interactivePopGestureRecognizer?.isEnabled = false
+        print("url>>>>>>>>>>\(productUrl ?? "")")
     }
     
 }
@@ -92,7 +87,38 @@ class PLAWebViewController: PLABaseViewController {
 extension PLAWebViewController: WKScriptMessageHandler, WKNavigationDelegate {
     
     func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
-        
+        let methodName = message.name
+        let methodArgs = message.body
+        let methodMapping: [String: ([String]?) -> Void] = [
+            "toOccasion": { args in
+                if let args = args {
+//                    self.uploadRiskLoan(args)
+                }
+            },
+            "partlyDissipated": { args in
+                if let args = args {
+                    self.openUrl(args)
+                }
+            },
+            "flightEven": { _ in self.closeSyn() },
+            "toEscape": { _ in self.jumpToHome() },
+            "drewHerDown": { args in
+                if let args = args {
+                    self.callPhoneMethod(args)
+                }
+            },
+            "HeaderType": { args in
+                if let args = args {
+
+                }
+            },
+            "faceToBurn": { _ in self.toGrade() }
+        ]
+        if let method = methodMapping[methodName] {
+            method(methodArgs as? [String])
+        } else {
+            print("Unknown method: \(methodName)")
+        }
     }
     
     func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
@@ -110,7 +136,7 @@ extension PLAWebViewController: WKScriptMessageHandler, WKNavigationDelegate {
             if UIApplication.shared.canOpenURL(url) {
                 UIApplication.shared.open(url, options: [:], completionHandler: nil)
             } else {
-                
+                MBProgressHUD.wj_showPlainText("Please install WhatsApp first.", view: nil)
             }
         }
         if urlStr.hasPrefix("mailto:") || urlStr.hasPrefix("whatsapp:") {
@@ -127,7 +153,7 @@ extension PLAWebViewController: WKScriptMessageHandler, WKNavigationDelegate {
     
     func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
         ViewHud.addLoadView()
-        DispatchQueue.main.asyncAfter(deadline: .now() + 30) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 60) {
             ViewHud.hideLoadView()
         }
     }
@@ -138,6 +164,38 @@ extension PLAWebViewController: WKScriptMessageHandler, WKNavigationDelegate {
     
     func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: any Error) {
         ViewHud.hideLoadView()
+    }
+    
+    func closeSyn() {
+        self.navigationController?.popViewController(animated: true)
+    }
+    
+    func jumpToHome() {
+        self.navigationController?.popToRootViewController(animated: true)
+    }
+    
+    func callPhoneMethod(_ arguments: [String]) {
+        if let phone = arguments.first {
+            let phoneStr = "telprompt://\(phone)"
+            if let phoneURL = URL(string: phoneStr), UIApplication.shared.canOpenURL(phoneURL) {
+                UIApplication.shared.open(phoneURL, options: [:], completionHandler: nil)
+            }
+        }
+    }
+    
+    func toGrade() {
+        if #available(iOS 14.0, *) {
+            if let scene = UIApplication.shared.connectedScenes.first as? UIWindowScene  {
+                SKStoreReviewController.requestReview(in: scene)
+            }
+        } else {
+            SKStoreReviewController.requestReview()
+        }
+    }
+    
+    func openUrl(_ arguments: [String]) {
+        guard let path = arguments.first else { return }
+        JudgeConfig.judue(path, from: self)
     }
     
 }
