@@ -50,7 +50,6 @@ class PLAWebViewController: PLABaseViewController {
         setupUI()
         loadProductUrl()
         setupBackButtonAction()
-        self.navigationController?.interactivePopGestureRecognizer?.isEnabled = false
         print("URL>>>>>>>>>: \(productUrl ?? "")")
     }
     

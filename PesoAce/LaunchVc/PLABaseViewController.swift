@@ -14,9 +14,9 @@ class PLABaseViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         view.backgroundColor = .white
+        self.navigationController?.interactivePopGestureRecognizer?.isEnabled = !self.isKind(of: PLAWebViewController.self)
     }
     
-
     /*
     // MARK: - Navigation
 
