@@ -43,8 +43,9 @@ class PLAJiaLianxiViewController: PLABaseViewController {
         lianxiView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
+        lianxiView.stLabel.text = setp ?? ""
         lianxiView.block = { [weak self] in
-            self?.navigationController?.popViewController(animated: true)
+            self?.navigationController?.popToRootViewController(animated: true)
         }
         lianxiView.block1 = { [weak self] btn, model in
             self?.view.endEditing(true)

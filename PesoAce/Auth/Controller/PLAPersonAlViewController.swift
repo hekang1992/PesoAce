@@ -141,7 +141,7 @@ extension PLAPersonAlViewController {
 
 class PopLastNumCifig {
     
-   static func popLastEnum(_ model: BRAddressPickerMode, _ btn : UIButton, _ array: [BRProvinceModel], _ modelDate: lumModel) {
+    static func popLastEnum(_ model: BRAddressPickerMode, _ btn : UIButton, _ array: [BRProvinceModel], _ modelDate: lumModel) {
         let addressPickerView = BRAddressPickerView()
         addressPickerView.title = modelDate.landlord ?? ""
         addressPickerView.pickerMode = model

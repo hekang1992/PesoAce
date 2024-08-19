@@ -12,6 +12,8 @@ import RxSwift
 
 let baseUrl = "http://8.220.140.28/aceapi"
 
+let h5Url = "http://8.220.140.28"
+
 class PLAAFNetWorkManager: NSObject {
     
     static let shared = PLAAFNetWorkManager()

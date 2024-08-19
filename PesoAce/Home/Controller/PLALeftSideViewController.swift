@@ -50,14 +50,14 @@ class PLALeftSideViewController: PLABaseViewController {
         }
         leftView.block4 = { [weak self] in
             let webVc = PLAWebViewController()
-            if let requestUrl = JudgeConfig.createRequsetURL(baseURL: "https://www.baidu.com", params: PLALoginFactory.getLoginParas()) {
+            if let requestUrl = JudgeConfig.createRequsetURL(baseURL: h5Url + "/getting", params: PLALoginFactory.getLoginParas()) {
                 webVc.productUrl = requestUrl
             }
             self?.gy_sidePushViewController(viewController: webVc)
         }
         leftView.block5 = { [weak self] in
             let webVc = PLAWebViewController()
-            if let requestUrl = JudgeConfig.createRequsetURL(baseURL: "https://www.sina.com.cn", params: PLALoginFactory.getLoginParas()) {
+            if let requestUrl = JudgeConfig.createRequsetURL(baseURL: h5Url + "/sweetheart", params: PLALoginFactory.getLoginParas()) {
                 webVc.productUrl = requestUrl
             }
             self?.gy_sidePushViewController(viewController: webVc)

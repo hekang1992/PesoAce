@@ -26,6 +26,17 @@ class PLAWebViewController: PLABaseViewController {
         return button
     }()
     
+    lazy var titleLabel: UILabel = {
+        let titleLabel = UILabel.createLabel(font: UIFont(name: regular_font, size: 14.px())!, textColor: UIColor.init(css: "#2D2D2D"), textAlignment: .center)
+        return titleLabel
+    }()
+    
+    lazy var topView: UIView = {
+        let topView = UIView()
+        topView.backgroundColor = .white
+        return topView
+    }()
+    
     // Lazy-loaded WKWebView with necessary configuration
     private lazy var webView: WKWebView = {
         let configuration = WKWebViewConfiguration()
@@ -41,6 +52,7 @@ class PLAWebViewController: PLABaseViewController {
         webView.scrollView.showsHorizontalScrollIndicator = false
         webView.scrollView.contentInsetAdjustmentBehavior = .never
         webView.navigationDelegate = self
+        webView.addObserver(self, forKeyPath: #keyPath(WKWebView.title), options: .new, context: nil)
         return webView
     }()
     
@@ -53,17 +65,40 @@ class PLAWebViewController: PLABaseViewController {
         print("URL>>>>>>>>>: \(productUrl ?? "")")
     }
     
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+        if keyPath == #keyPath(WKWebView.title) {
+            if let llitle = change?[.newKey] as? String {
+                DispatchQueue.main.async { [weak self] in
+                    self?.titleLabel.text = llitle
+                }
+            }
+        } else {
+            super.observeValue(forKeyPath: keyPath, of: object, change: change, context: context)
+        }
+    }
+    
     private func setupUI() {
+        view.addSubview(topView)
+        topView.addSubview(backButton)
+        topView.addSubview(titleLabel)
         view.addSubview(webView)
-        view.addSubview(backButton)
-        
-        webView.snp.makeConstraints { make in
-            make.edges.equalToSuperview().inset(UIEdgeInsets(top: DeviceStatusHeightManager.statusBarHeight, left: 0, bottom: 0, right: 0))
+        topView.snp.makeConstraints { make in
+            make.top.left.right.equalToSuperview()
+            make.height.equalTo(DeviceStatusHeightManager.statusBarHeight + 44.px())
         }
         backButton.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(DeviceStatusHeightManager.statusBarHeight + 14.px())
+            make.bottom.equalToSuperview().offset(-14.px())
+            make.size.equalTo(CGSize(width: 19.px(), height: 19.px()))
             make.left.equalToSuperview().offset(28.px())
-            make.size.equalTo(CGSize(width: 16.px(), height: 16.px()))
+        }
+        titleLabel.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.bottom.equalToSuperview().offset(-10.px())
+            make.height.equalTo(24.px())
+        }
+        webView.snp.makeConstraints { make in
+            make.top.equalTo(topView.snp.bottom)
+            make.left.right.bottom.equalToSuperview()
         }
     }
     
@@ -113,11 +148,11 @@ extension PLAWebViewController: WKScriptMessageHandler, WKNavigationDelegate {
                 self.callhod(url)
             },
             "HeaderType": { url in
-                
+                self.bgcolor(url)
             },
             "faceToBurn": { _ in self.toapprank() },
-            "flightEven": { _ in self.closeSyn() },
-            "toEscape": { _ in self.jumpToHome() }
+            "flightEven": { _ in self.closeyemian() },
+            "toEscape": { _ in self.toHome() }
         ]
     }
     
@@ -161,11 +196,11 @@ extension PLAWebViewController: WKScriptMessageHandler, WKNavigationDelegate {
     
     // MARK: - Action Methods
     
-    private func closeSyn() {
+    private func closeyemian() {
         self.navigationController?.popViewController(animated: true)
     }
     
-    private func jumpToHome() {
+    private func toHome() {
         self.navigationController?.popToRootViewController(animated: true)
     }
     
@@ -190,6 +225,19 @@ extension PLAWebViewController: WKScriptMessageHandler, WKNavigationDelegate {
     private func daikaiwangzhi(_ arguments: [String]?) {
         guard let path = arguments?.first else { return }
         JudgeConfig.judue(path, from: self)
+    }
+    
+    private func bgcolor(_ arguments: [String]?) {
+        guard let path = arguments?.first else { return }
+        if path == "0" {
+            self.topView.backgroundColor = .white
+        } else if path == "1" {
+            self.topView.backgroundColor = UIColor.init(css: "#2681FB")
+        } else if path == "2" {
+            self.topView.backgroundColor = UIColor.init(css: "#EEF4FA")
+        }else {
+            
+        }
     }
     
     private func uploadmian(_ arguments: [String]?) {

@@ -106,7 +106,7 @@ extension UIColor {
     }
 }
 
-class loadingView: UIView {
+class PlaHudView: UIView {
     
     lazy var hudView: LottieAnimationView = {
         let hudView = LottieAnimationView(name: "loading.json", bundle: Bundle.main)
@@ -139,7 +139,7 @@ class loadingView: UIView {
         grayView.addSubview(hudView)
         hudView.snp.makeConstraints { make in
             make.center.equalToSuperview()
-            make.size.equalTo(CGSize(width: 100.px(), height: 100.px()))
+            make.size.equalTo(CGSize(width: 90.px(), height: 90.px()))
         }
         grayView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
@@ -149,7 +149,13 @@ class loadingView: UIView {
 
 class ViewHud {
     
-    static let loadView = loadingView()
+    static let loadView = PlaHudView()
+    
+    static func hideLoadView() {
+        DispatchQueue.main.async {
+            loadView.removeFromSuperview()
+        }
+    }
     
     static func addLoadView() {
         DispatchQueue.main.async {
@@ -159,12 +165,6 @@ class ViewHud {
                     keyWindow.addSubview(loadView)
                 }
             }
-        }
-    }
-    
-    static func hideLoadView() {
-        DispatchQueue.main.async {
-            loadView.removeFromSuperview()
         }
     }
     
@@ -210,18 +210,15 @@ class DeviceStatusHeightManager {
 
 class enmuModel {
     static func enumOneArr(dataSourceArr: [Any]) -> [BRProvinceModel] {
-        var result = [BRProvinceModel]()
-        for proviceDic in dataSourceArr {
-            guard let proviceDic = proviceDic as? significantModel else {
-                continue
-            }
+        return dataSourceArr.compactMap { item in
+            guard let proviceDic = item as? significantModel else { return nil }
             let proviceModel = BRProvinceModel()
-            proviceModel.code = proviceDic.vacuumed
             proviceModel.name = proviceDic.asthma
-            proviceModel.index = dataSourceArr.firstIndex(where: { $0 as AnyObject === proviceDic as AnyObject }) ?? 0
-            result.append(proviceModel)
+            proviceModel.code = proviceDic.vacuumed
+            proviceModel.index = dataSourceArr.firstIndex { $0 as AnyObject === proviceDic as AnyObject } ?? 0
+            
+            return proviceModel
         }
-        return result
     }
 }
 
@@ -233,8 +230,8 @@ class dateModel {
                 continue
             }
             let proviceModel = BRProvinceModel()
-            proviceModel.code = proviceDic.vacuumed
             proviceModel.name = proviceDic.asthma
+            proviceModel.code = proviceDic.vacuumed
             proviceModel.index = dataSourceArr.firstIndex(where: { $0 as AnyObject === proviceDic as AnyObject }) ?? 0
             let cityList = proviceDic.significant ?? proviceDic.significant ?? []
             var tempArr2 = [BRCityModel]()
