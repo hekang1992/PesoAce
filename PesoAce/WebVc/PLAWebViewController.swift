@@ -13,112 +13,113 @@ import MBProgressHUD_WJExtension
 
 class PLAWebViewController: PLABaseViewController {
     
-    var productUrl: String?
-    
-    let disp = DisposeBag()
-    
     var type: String?
     
-    lazy var backBtn: UIButton = {
-        let backBtn = UIButton(type: .custom)
-        backBtn.setBackgroundImage(UIImage(named: "backimage"), for: .normal)
-        return backBtn
+    var productUrl: String?
+    
+    private let disposeBag = DisposeBag()
+    
+    // Lazy-loaded back button
+    private lazy var backButton: UIButton = {
+        let button = UIButton(type: .custom)
+        button.setBackgroundImage(UIImage(named: "backimage"), for: .normal)
+        return button
     }()
     
-    lazy var webView: WKWebView = {
+    // Lazy-loaded WKWebView with necessary configuration
+    private lazy var webView: WKWebView = {
         let configuration = WKWebViewConfiguration()
         let userContentController = WKUserContentController()
         let scriptNames = ["toOccasion", "partlyDissipated", "flightEven", "toEscape", "drewHerDown", "faceToBurn", "HeaderType"]
-        for scriptName in scriptNames {
-            userContentController.add(self, name: scriptName)
-        }
+        scriptNames.forEach { userContentController.add(self, name: $0) }
         configuration.userContentController = userContentController
         let webView = WKWebView(frame: .zero, configuration: configuration)
         webView.translatesAutoresizingMaskIntoConstraints = false
         webView.scrollView.bounces = false
         webView.scrollView.alwaysBounceVertical = false
-        webView.navigationDelegate = self
         webView.scrollView.showsVerticalScrollIndicator = false
         webView.scrollView.showsHorizontalScrollIndicator = false
         webView.scrollView.contentInsetAdjustmentBehavior = .never
-        //        webView.addObserver(self, forKeyPath: #keyPath(WKWebView.estimatedProgress), options: .new, context: nil)
-        //        webView.addObserver(self, forKeyPath: #keyPath(WKWebView.title), options: .new, context: nil)
+        webView.navigationDelegate = self
         return webView
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setupUI()
+        loadProductUrl()
+        setupBackButtonAction()
+        self.navigationController?.interactivePopGestureRecognizer?.isEnabled = false
+        print("URL>>>>>>>>>: \(productUrl ?? "")")
+    }
+    
+    private func setupUI() {
         view.addSubview(webView)
-        view.addSubview(backBtn)
+        view.addSubview(backButton)
+        
         webView.snp.makeConstraints { make in
             make.edges.equalToSuperview().inset(UIEdgeInsets(top: DeviceStatusHeightManager.statusBarHeight, left: 0, bottom: 0, right: 0))
         }
-        backBtn.snp.makeConstraints { make in
+        backButton.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(DeviceStatusHeightManager.statusBarHeight + 14.px())
             make.left.equalToSuperview().offset(28.px())
             make.size.equalTo(CGSize(width: 16.px(), height: 16.px()))
         }
-        if let productUrl = productUrl {
-            var urlString = ""
-            urlString = productUrl.replacingOccurrences(of: " ", with: "%20")
-            if let url = URL(string: urlString) {
-                webView.load(URLRequest(url: url))
-            }
-        }
-        backBtn.rx.tap.subscribe(onNext: { [weak self] in
-            if let canGoBack = self?.webView.canGoBack, canGoBack {
-                self?.webView.goBack()
-            }else {
-                if self?.type == "moneyall" {
-                    self?.navigationController?.popToRootViewController(animated: true)
-                }else {
-                    
-                    self?.navigationController?.popViewController(animated: true)
-                }
-            }
-        }).disposed(by: disp)
-        self.navigationController?.interactivePopGestureRecognizer?.isEnabled = false
-        print("url>>>>>>>>>>\(productUrl ?? "")")
     }
     
+    private func loadProductUrl() {
+        guard let productUrl = productUrl?.replacingOccurrences(of: " ", with: "%20"),
+              let url = URL(string: productUrl) else { return }
+        webView.load(URLRequest(url: url))
+    }
+    
+    private func setupBackButtonAction() {
+        backButton.rx.tap.subscribe(onNext: { [weak self] in
+            guard let self = self else { return }
+            if self.webView.canGoBack {
+                self.webView.goBack()
+            } else {
+                if self.type == "moneyall" {
+                    self.navigationController?.popToRootViewController(animated: true)
+                } else {
+                    self.navigationController?.popViewController(animated: true)
+                }
+            }
+        }).disposed(by: disposeBag)
+    }
 }
+
+// MARK: - WKScriptMessageHandler, WKNavigationDelegate
 
 extension PLAWebViewController: WKScriptMessageHandler, WKNavigationDelegate {
     
     func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
-        let methodName = message.name
-        let methodArgs = message.body
-        let methodMapping: [String: ([String]?) -> Void] = [
-            "toOccasion": { args in
-                if let args = args {
-//                    self.uploadRiskLoan(args)
-                }
-            },
-            "partlyDissipated": { args in
-                if let args = args {
-                    self.openUrl(args)
-                }
-            },
-            "flightEven": { _ in self.closeSyn() },
-            "toEscape": { _ in self.jumpToHome() },
-            "drewHerDown": { args in
-                if let args = args {
-                    self.callPhoneMethod(args)
-                }
-            },
-            "HeaderType": { args in
-                if let args = args {
-
-                }
-            },
-            "faceToBurn": { _ in self.toGrade() }
-        ]
-        if let method = methodMapping[methodName] {
-            method(methodArgs as? [String])
-        } else {
-            print("Unknown method: \(methodName)")
+        guard let method = methodMapping[message.name] else {
+            print("Unknown method: \(message.name)")
+            return
         }
+        method(message.body as? [String])
+    }
+    
+    private var methodMapping: [String: ([String]?) -> Void] {
+        return [
+            "toOccasion": { url in
+                self.uploadmian(url)
+            },
+            "partlyDissipated": { url in
+                self.daikaiwangzhi(url)
+            },
+            "drewHerDown": { url in
+                self.callhod(url)
+            },
+            "HeaderType": { url in
+                
+            },
+            "faceToBurn": { _ in self.toapprank() },
+            "flightEven": { _ in self.closeSyn() },
+            "toEscape": { _ in self.jumpToHome() }
+        ]
     }
     
     func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
@@ -128,18 +129,12 @@ extension PLAWebViewController: WKScriptMessageHandler, WKNavigationDelegate {
             return
         }
         let urlStr = url.absoluteString
-        if urlStr.hasPrefix("mailto:") {
+        if urlStr.hasPrefix("mailto:") || urlStr.hasPrefix("whatsapp:") {
             if UIApplication.shared.canOpenURL(url) {
                 UIApplication.shared.open(url, options: [:], completionHandler: nil)
-            }
-        } else if urlStr.hasPrefix("whatsapp:") {
-            if UIApplication.shared.canOpenURL(url) {
-                UIApplication.shared.open(url, options: [:], completionHandler: nil)
-            } else {
+            } else if urlStr.hasPrefix("whatsapp:") {
                 MBProgressHUD.wj_showPlainText("Please install WhatsApp first.", view: nil)
             }
-        }
-        if urlStr.hasPrefix("mailto:") || urlStr.hasPrefix("whatsapp:") {
             decisionHandler(.cancel)
         } else {
             decisionHandler(.allow)
@@ -147,7 +142,6 @@ extension PLAWebViewController: WKScriptMessageHandler, WKNavigationDelegate {
     }
     
     func webView(_ webView: WKWebView, decidePolicyFor navigationResponse: WKNavigationResponse, decisionHandler: @escaping (WKNavigationResponsePolicy) -> Void) {
-        
         decisionHandler(.allow)
     }
     
@@ -162,30 +156,31 @@ extension PLAWebViewController: WKScriptMessageHandler, WKNavigationDelegate {
         ViewHud.hideLoadView()
     }
     
-    func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: any Error) {
+    func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
         ViewHud.hideLoadView()
     }
     
-    func closeSyn() {
+    // MARK: - Action Methods
+    
+    private func closeSyn() {
         self.navigationController?.popViewController(animated: true)
     }
     
-    func jumpToHome() {
+    private func jumpToHome() {
         self.navigationController?.popToRootViewController(animated: true)
     }
     
-    func callPhoneMethod(_ arguments: [String]) {
-        if let phone = arguments.first {
-            let phoneStr = "telprompt://\(phone)"
-            if let phoneURL = URL(string: phoneStr), UIApplication.shared.canOpenURL(phoneURL) {
-                UIApplication.shared.open(phoneURL, options: [:], completionHandler: nil)
-            }
+    private func callhod(_ arguments: [String]?) {
+        guard let phone = arguments?.first else { return }
+        let phoneStr = "telprompt://\(phone)"
+        if let phoneURL = URL(string: phoneStr), UIApplication.shared.canOpenURL(phoneURL) {
+            UIApplication.shared.open(phoneURL, options: [:], completionHandler: nil)
         }
     }
     
-    func toGrade() {
+    private func toapprank() {
         if #available(iOS 14.0, *) {
-            if let scene = UIApplication.shared.connectedScenes.first as? UIWindowScene  {
+            if let scene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
                 SKStoreReviewController.requestReview(in: scene)
             }
         } else {
@@ -193,9 +188,14 @@ extension PLAWebViewController: WKScriptMessageHandler, WKNavigationDelegate {
         }
     }
     
-    func openUrl(_ arguments: [String]) {
-        guard let path = arguments.first else { return }
+    private func daikaiwangzhi(_ arguments: [String]?) {
+        guard let path = arguments?.first else { return }
         JudgeConfig.judue(path, from: self)
     }
     
+    private func uploadmian(_ arguments: [String]?) {
+        guard let productId = arguments?.first, arguments?.count ?? 0 >= 2 else { return }
+        let startTime = arguments![1]
+        JudgeConfig.maidianxinxi(productId, "10", startTime)
+    }
 }
