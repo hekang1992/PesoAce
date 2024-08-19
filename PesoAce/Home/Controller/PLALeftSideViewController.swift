@@ -38,8 +38,12 @@ class PLALeftSideViewController: PLABaseViewController {
         leftView.block = {
             NotificationCenter.default.post(name: NSNotification.Name(rawValue:"GYSideTapNotification"), object: nil)
         }
-        leftView.block1 = {
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue:"GYSideTapNotification"), object: nil)
+        leftView.block1 = { [weak self] in
+            let webVc = PLAWebViewController()
+            if let requestUrl = JudgeConfig.createRequsetURL(baseURL: h5Url + "/takasaki", params: PLALoginFactory.getLoginParas()) {
+                webVc.productUrl = requestUrl
+            }
+            self?.gy_sidePushViewController(viewController: webVc)
         }
         leftView.block2 = { [weak self] in
             self?.logOut()

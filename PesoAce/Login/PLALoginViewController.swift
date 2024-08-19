@@ -37,7 +37,11 @@ class PLALoginViewController: PLABaseViewController {
             self?.loginInfo()
         }
         loginView.xieyiblock = { [weak self]  in
-            MBProgressHUD.wj_showPlainText("协议", view: nil)
+            let webVc = PLAWebViewController()
+            if let requestUrl = JudgeConfig.createRequsetURL(baseURL: h5Url + "/getting", params: PLALoginFactory.getLoginParas()) {
+                webVc.productUrl = requestUrl
+            }
+            self?.navigationController?.pushViewController(webVc, animated: true)
         }
     }
     

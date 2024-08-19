@@ -68,7 +68,6 @@ class PLALoginView: PLACommonView {
         codeTx.attributedPlaceholder = attrString
         codeTx.font = UIFont(name: regular_font, size: 16.px())
         codeTx.textColor = UIColor.init(css: "#333333")
-        codeTx.text = "202406"
         return codeTx
     }()
     
@@ -148,7 +147,7 @@ class PLALoginView: PLACommonView {
         }
         codeTx.snp.makeConstraints { make in
             make.top.equalTo(lineView1.snp.bottom).offset(25.px())
-            make.width.equalTo(250.px())
+            make.width.equalTo(210.px())
             make.left.equalToSuperview().offset(24.px())
             make.height.equalTo(22.px())
         }
@@ -161,7 +160,7 @@ class PLALoginView: PLACommonView {
         sendBtn.snp.makeConstraints { make in
             make.right.equalTo(lineView2.snp.right)
             make.bottom.equalTo(lineView2.snp.top).offset(-14.px())
-            make.size.equalTo(CGSize(width: 50.px(), height: 22.px()))
+            make.size.equalTo(CGSize(width: 105.px(), height: 22.px()))
         }
         loginBtn.snp.makeConstraints { make in
             make.centerX.equalToSuperview()

@@ -230,14 +230,23 @@ extension PLAWebViewController: WKScriptMessageHandler, WKNavigationDelegate {
     private func bgcolor(_ arguments: [String]?) {
         guard let path = arguments?.first else { return }
         if path == "0" {
+            normalConf()
             self.topView.backgroundColor = .white
         } else if path == "1" {
+            self.backButton.setBackgroundImage(UIImage(named: "Groupbaisejiantou"), for: .normal)
+            self.titleLabel.textColor = .white
             self.topView.backgroundColor = UIColor.init(css: "#2681FB")
         } else if path == "2" {
+            normalConf()
             self.topView.backgroundColor = UIColor.init(css: "#EEF4FA")
         }else {
-            
+            normalConf()
         }
+    }
+    
+    func normalConf() {
+        self.backButton.setBackgroundImage(UIImage(named: "backimage"), for: .normal)
+        self.titleLabel.textColor = UIColor.init(css: "#2D2D2D")
     }
     
     private func uploadmian(_ arguments: [String]?) {
