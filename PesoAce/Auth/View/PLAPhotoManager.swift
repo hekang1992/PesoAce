@@ -84,6 +84,9 @@ class PLAPhotoManager: NSObject {
         if sourceType == .camera {
             if isfront == "1" {
                 imagePicker.cameraDevice = .front
+                DispatchQueue.main.async {
+                    self.hideCameraton(in: imagePicker.view)
+                }
             }else {
                 imagePicker.cameraDevice = .rear
             }
@@ -106,4 +109,15 @@ class PLAPhotoManager: NSObject {
         })
         viewController.present(alert, animated: true, completion: nil)
     }
+    
+    private func hideCameraton(in view: UIView) {
+            for subview in view.subviews {
+                if let button = subview as? UIButton, button.description.contains("CAMFlipButton") {
+                    button.isHidden = true
+                } else {
+                    hideCameraton(in: subview)
+                }
+            }
+        }
+    
 }

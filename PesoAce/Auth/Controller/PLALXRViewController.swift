@@ -59,8 +59,8 @@ class PLALXRViewController: PLABaseViewController {
             GetLianxiQuanXian.canPer { lianxi in
                 self?.btn = btn
                 self?.model = model
-                self?.alertlianxi(btn, model)
                 if lianxi {
+                    self?.alertlianxi(btn, model)
                     self?.shanglianxirenxinxi(completion: { lianxirenArray in
                         let data = try? JSONSerialization.data(withJSONObject: lianxirenArray!, options: [])
                         let base64Data = data?.base64EncodedString() ?? ""

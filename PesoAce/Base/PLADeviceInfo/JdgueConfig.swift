@@ -32,6 +32,9 @@ class JudgeConfig: NSObject {
             } else if path.contains("/perceived") {
                 let banVc = PLAChangeBankViewController()
                 vc.navigationController?.pushViewController(banVc, animated: true)
+            } else if path.contains("/hideously") {
+                let orVc = PLAOrderViewController()
+                vc.navigationController?.pushViewController(orVc, animated: true)
             }
         }else {
             return

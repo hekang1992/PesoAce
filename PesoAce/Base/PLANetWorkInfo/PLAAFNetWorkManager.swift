@@ -10,9 +10,9 @@ import HandyJSON
 import Alamofire
 import RxSwift
 
-let baseUrl = "http://8.220.140.28/aceapi"
+let baseUrl = "https://thriftplatinumlending.com/aceapi"
 
-let h5Url = "http://8.220.140.28"
+let h5Url = "https://thriftplatinumlending.com"
 
 class PLAAFNetWorkManager: NSObject {
     

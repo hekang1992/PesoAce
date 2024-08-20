@@ -60,7 +60,21 @@ class PLAHomeViewController: PLABaseViewController {
         mainView.leftBolck = { [weak self] in
             self?.leftVc()
         }
+        mainView.rightBolck = { [weak self] in
+            let webVc = PLAWebViewController()
+            if let requestUrl = JudgeConfig.createRequsetURL(baseURL: h5Url + "/takasaki", params: PLALoginFactory.getLoginParas()) {
+                webVc.productUrl = requestUrl
+            }
+            self?.navigationController?.pushViewController(webVc, animated: true)
+        }
         mainView.picBlock = { [weak self] url in
+            if let self = self {
+                if !url.isEmpty {
+                    JudgeConfig.judue(url, from: self)
+                }
+            }
+        }
+        mainView.picBlock1 = { [weak self] url in
             if let self = self {
                 if !url.isEmpty {
                     JudgeConfig.judue(url, from: self)
@@ -108,6 +122,9 @@ extension PLAHomeViewController {
                     if let array = model.fast_list?.improvement, let bb = model.spotless?.improvement {
                         self?.mainView.modelArray.accept(array)
                         self?.mainView.bannerArray = bb
+                        if let overdueArray = model.overdue?.improvement {
+                            self?.mainView.overdueArray.accept(overdueArray)
+                        }
                     }
                     self?.mainView.tableView.reloadData()
                     self?.mainView.tableView.mj_header = self?.header

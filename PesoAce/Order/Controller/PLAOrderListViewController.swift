@@ -8,6 +8,7 @@
 import UIKit
 import HandyJSON
 import JXSegmentedView
+import MJRefresh
 
 class PLAOrderListViewController: PLABaseViewController {
     
@@ -36,15 +37,21 @@ class PLAOrderListViewController: PLABaseViewController {
         listView.block = { [weak self] url in
             self?.block?(url)
         }
+        
+        self.listView.tableView.mj_header = MJRefreshNormalHeader(refreshingTarget: self, refreshingAction: #selector(handleRefresh))
     }
 }
 
 
 extension PLAOrderListViewController {
     
-    
+    @objc func handleRefresh() {
+        orderListPage(battered ?? "")
+    }
+
     func orderListPage(_ battered: String) {
         ViewHud.addLoadView()
+        self.battered = battered
         let dict = ["battered": battered, "page": "1"]
         PLAAFNetWorkManager.shared.requestAPI(params: dict, pageUrl: "/ace/people/together/eyesa", method: .post) { [weak self] baseModel in
             ViewHud.hideLoadView()
@@ -59,9 +66,11 @@ extension PLAOrderListViewController {
             }else {
                 self?.addemptyView()
             }
+            self?.listView.tableView.mj_header?.endRefreshing()
         } errorBlock: { [weak self] error in
             self?.addemptyView()
             ViewHud.hideLoadView()
+            self?.listView.tableView.mj_header?.endRefreshing()
         }
     }
     

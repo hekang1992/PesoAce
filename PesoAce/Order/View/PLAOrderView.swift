@@ -35,7 +35,8 @@ class PLAOrderView: UIView {
         let segmentedView = JXSegmentedView()
         segmentedView.delegate = self
         segmentedDataSource = JXSegmentedTitleDataSource()
-        segmentedDataSource.titles = ["All", "Completed", "Pending", "Ongoing", "Failure"]
+//        segmentedDataSource.titles = ["All", "Completed", "Pending", "Ongoing", "Failure"]
+        segmentedDataSource.titles = ["All", "Pending", "Failure", "Ongoing", "Completed"]
         segmentedDataSource.isTitleColorGradientEnabled = true
         segmentedDataSource.titleNormalFont = UIFont(name: black_font, size: 14.px())!
         segmentedDataSource.titleSelectedFont = UIFont(name: black_font, size: 14.px())!

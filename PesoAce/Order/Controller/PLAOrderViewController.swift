@@ -45,7 +45,19 @@ class PLAOrderViewController: PLABaseViewController {
         }
         listVCArray.first?.orderListPage("4")
         orderView.block1 = { [weak self] str, index in
-            self?.listVCArray[index].orderListPage(str)
+            var type: String?
+            if str == "4" {
+                type = "4"
+            }else if str == "5" {
+                type = "6"
+            }else if str == "6" {
+                type = "8"
+            }else if str == "7" {
+                type = "7"
+            }else if str == "8" {
+                type = "5"
+            }else {}
+            self?.listVCArray[index].orderListPage(type ?? "")
         }
     }
     

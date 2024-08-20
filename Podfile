@@ -45,6 +45,8 @@ target 'PesoAce' do
   
   pod 'JXSegmentedView', '~> 1.4.1'
   
+  pod 'FSPagerView', '~> 0.8.3'
+  
   # Pods for PesoAce
 
 end

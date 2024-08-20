@@ -32,6 +32,7 @@ class PLALoginFactory: NSObject {
                     "powerless": getAppVersion(),
                     "obey": Device.current.description,
                      "muham": DeviceInfo.getIDFV(),
+                     "goset": "isiphone",
                      "justice": UIDevice.current.systemVersion,
                      "bered": "lucky",
                      "remem": remem]

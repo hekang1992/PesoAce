@@ -206,10 +206,24 @@ extension PLAWebViewController: WKScriptMessageHandler, WKNavigationDelegate {
     }
     
     private func callhod(_ arguments: [String]?) {
-        guard let phone = arguments?.first else { return }
-        let phoneStr = "telprompt://\(phone)"
-        if let phoneURL = URL(string: phoneStr), UIApplication.shared.canOpenURL(phoneURL) {
-            UIApplication.shared.open(phoneURL, options: [:], completionHandler: nil)
+        guard let leixingzifu = arguments?.first else { return }
+        if leixingzifu.hasPrefix("PesoAceP://") {
+            if let range = leixingzifu.range(of: "PesoAceP://") {
+                let phone = String(leixingzifu[range.upperBound...])
+                let phoneStr = "telprompt://\(phone)"
+                if let phoneURL = URL(string: phoneStr), UIApplication.shared.canOpenURL(phoneURL) {
+                    UIApplication.shared.open(phoneURL, options: [:], completionHandler: nil)
+                }
+            }
+        }else if leixingzifu.hasPrefix("PesoAceM://"){
+            if let range = leixingzifu.range(of: "PesoAceM://") {
+                let emailAddress = String(leixingzifu[range.upperBound...])
+                if let emailURL = URL(string: "mailto:\(emailAddress)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!) {
+                    if UIApplication.shared.canOpenURL(emailURL) {
+                        UIApplication.shared.open(emailURL, options: [:], completionHandler: nil)
+                    }
+                }
+            }
         }
     }
     

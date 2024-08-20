@@ -36,6 +36,7 @@ class wallpaperModel: HandyJSON {
     var lum: [lumModel]?
     var burns: burnsmodel?
     var conscience: conscienceModel?
+    var overdue: cleanerModel?
 }
 
 class conscienceModel: HandyJSON {
@@ -123,6 +124,7 @@ class improvementModel: HandyJSON {
     var minarets: String?//peourl
     var mysel: String?
     var paws: String?
+    var formica: String?
     var wheeled: String?
     var productTags: String?
     var amountMax: String?

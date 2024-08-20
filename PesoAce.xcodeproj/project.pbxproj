@@ -63,6 +63,7 @@
 		18D2BC5C2C6A4DF0006BAEDB /* PLALocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D2BC5B2C6A4DF0006BAEDB /* PLALocation.swift */; };
 		18E0B0B02C651F190083BCD4 /* PLAPMInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E0B0AF2C651F190083BCD4 /* PLAPMInfoView.swift */; };
 		18E0B0B22C6521500083BCD4 /* PLAPCommonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E0B0B12C6521500083BCD4 /* PLAPCommonView.swift */; };
+		731311102C74C896008F0C87 /* PLACycleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7313110F2C74C896008F0C87 /* PLACycleCell.swift */; };
 		7350D1742C6FAA550031257F /* PLAChangeBankViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7350D1732C6FAA550031257F /* PLAChangeBankViewController.swift */; };
 		73CFF5752C709A58001EECE4 /* PLAJiaLianxiViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73CFF5742C709A58001EECE4 /* PLAJiaLianxiViewController.swift */; };
 		73CFF5772C70CDFF001EECE4 /* PLAJiaLianxiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73CFF5762C70CDFF001EECE4 /* PLAJiaLianxiView.swift */; };
@@ -133,6 +134,7 @@
 		18E0B0B12C6521500083BCD4 /* PLAPCommonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PLAPCommonView.swift; sourceTree = "<group>"; };
 		28450693720077835F00ECDB /* Pods-PesoAce.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PesoAce.debug.xcconfig"; path = "Target Support Files/Pods-PesoAce/Pods-PesoAce.debug.xcconfig"; sourceTree = "<group>"; };
 		5DBA2829A6F9E91179DC6C59 /* Pods-PesoAce.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PesoAce.release.xcconfig"; path = "Target Support Files/Pods-PesoAce/Pods-PesoAce.release.xcconfig"; sourceTree = "<group>"; };
+		7313110F2C74C896008F0C87 /* PLACycleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PLACycleCell.swift; sourceTree = "<group>"; };
 		7350D1732C6FAA550031257F /* PLAChangeBankViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PLAChangeBankViewController.swift; sourceTree = "<group>"; };
 		73CFF5742C709A58001EECE4 /* PLAJiaLianxiViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PLAJiaLianxiViewController.swift; sourceTree = "<group>"; };
 		73CFF5762C70CDFF001EECE4 /* PLAJiaLianxiView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PLAJiaLianxiView.swift; sourceTree = "<group>"; };
@@ -381,6 +383,7 @@
 				182CF0D72C67BA5C007D5538 /* PLAOutView.swift */,
 				73F80D4E2C6FAFE6004682D4 /* PLAChangeBankView.swift */,
 				73F80D502C6FB188004682D4 /* PLAChangeBankCell.swift */,
+				7313110F2C74C896008F0C87 /* PLACycleCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -531,6 +534,7 @@
 				18982E242C5F4E820036F819 /* PLALoginViewController.swift in Sources */,
 				18A2BC962C650B2900BB5DAE /* PLAPopPhotoView.swift in Sources */,
 				186C4CAA2C624D3E007CDAF1 /* PLAOrderViewController.swift in Sources */,
+				731311102C74C896008F0C87 /* PLACycleCell.swift in Sources */,
 				18D2BC5C2C6A4DF0006BAEDB /* PLALocation.swift in Sources */,
 				182CF0E22C68A7BD007D5538 /* PLAProfileViewController.swift in Sources */,
 				18982E432C6116A20036F819 /* JdgueConfig.swift in Sources */,
@@ -721,7 +725,7 @@
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = "";
-				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = LVNFNCZAX5;
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 2F6XZMZ52M;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PesoAce/Info.plist;
@@ -741,10 +745,10 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0.0;
-				PRODUCT_BUNDLE_IDENTIFIER = wendao.ald.com;
+				PRODUCT_BUNDLE_IDENTIFIER = com.testph.first;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = test.profile;
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "Test PH1";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
@@ -767,7 +771,7 @@
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = "";
-				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = LVNFNCZAX5;
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 2F6XZMZ52M;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PesoAce/Info.plist;
@@ -787,10 +791,10 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0.0;
-				PRODUCT_BUNDLE_IDENTIFIER = wendao.ald.com;
+				PRODUCT_BUNDLE_IDENTIFIER = com.testph.first;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = test.profile;
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "Test PH1";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;

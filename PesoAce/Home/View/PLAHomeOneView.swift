@@ -45,7 +45,7 @@ class PLAHomeOneView: UIView {
     lazy var bgImageView2: UIImageView = {
         let bgImageView = UIImageView()
         bgImageView.isUserInteractionEnabled = true
-        bgImageView.image = UIImage(named: "Group 8")
+        bgImageView.image = UIImage(named: "Group_iss")
         return bgImageView
     }()
 

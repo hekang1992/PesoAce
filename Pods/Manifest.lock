@@ -14,6 +14,7 @@ PODS:
     - BRPickerView/Base
   - DeviceKit (5.2.2)
   - Differentiator (5.0.0)
+  - FSPagerView (0.8.3)
   - GKCycleScrollView (1.2.2)
   - GYSide (0.0.5)
   - HandyJSON (5.0.2)
@@ -43,6 +44,7 @@ DEPENDENCIES:
   - Alamofire (~> 5.8.1)
   - BRPickerView (~> 2.8.1)
   - DeviceKit (~> 5.2.2)
+  - FSPagerView (~> 0.8.3)
   - GKCycleScrollView (~> 1.2.2)
   - GYSide (~> 0.0.5)
   - HandyJSON (~> 5.0.2)
@@ -67,6 +69,7 @@ SPEC REPOS:
     - BRPickerView
     - DeviceKit
     - Differentiator
+    - FSPagerView
     - GKCycleScrollView
     - GYSide
     - HandyJSON
@@ -91,6 +94,7 @@ SPEC CHECKSUMS:
   BRPickerView: 2531a2d4d0fea0b57a1c738de215af0f88863a2f
   DeviceKit: e36aaf2a0d142ef0b4fac2007649a4414af234be
   Differentiator: e8497ceab83c1b10ca233716d547b9af21b9344d
+  FSPagerView: 670405b2f18e2a87fa37f20b00de783e562c25a8
   GKCycleScrollView: ecc033c0d1376f28f7441f0275e9a9d515da9a6f
   GYSide: 672895491bf7a809f0631dd8a122ab5d1d601aae
   HandyJSON: 9e4e236f5d2dbefad5155a77417bbea438201c03
@@ -110,6 +114,6 @@ SPEC CHECKSUMS:
   SystemServices: 7af348493ece8951449b476c41532df72569b181
   TYAlertController: c121090edb0bea7426f987da94cdddd81eef4231
 
-PODFILE CHECKSUM: 5eff89fd20efe3c54674d4cb7475052a8fafaa91
+PODFILE CHECKSUM: 548ab3ec91772a8fe37821d7bfbae61e7e85ee6c
 
 COCOAPODS: 1.15.2

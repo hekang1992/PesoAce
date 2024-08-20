@@ -106,12 +106,12 @@ class PLALeftSideView: UIView {
         return leftView1
     }()
     
-    lazy var leftView5: PLAJianTouView = {
-        let leftView1 = PLAJianTouView()
-        leftView1.helloLabel.text = "Bank card"
-        leftView1.iconImageView.image = UIImage(named: "Group_right")
-        return leftView1
-    }()
+//    lazy var leftView5: PLAJianTouView = {
+//        let leftView1 = PLAJianTouView()
+//        leftView1.helloLabel.text = "Bank card"
+//        leftView1.iconImageView.image = UIImage(named: "Group_right")
+//        return leftView1
+//    }()
     
     lazy var outBtn: UIButton = {
         let outBtn = UIButton(type: .custom)
@@ -131,7 +131,7 @@ class PLALeftSideView: UIView {
         scrollView.addSubview(helloLabel)
         scrollView.addSubview(helloLabel1)
         scrollView.addSubview(leftView1)
-        scrollView.addSubview(leftView5)
+//        scrollView.addSubview(leftView5)
         scrollView.addSubview(leftView2)
         scrollView.addSubview(leftView3)
         scrollView.addSubview(leftView4)
@@ -171,17 +171,17 @@ class PLALeftSideView: UIView {
             make.left.equalToSuperview()
             make.top.equalTo(helloLabel1.snp.bottom).offset(45.px())
         }
-        leftView5.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.height.equalTo(48.px())
-            make.left.equalToSuperview()
-            make.top.equalTo(leftView1.snp.bottom).offset(12.px())
-        }
+//        leftView5.snp.makeConstraints { make in
+//            make.centerX.equalToSuperview()
+//            make.height.equalTo(48.px())
+//            make.left.equalToSuperview()
+//            make.top.equalTo(leftView1.snp.bottom).offset(12.px())
+//        }
         leftView2.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.height.equalTo(48.px())
             make.left.equalToSuperview()
-            make.top.equalTo(leftView5.snp.bottom).offset(12.px())
+            make.top.equalTo(leftView1.snp.bottom).offset(12.px())
         }
         leftView3.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
@@ -223,9 +223,9 @@ class PLALeftSideView: UIView {
         leftView4.btn.rx.tap.subscribe(onNext: { [weak self] in
             self?.block6?()
         }).disposed(by: disposeBag)
-        leftView5.btn.rx.tap.subscribe(onNext: { [weak self] in
-            self?.block7?()
-        }).disposed(by: disposeBag)
+//        leftView5.btn.rx.tap.subscribe(onNext: { [weak self] in
+//            self?.block7?()
+//        }).disposed(by: disposeBag)
     }
     
     required init?(coder: NSCoder) {

@@ -96,7 +96,7 @@ class PLALoginView: PLACommonView {
     
     lazy var xieyibtn: UIButton = {
         let xieyibtn = UIButton(type: .custom)
-        xieyibtn.setBackgroundImage(UIImage(named: "Group 1663"), for: .normal)
+        xieyibtn.setBackgroundImage(UIImage(named: "Group_1663"), for: .normal)
         return xieyibtn
     }()
     

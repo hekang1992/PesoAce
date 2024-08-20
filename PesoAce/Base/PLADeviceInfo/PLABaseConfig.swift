@@ -64,6 +64,7 @@ extension Data {
 }
 
 extension String {
+    
     func convertBase64(_ dict: [String: Any]) -> String? {
         do {
             let jsonData = try JSONSerialization.data(withJSONObject: dict)
@@ -74,6 +75,7 @@ extension String {
             return nil
         }
     }
+
 }
 
 extension UILabel {

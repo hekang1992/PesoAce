@@ -3,6 +3,7 @@ ${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework
 ${BUILT_PRODUCTS_DIR}/BRPickerView/BRPickerView.framework
 ${BUILT_PRODUCTS_DIR}/DeviceKit/DeviceKit.framework
 ${BUILT_PRODUCTS_DIR}/Differentiator/Differentiator.framework
+${BUILT_PRODUCTS_DIR}/FSPagerView/FSPagerView.framework
 ${BUILT_PRODUCTS_DIR}/GKCycleScrollView/GKCycleScrollView.framework
 ${BUILT_PRODUCTS_DIR}/GYSide/GYSide.framework
 ${BUILT_PRODUCTS_DIR}/HandyJSON/HandyJSON.framework
