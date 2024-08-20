@@ -17,7 +17,7 @@ class PLAOrderListCell: UITableViewCell {
     
     lazy var productImage: UIImageView = {
         let productImage = UIImageView()
-        productImage.image = UIImage(named: "AppIcon")
+        productImage.backgroundColor = UIColor.init(css: "#D9D9D9")
         return productImage
     }()
     
@@ -131,7 +131,7 @@ class PLAOrderListCell: UITableViewCell {
             timeLabel.text = "Due Date: \(model.wordlessly ?? "")"
             stLabel.text = model.pooling ?? ""
             monLabel.text = model.oozed ?? ""
-            productImage.kf.setImage(with: URL(string: model.plans ?? ""), placeholder: UIImage(named: "AppIcon"))
+            productImage.kf.setImage(with: URL(string: model.plans ?? ""))
             zhuangtaiLabel.text = model.straddling ?? ""
             zhuangtaiLabel.textColor = UIColor.init(css: model.notictColor ?? "#FFFFFF")
             if model.notictColor == "#FC0006" {

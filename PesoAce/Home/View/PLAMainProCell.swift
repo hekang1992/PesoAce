@@ -27,6 +27,7 @@ class PLAMainProCell: UITableViewCell {
     lazy var icon: UIImageView = {
         let icon = UIImageView()
         icon.image = UIImage(named: "AppIcon")
+        icon.backgroundColor = UIColor.init(css: "#D9D9D9")
         return icon
     }()
     
@@ -141,12 +142,11 @@ class PLAMainProCell: UITableViewCell {
 }
 
 extension PLAMainProCell {
-    
-    
+
     func bindModel() {
         model.subscribe(onNext: { [weak self] model in
             guard let self = self, let model = model else { return }
-            icon.kf.setImage(with: URL(string: model.plans ?? ""), placeholder: UIImage(named: "AppIcon"))
+            icon.kf.setImage(with: URL(string: model.plans ?? ""))
             nameLabel.text = model.mysel ?? ""
             nameLabel2.text = model.wheeled ?? ""
             nameLabel1.text = model.loan_rate ?? ""
