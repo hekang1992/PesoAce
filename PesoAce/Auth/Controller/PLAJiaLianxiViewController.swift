@@ -49,14 +49,14 @@ class PLAJiaLianxiViewController: PLABaseViewController {
         lianxiView.block = { [weak self] in
             self?.navigationController?.popToRootViewController(animated: true)
         }
-        lianxiView.block1 = { [weak self] btn, model in
+        lianxiView.block1 = { [weak self] btn, btn1, model in
             self?.view.endEditing(true)
             if let pakols = model.pakols {
                 let modelArray = enmuModel.enumOneArr(dataSourceArr: pakols)
                 self?.popLastEnum(.province, btn, modelArray, model)
             }
         }
-        lianxiView.block2 = { [weak self] btn, model in
+        lianxiView.block2 = { [weak self] btn, btn1, model in
             self?.view.endEditing(true)
             self?.btn = btn
             self?.model = model

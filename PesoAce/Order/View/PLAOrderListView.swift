@@ -58,11 +58,21 @@ extension PLAOrderListView: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if let cell = tableView.dequeueReusableCell(withIdentifier: "PLAOrderListNormalCell", for: indexPath) as? PLAOrderListNormalCell {
-            cell.selectionStyle = .none
-            cell.backgroundColor = .clear
-            cell.model = modelArray?[indexPath.row]
-            return cell
+        let model = modelArray?[indexPath.row]
+        if let typeStr = model?.straddling, !typeStr.isEmpty {
+            if let cell = tableView.dequeueReusableCell(withIdentifier: "PLAOrderListCell", for: indexPath) as? PLAOrderListCell {
+                cell.selectionStyle = .none
+                cell.backgroundColor = .clear
+                cell.model = modelArray?[indexPath.row]
+                return cell
+            }
+        }else {
+            if let cell = tableView.dequeueReusableCell(withIdentifier: "PLAOrderListNormalCell", for: indexPath) as? PLAOrderListNormalCell {
+                cell.selectionStyle = .none
+                cell.backgroundColor = .clear
+                cell.model = modelArray?[indexPath.row]
+                return cell
+            }
         }
         return UITableViewCell()
     }

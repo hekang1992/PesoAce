@@ -88,6 +88,7 @@ class cleanerModel: HandyJSON {
     var oozed: String?
     var thwiiiiit: String?//跳转地址
     var plastics: String?
+    var plans: String?
     var riches: String?
     var bubbling: String?
     var cleaner: [cleanerModel]?
@@ -103,6 +104,8 @@ class cleanerModel: HandyJSON {
     var vacuumed: String?//回血key
     var significant: [significantModel]?
     var lum: [lumModel]?
+    var straddling: String?
+    var notictColor: String?
 }
 
 class jokinglyModel: HandyJSON {

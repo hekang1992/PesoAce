@@ -20,9 +20,9 @@ class PLAJiaLianxiView: UIView {
     
     var scrollDistance: CGFloat = 0
     
-    var block1: ((UIButton, cleanerModel) -> Void)?
+    var block1: ((UIButton, UIButton, cleanerModel) -> Void)?
     
-    var block2: ((UIButton, cleanerModel) -> Void)?
+    var block2: ((UIButton, UIButton, cleanerModel) -> Void)?
     
     var modelArray = BehaviorRelay<[cleanerModel]>(value: [])
     
@@ -139,11 +139,11 @@ class PLAJiaLianxiView: UIView {
                         cell.selectionStyle = .none
                         cell.backgroundColor = .clear
                         cell.model.accept(model)
-                        cell.block1 = { [weak self] btn, model in
-                            self?.block1?(btn, model)
+                        cell.block1 = { [weak self] btn, btn1, model in
+                            self?.block1?(btn, btn1, model)
                         }
-                        cell.block2 = { [weak self] btn, model in
-                            self?.block2?(btn, model)
+                        cell.block2 = { [weak self] btn, btn1, model in
+                            self?.block2?(btn, btn1, model)
                         }
                         return cell
                     }

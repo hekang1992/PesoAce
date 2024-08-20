@@ -13,9 +13,9 @@ class PLALxiCell: UITableViewCell {
 
     lazy var disp = DisposeBag()
     
-    var block1: ((UIButton, cleanerModel) -> Void)?
+    var block1: ((UIButton, UIButton, cleanerModel) -> Void)?
     
-    var block2: ((UIButton, cleanerModel) -> Void)?
+    var block2: ((UIButton, UIButton, cleanerModel) -> Void)?
     
     var model = BehaviorRelay<cleanerModel?>(value: nil)
 
@@ -94,13 +94,13 @@ class PLALxiCell: UITableViewCell {
         btn.rx.tap.subscribe(onNext: { [weak self] in
             if let self = self {
                 guard let model = self.model.value else { return }
-                self.block1?(self.btn, model)
+                self.block1?(self.btn, self.btn1, model)
             }
         }).disposed(by: disp)
         btn1.rx.tap.subscribe(onNext: { [weak self] in
             if let self = self {
                 guard let model = self.model.value else { return }
-                self.block2?(self.btn1, model)
+                self.block2?(self.btn1, self.btn, model)
             }
         }).disposed(by: disp)
         bindModel()

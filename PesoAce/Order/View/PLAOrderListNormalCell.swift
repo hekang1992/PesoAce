@@ -95,6 +95,7 @@ class PLAOrderListNormalCell: UITableViewCell {
             timeLabel.text = "Due Date: \(model.wordlessly ?? "")"
             stLabel.text = model.pooling ?? ""
             monLabel.text = model.oozed ?? ""
+            productImage.kf.setImage(with: URL(string: model.plans ?? ""), placeholder: UIImage(named: "AppIcon"))
         }
     }
     

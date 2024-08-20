@@ -15,9 +15,9 @@ class PLALxiView: UIView {
     
     var block: (() -> Void)?
     
-    var block1: ((UIButton, cleanerModel) -> Void)?
+    var block1: ((UIButton, UIButton, cleanerModel) -> Void)?
     
-    var block2: ((UIButton, cleanerModel) -> Void)?
+    var block2: ((UIButton, UIButton, cleanerModel) -> Void)?
     
     var saveblock: (() -> Void)?
     
@@ -127,11 +127,11 @@ class PLALxiView: UIView {
             .bind(to: tableView.rx.items(cellIdentifier: "PLALxiCell", cellType: PLALxiCell.self)) { [weak self] index, model, cell in
                 guard let self = self else { return }
                 cell.model.accept(model)
-                cell.block1 = { [weak self] btn, model in
-                    self?.block1?(btn, model)
+                cell.block1 = { [weak self] btn, btn1, model in
+                    self?.block1?(btn, btn1, model)
                 }
-                cell.block2 = { [weak self] btn, model in
-                    self?.block2?(btn, model)
+                cell.block2 = { [weak self] btn, btn1,model in
+                    self?.block2?(btn, btn1, model)
                 }
             }
             .disposed(by: disposeBag)
