@@ -15,6 +15,14 @@ class PLALoginView: PLACommonView {
     
     var xieyiblock: (() -> Void)?
     
+    private var initialSetup = true
+    
+    lazy var zeroLabel: UILabel = {
+        let zeroLabel = UILabel.createLabel(font: UIFont(name: regular_font, size: 16.px())!, textColor: UIColor.init(css: "#333333"), textAlignment: .left)
+        zeroLabel.text = "0"
+        return zeroLabel
+    }()
+    
     lazy var hiLabel: UILabel = {
         let hiLabel = UILabel.createLabel(font: UIFont(name: black_font, size: 38.px())!, textColor: UIColor.init(css: "#333333"), textAlignment: .left)
         hiLabel.text = "HI,"
@@ -106,6 +114,7 @@ class PLALoginView: PLACommonView {
         scrollView.addSubview(hiLabel1)
         scrollView.addSubview(hiLabel2)
         scrollView.addSubview(lineView)
+        scrollView.addSubview(zeroLabel)
         scrollView.addSubview(phoneTx)
         scrollView.addSubview(lineView1)
         scrollView.addSubview(codeTx)
@@ -133,10 +142,15 @@ class PLALoginView: PLACommonView {
             make.size.equalTo(CGSize(width: 2.px(), height: 11.px()))
             make.top.equalTo(hiLabel2.snp.top).offset(6.px())
         }
+        zeroLabel.snp.makeConstraints { make in
+            make.left.equalTo(lineView.snp.right).offset(12.px())
+            make.centerY.equalTo(hiLabel2.snp.centerY)
+            make.top.equalTo(hiLabel2.snp.top)
+        }
         phoneTx.snp.makeConstraints { make in
             make.top.equalTo(hiLabel2.snp.top).offset(-8.px())
             make.width.equalTo(240.px())
-            make.left.equalTo(lineView.snp.right).offset(12.px())
+            make.left.equalTo(zeroLabel.snp.right).offset(1.px())
             make.centerY.equalTo(hiLabel2.snp.centerY)
         }
         lineView1.snp.makeConstraints { make in
@@ -214,15 +228,14 @@ class PLALoginView: PLACommonView {
                 self.block?(self.sendBtn)
             }
         }).disposed(by: disposeBag)
-        
-        
+
         phoneTx
             .rx
             .text
             .orEmpty
             .map { text -> String in
-            if text.count > 10 {
-                let index = text.index(text.startIndex, offsetBy: 10)
+            if text.count > 11 {
+                let index = text.index(text.startIndex, offsetBy: 11)
                 return String(text[..<index])
             } else {
                 return text
