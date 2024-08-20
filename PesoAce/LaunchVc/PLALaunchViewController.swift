@@ -32,7 +32,7 @@ class PLALaunchViewController: PLABaseViewController {
         }
         if IS_LOGIN {
             PLALocation.shared.startUpdatingLocation { locationModel in
-                
+                print("locationModel>>>>>\(locationModel)")
             }
         }
         panduanWangLuoWork()

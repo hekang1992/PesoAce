@@ -16,8 +16,9 @@ class PLAAuthIdView: UIView {
     
     var clickblock: ((cleanerModel) -> Void)?
     
-    lazy var canBtn: UIButton = {
-        let canBtn = UIButton(type: .custom)
+    lazy var canBtn: EXButton = {
+        let canBtn = EXButton(type: .custom)
+        canBtn.hitTestEdgeInsets = UIEdgeInsets(top: -10.px(), left: -10.px(), bottom: -10.px(), right: -10.px())
         canBtn.setBackgroundImage(UIImage(named: "Group_cc"), for: .normal)
         return canBtn
     }()

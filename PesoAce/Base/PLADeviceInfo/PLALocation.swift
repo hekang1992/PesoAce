@@ -9,11 +9,22 @@ import UIKit
 import CoreLocation
 import RxSwift
 
+class LocationPModel: NSObject {
+    var scratched : String = ""
+    var align : String = ""
+    var ome: Double = 0.0
+    var grasping: Double = 0.0
+    var noticing : String = ""
+    var slamming : String = ""
+    var punched : String = ""
+}
+
 typealias LocationModelBlock = (_ locationModel: LocationPModel) -> Void
 
 class PLALocation: NSObject {
-    
+
     static let shared = PLALocation()
+    
     private var locationManager = CLLocationManager()
     
     private var locationUpdateHandler: LocationModelBlock?
@@ -30,23 +41,22 @@ class PLALocation: NSObject {
         locationManager.requestWhenInUseAuthorization()
         locationManager.requestAlwaysAuthorization()
         locationManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation
-        locationManager.distanceFilter = 0
-        obs.debounce(RxTimeInterval.milliseconds(2000), scheduler: MainScheduler.instance)
+        locationManager.distanceFilter = 0.1
+        obs.debounce(RxTimeInterval.milliseconds(1500), scheduler: MainScheduler.instance)
             .subscribe(onNext: { [weak self] locationModel in
                 guard let self = self, let locationModel = locationModel else { return }
                 self.locationUpdateHandler?(locationModel)
             }).disposed(by: bag)
     }
-    
 }
 
 extension PLALocation: CLLocationManagerDelegate {
-    
+
     func startUpdatingLocation(completion: @escaping LocationModelBlock) {
         locationUpdateHandler = completion
-        if (CLLocationManager.authorizationStatus() == .denied) {
+        if CLLocationManager.authorizationStatus() == .denied {
             locationUpdateHandler?(locatinModel)
-        }else {
+        } else {
             locationManager.startUpdatingLocation()
         }
     }
@@ -71,7 +81,7 @@ extension PLALocation: CLLocationManagerDelegate {
         let longitude = location.coordinate.longitude
         getAddressFromCoordinates(latitude: latitude, longitude: longitude)
     }
-    
+
     private func getAddressFromCoordinates(latitude: CLLocationDegrees, longitude: CLLocationDegrees) {
         let location = CLLocation(latitude: latitude, longitude: longitude)
         let model = LocationPModel()
@@ -79,33 +89,19 @@ extension PLALocation: CLLocationManagerDelegate {
         model.grasping = longitude
         model.ome = latitude
         geocoder.reverseGeocodeLocation(location) { [weak self] (placemarks, error) in
-            guard let self = self, 
-                    let placemark = placemarks?.first else { return }
+            guard let self = self, let placemark = placemarks?.first else { return }
             model.slamming = placemark.locality ?? ""
             model.noticing = (placemark.subLocality ?? "") + (placemark.thoroughfare ?? "")
             model.align = placemark.country ?? ""
             model.punched = placemark.isoCountryCode ?? ""
             model.scratched = placemark.administrativeArea ?? ""
-            DispatchQueue.global().async { [weak self] in
-                guard let strongSelf = self else { return }
-                strongSelf.locatinModel = model
-            }
+            self.locatinModel = model
             self.obs.onNext(model)
-            locationManager.stopUpdatingLocation()
+            self.locationManager.stopUpdatingLocation()
         }
     }
-    
-    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-    }
-    
-}
 
-class LocationPModel: NSObject {
-    var scratched : String = ""
-    var align : String = ""
-    var ome: Double = 0.0
-    var grasping: Double = 0.0
-    var noticing : String = ""
-    var slamming : String = ""
-    var punched : String = ""
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print("Failed to update location: \(error.localizedDescription)")
+    }
 }

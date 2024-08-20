@@ -61,7 +61,7 @@ class PLALoginView: PLACommonView {
     lazy var codeTx: UITextField = {
         let codeTx = UITextField()
         codeTx.keyboardType = .numberPad
-        let attrString = NSMutableAttributedString(string: "Verification Code", attributes: [
+        let attrString = NSMutableAttributedString(string: "OTP", attributes: [
             .foregroundColor: UIColor.init(css: "#B8B8B8") as Any,
             .font: UIFont(name: regular_font, size: 16.px())!
         ])
@@ -81,7 +81,7 @@ class PLALoginView: PLACommonView {
         let sendBtn = UIButton(type: .custom)
         sendBtn.contentHorizontalAlignment = .right
         sendBtn.titleLabel?.font = UIFont(name: regular_font, size: 16.px())
-        sendBtn.setTitle("Send", for: .normal)
+        sendBtn.setTitle("Send OTP", for: .normal)
         sendBtn.setTitleColor(UIColor.init(css: "#2681FB"), for: .normal)
         return sendBtn
     }()

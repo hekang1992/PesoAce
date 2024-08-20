@@ -42,10 +42,11 @@ class PLALxiView: UIView {
         return label
     }()
     
-    lazy var canBtn: UIButton = {
-        let button = UIButton(type: .custom)
-        button.setBackgroundImage(UIImage(named: "Group_cc"), for: .normal)
-        return button
+    lazy var canBtn: EXButton = {
+        let canBtn = EXButton(type: .custom)
+        canBtn.hitTestEdgeInsets = UIEdgeInsets(top: -10.px(), left: -10.px(), bottom: -10.px(), right: -10.px())
+        canBtn.setBackgroundImage(UIImage(named: "Group_cc"), for: .normal)
+        return canBtn
     }()
     
     lazy var stView: UIView = {

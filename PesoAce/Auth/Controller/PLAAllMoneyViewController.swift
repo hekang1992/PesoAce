@@ -105,9 +105,11 @@ extension PLAAllMoneyViewController {
                     }
                 }else {
                     if let self = self {
-                        JudgeConfig.productDetailInfo(productID ?? "", "moneyall", form: self)
+                        JudgeConfig.maidianxinxi(self.productID ?? "", "8", self.start ?? "")
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
+                            JudgeConfig.productDetailInfo(self.productID ?? "", "moneyall", form: self)
+                        }
                     }
-                    JudgeConfig.maidianxinxi(self?.productID ?? "", "8", self?.start ?? "")
                 }
             }else {
                 MBProgressHUD.wj_showPlainText(baseModel.formica ?? "", view: nil)

@@ -19,8 +19,9 @@ class PLAOrderView: UIView {
     
     var block1: ((String, Int) -> Void)?
     
-    lazy var backBtn: UIButton = {
-        let backBtn = UIButton(type: .custom)
+    lazy var backBtn: EXButton = {
+        let backBtn = EXButton(type: .custom)
+        backBtn.hitTestEdgeInsets = UIEdgeInsets(top: -10.px(), left: -10.px(), bottom: -10.px(), right: -10.px())
         backBtn.setBackgroundImage(UIImage(named: "backimage"), for: .normal)
         return backBtn
     }()

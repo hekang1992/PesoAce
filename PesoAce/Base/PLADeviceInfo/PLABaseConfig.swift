@@ -170,8 +170,6 @@ class ViewHud {
     
 }
 
-
-
 class DeviceStatusHeightManager {
     
     static var statusBarHeight:CGFloat {
@@ -293,5 +291,13 @@ class CityXuanZe {
             tempArr1.append(proviceModel)
         }
         return tempArr1
+    }
+}
+
+class EXButton: UIButton {
+    var hitTestEdgeInsets: UIEdgeInsets = .zero
+    override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
+        let extendedRect = self.bounds.inset(by: hitTestEdgeInsets)
+        return extendedRect.contains(point) ? self : nil
     }
 }

@@ -22,6 +22,8 @@ class PLAJiaLianxiViewController: PLABaseViewController {
     
     var modelArray: [cleanerModel]?
     
+    var start: String?
+    
     lazy var lianxiView: PLAJiaLianxiView = {
         let lianxiView = PLAJiaLianxiView()
         return lianxiView
@@ -63,6 +65,7 @@ class PLAJiaLianxiViewController: PLABaseViewController {
         lianxiView.saveblock = { [weak self] in
             self?.saveInfo()
         }
+        start = DeviceInfo.getCurrentTime()
     }
 }
 
@@ -185,6 +188,7 @@ extension PLAJiaLianxiViewController: CNContactPickerDelegate {
                 if baseModel.greasy == 0 || baseModel.greasy == 00 {
                     if let self = self {
                         JudgeConfig.productDetailInfo(productID ?? "", "", form: self)
+                        JudgeConfig.maidianxinxi(self.productID ?? "", "7", self.start ?? "")
                     }
                 }
             } errorBlock: { error in

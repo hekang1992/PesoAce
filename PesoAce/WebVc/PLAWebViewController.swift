@@ -20,8 +20,9 @@ class PLAWebViewController: PLABaseViewController {
     private let disposeBag = DisposeBag()
     
     // Lazy-loaded back button
-    private lazy var backButton: UIButton = {
-        let button = UIButton(type: .custom)
+    private lazy var backButton: EXButton = {
+        let button = EXButton(type: .custom)
+        button.hitTestEdgeInsets = UIEdgeInsets(top: -10.px(), left: -10.px(), bottom: -10.px(), right: -10.px())
         button.setBackgroundImage(UIImage(named: "backimage"), for: .normal)
         return button
     }()
