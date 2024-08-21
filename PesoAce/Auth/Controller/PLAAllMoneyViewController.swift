@@ -109,8 +109,12 @@ extension PLAAllMoneyViewController {
                     }
                 }else {
                     if let self = self {
-                        JudgeConfig.maidianxinxi(self.productID ?? "", "8", self.start ?? "")
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
+                        let dispatchGroup = DispatchGroup()
+                        dispatchGroup.enter()
+                        JudgeConfig.maidianxinxi(self.productID ?? "", "8", self.start ?? "") {
+                            dispatchGroup.leave()
+                        }
+                        dispatchGroup.notify(queue: .main) {
                             JudgeConfig.productDetailInfo(self.productID ?? "", "moneyall", form: self)
                         }
                     }

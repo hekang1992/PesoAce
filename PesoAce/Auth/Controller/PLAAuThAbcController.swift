@@ -39,7 +39,9 @@ class PLAAuThAbcController: UIViewController {
             let faceVc = PLAFaceViewController()
             faceVc.model = model
             faceVc.productID = self?.productID ?? ""
-            JudgeConfig.maidianxinxi(self?.productID ?? "", "2", self?.staartTIME ?? "")
+            JudgeConfig.maidianxinxi(self?.productID ?? "", "2", self?.staartTIME ?? "") {
+                
+            }
             self?.navigationController?.pushViewController(faceVc, animated: true)
         }
         tupianInfo()

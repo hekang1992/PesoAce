@@ -188,7 +188,9 @@ extension PLAJiaLianxiViewController: CNContactPickerDelegate {
                 if baseModel.greasy == 0 || baseModel.greasy == 00 {
                     if let self = self {
                         JudgeConfig.productDetailInfo(productID ?? "", "", form: self)
-                        JudgeConfig.maidianxinxi(self.productID ?? "", "7", self.start ?? "")
+                        JudgeConfig.maidianxinxi(self.productID ?? "", "7", self.start ?? "") {
+                            
+                        }
                     }
                 }
             } errorBlock: { error in

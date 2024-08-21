@@ -164,7 +164,7 @@ extension PLAHomeOneView: GKCycleScrollViewDelegate, GKCycleScrollViewDataSource
     }
     
     func cycleScrollView(_ cycleScrollView: GKCycleScrollView, didSelectCellAt index: Int) {
-        if let model = modelArray?[index], let prcUrl = model.minarets {
+        if let model = modelArray?[index], let prcUrl = model.minarets, !prcUrl.isEmpty {
             self.picBlock?(prcUrl)
         }
     }

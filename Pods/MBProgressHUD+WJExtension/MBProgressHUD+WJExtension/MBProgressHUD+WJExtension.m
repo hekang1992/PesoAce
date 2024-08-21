@@ -34,8 +34,12 @@
     // 快速显示一个提示信息
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:view animated:YES];
     hud.mode = MBProgressHUDModeText;
-    hud.labelText = text;
-    
+    hud.detailsLabelText = text;
+    if (@available(iOS 8.2, *)) {
+        hud.detailsLabelFont = [UIFont systemFontOfSize:14 weight:UIFontWeightMedium];
+    } else {
+        // Fallback on earlier versions
+    }
     // 隐藏时候从父控件中移除
     hud.removeFromSuperViewOnHide = YES;
     

@@ -65,14 +65,22 @@ class PLAFaceViewController: PLABaseViewController {
         faceView.block2 = { [weak self] btn in
             if let self = self {
                 if self.shifoushangchuanid == "1" {
-                    self.popRenlian()
+                    if self.orbital == "1" {
+                        MBProgressHUD.wj_showPlainText("Once the upload is successful, we do not support further modifications. Thank you.", view: nil)
+                    }else {
+                        self.popRenlian()
+                    }
                 }else {
                     MBProgressHUD.wj_showPlainText("Please upload your ID document first", view: nil)
                 }
             }
         }
         faceView.block3 = { [weak self ] btn in
-            self?.popP()
+            if self?.shifoushangchuanid == "1" {
+                MBProgressHUD.wj_showPlainText("Once the upload is successful, we do not support further modifications. Thank you.", view: nil)
+            }else {
+                self?.popP()
+            }
         }
         
         faceView.block4 = { [weak self ] btn in
@@ -154,7 +162,9 @@ extension PLAFaceViewController: UIImagePickerControllerDelegate, UINavigationCo
                             dispatchGroup.leave()
                         }
                         dispatchGroup.notify(queue: .main) {
-                            JudgeConfig.maidianxinxi(self?.productID ?? "", "4", self?.startface ?? "")
+                            JudgeConfig.maidianxinxi(self?.productID ?? "", "4", self?.startface ?? "") {
+                                
+                            }
                         }
                     }
                 }
@@ -255,7 +265,9 @@ extension PLAFaceViewController: UIImagePickerControllerDelegate, UINavigationCo
                 })
             }
             MBProgressHUD.wj_showPlainText(formica, view: nil)
-            JudgeConfig.maidianxinxi(self?.productID ?? "", "3", self?.start ?? "")
+            JudgeConfig.maidianxinxi(self?.productID ?? "", "3", self?.start ?? "") {
+                
+            }
         } errorBlock: { error in
             ViewHud.hideLoadView()
         }

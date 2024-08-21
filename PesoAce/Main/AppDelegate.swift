@@ -74,8 +74,9 @@ extension AppDelegate {
             dispatchGroup.leave()
         }
         dispatchGroup.notify(queue: .main) {
-            JudgeConfig.maidianxinxi("", "1", DeviceInfo.getCurrentTime())
-            self.shebeixinxi()
+            JudgeConfig.maidianxinxi("", "1", DeviceInfo.getCurrentTime()) { [weak self] in
+                self?.shebeixinxi()
+            }
         }
     }
     

@@ -129,7 +129,9 @@ class JudgeConfig: NSObject {
                     pushWebVc(productUrl, tt, form: vc)
                 }
             }
-            JudgeConfig.maidianxinxi(productID, "9", start)
+            JudgeConfig.maidianxinxi(productID, "9", start){
+                
+            }
         } errorBlock: { error in
             ViewHud.hideLoadView()
         }
@@ -145,12 +147,12 @@ class JudgeConfig: NSObject {
         vc.navigationController?.pushViewController(webVc, animated: true)
     }
     
-    static func maidianxinxi(_ proid: String, _ type: String, _ start: String){
+    static func maidianxinxi(_ proid: String, _ type: String, _ start: String, completion: @escaping () -> Void){
         PLALocation.shared.startUpdatingLocation { locationModel in
             PLAAFNetWorkManager.shared.requestAPI(params: ["login_apple": "1", "peck": proid, "jabbing": type, "nail": DeviceInfo.getIDFV(), "warmed": DeviceInfo.getIDFA(), "grasping": locationModel.grasping, "ome": locationModel.ome, "clarity": start, "curls": DeviceInfo.getCurrentTime(), "shining": "1"], pageUrl: "/ace/maplenow/margins/lovemaking", method: .post) { baseModel in
-                
+                completion()
             } errorBlock: { error in
-                
+                completion()
             }
         }
     }

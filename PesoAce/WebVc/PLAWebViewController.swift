@@ -270,7 +270,9 @@ extension PLAWebViewController: WKScriptMessageHandler, WKNavigationDelegate {
     private func uploadmian(_ arguments: [String]?) {
         guard let productId = arguments?.first, arguments?.count ?? 0 >= 2 else { return }
         let startTime = arguments![1]
-        JudgeConfig.maidianxinxi(productId, "10", startTime)
+        JudgeConfig.maidianxinxi(productId, "10", startTime) {
+            
+        }
     }
     
 }

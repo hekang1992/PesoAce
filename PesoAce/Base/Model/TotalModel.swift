@@ -83,8 +83,10 @@ class cleanerModel: HandyJSON {
     var escapes: String?
     var pic_url: String?
     var biryani: String?
+    var compared: String?
     var wordlessly: String?
     var pooling: String?
+    var mysel: String?
     var oozed: String?
     var thwiiiiit: String?//跳转地址
     var plastics: String?
@@ -106,6 +108,11 @@ class cleanerModel: HandyJSON {
     var lum: [lumModel]?
     var straddling: String?
     var notictColor: String?
+    var paws: String?
+    var btnCollor: String?
+    var vitreous: String?
+    var btnBgColor: String?
+    var inch: String?//diandanzhuangtai
 }
 
 class jokinglyModel: HandyJSON {

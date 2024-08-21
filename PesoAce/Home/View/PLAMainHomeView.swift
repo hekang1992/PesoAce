@@ -148,9 +148,9 @@ extension PLAMainHomeView: GKCycleScrollViewDelegate, GKCycleScrollViewDataSourc
     }
     
     func cycleScrollView(_ cycleScrollView: GKCycleScrollView, didSelectCellAt index: Int) {
-        let model = bannerArray?[index]
-        let prcUrl = model?.minarets ?? ""
-        self.picBlock?(prcUrl)
+        if let model = bannerArray?[index], let prcUrl = model.minarets, !prcUrl.isEmpty {
+            self.picBlock?(prcUrl)
+        }
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -204,7 +204,9 @@ extension PLAMainHomeView: GKCycleScrollViewDelegate, GKCycleScrollViewDataSourc
     
     func pagerView(_ pagerView: FSPagerView, didSelectItemAt index: Int) {
         let model = overdueArray.value[index]
-        self.picBlock1?(model.minarets ?? "")
+        if let minarets = model.minarets, !minarets.isEmpty {
+            self.picBlock1?(minarets)
+        }
     }
     
 }

@@ -49,7 +49,9 @@ class PLALXRViewController: PLABaseViewController {
         }
         lianxirenView.stLabel.text = setp ?? ""
         lianxirenView.block = { [weak self] in
-            self?.navigationController?.popToRootViewController(animated: true)
+            if let self = self, let navigationController = self.navigationController {
+                JudgePushVcConfing.popToZhidingVc(ofClass: PLAOrderViewController.self, in: navigationController)
+            }
         }
         lianxirenView.block1 = { [weak self] btn, btn1, model in
             self?.guanxibtn = btn
@@ -289,7 +291,9 @@ extension PLALXRViewController: CNContactPickerDelegate {
                     }else {
                         MBProgressHUD.wj_showPlainText(baseModel.formica ?? "", view: nil)
                     }
-                    JudgeConfig.maidianxinxi(self?.productID ?? "", "7", self?.start ?? "")
+                    JudgeConfig.maidianxinxi(self?.productID ?? "", "7", self?.start ?? "") {
+                        
+                    }
                 } errorBlock: { error in
                     ViewHud.hideLoadView()
                 }

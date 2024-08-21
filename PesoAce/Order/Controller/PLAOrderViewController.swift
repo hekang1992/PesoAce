@@ -16,6 +16,10 @@ class PLAOrderViewController: PLABaseViewController {
         return orderView
     }()
     
+    var str: String?
+    
+    var index: Int?
+    
     var listVCArray = [PLAOrderListViewController]()
 
     override func viewDidLoad() {
@@ -57,8 +61,15 @@ class PLAOrderViewController: PLABaseViewController {
             }else if str == "8" {
                 type = "5"
             }else {}
+            self?.str = type
+            self?.index = index
             self?.listVCArray[index].orderListPage(type ?? "")
         }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
     }
     
     override func viewDidLayoutSubviews() {

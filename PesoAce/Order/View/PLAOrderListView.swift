@@ -59,7 +59,7 @@ extension PLAOrderListView: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let model = modelArray?[indexPath.row]
-        if let typeStr = model?.straddling, !typeStr.isEmpty {
+        if let typeStr = model?.paws, !typeStr.isEmpty {
             if let cell = tableView.dequeueReusableCell(withIdentifier: "PLAOrderListCell", for: indexPath) as? PLAOrderListCell {
                 cell.selectionStyle = .none
                 cell.backgroundColor = .clear

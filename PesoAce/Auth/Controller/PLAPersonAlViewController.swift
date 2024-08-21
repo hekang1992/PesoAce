@@ -37,7 +37,9 @@ class PLAPersonAlViewController: PLABaseViewController {
             make.edges.equalToSuperview()
         }
         perView.block = { [weak self] in
-            self?.navigationController?.popToRootViewController(animated: true)
+            if let self = self, let navigationController = self.navigationController {
+                JudgePushVcConfing.popToZhidingVc(ofClass: PLAOrderViewController.self, in: navigationController)
+            }
         }
         perView.block1 = { btn, model in //enmu
             if let significant = model.significant {
@@ -130,7 +132,9 @@ extension PLAPersonAlViewController {
             }else {
                 MBProgressHUD.wj_showPlainText(baseModel.formica ?? "", view: nil)
             }
-            JudgeConfig.maidianxinxi(self?.productID ?? "", "5", self?.start ?? "")
+            JudgeConfig.maidianxinxi(self?.productID ?? "", "5", self?.start ?? "") {
+                
+            }
         } errorBlock: { error in
             ViewHud.hideLoadView()
         }
