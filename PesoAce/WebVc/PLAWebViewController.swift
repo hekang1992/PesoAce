@@ -59,10 +59,9 @@ class PLAWebViewController: PLABaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         setupUI()
         loadProductUrl()
-        setupBackButtonAction()
+        setupion()
         print("URL>>>>>>>>>: \(productUrl ?? "")")
     }
     
@@ -109,7 +108,7 @@ class PLAWebViewController: PLABaseViewController {
         webView.load(URLRequest(url: url))
     }
     
-    private func setupBackButtonAction() {
+    private func setupion() {
         backButton.rx.tap.subscribe(onNext: { [weak self] in
             guard let self = self else { return }
             if self.webView.canGoBack {

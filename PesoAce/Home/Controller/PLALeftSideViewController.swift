@@ -70,8 +70,11 @@ class PLALeftSideViewController: PLABaseViewController {
             self?.delOut()
         }
         leftView.block7 = { [weak self] in
-            let bankVc = PLAChangeBankViewController()
-            self?.gy_sidePushViewController(viewController: bankVc)
+            let webVc = PLAWebViewController()
+            if let requestUrl = JudgeConfig.createRequsetURL(baseURL: h5Url + "/takasaki", params: PLALoginFactory.getLoginParas()) {
+                webVc.productUrl = requestUrl
+            }
+            self?.gy_sidePushViewController(viewController: webVc)
         }
     }
     

@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 class PLALoginView: PLACommonView {
     
@@ -14,6 +16,8 @@ class PLALoginView: PLACommonView {
     var block1: (() -> Void)?
     
     var xieyiblock: (() -> Void)?
+    
+    var xieyiblock1: (() -> Void)?
     
     private var initialSetup = true
     
@@ -102,10 +106,23 @@ class PLALoginView: PLACommonView {
         return loginBtn
     }()
     
-    lazy var xieyibtn: UIButton = {
-        let xieyibtn = UIButton(type: .custom)
-        xieyibtn.setBackgroundImage(UIImage(named: "Group_1663"), for: .normal)
-        return xieyibtn
+    lazy var xieyiLabel: UILabel = {
+        let xieyiLabel = UILabel()
+        xieyiLabel.numberOfLines = 0
+        xieyiLabel.isUserInteractionEnabled = true
+        let text = "Please read and agree to our Privacy Policy and Terms of Service."
+        let attributedString = NSMutableAttributedString(string: text)
+        let boldText = ["Privacy Policy", "Terms of Service"]
+        for boldPart in boldText {
+            let range = (text as NSString).range(of: boldPart)
+            attributedString.addAttribute(.font, value: UIFont(name: regular_font, size: 14.px())!, range: range)
+            attributedString.addAttribute(.link, value: boldPart.lowercased().replacingOccurrences(of: " ", with: ""), range: range)
+        }
+        xieyiLabel.attributedText = attributedString
+        xieyiLabel.textAlignment = .center
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTapOnLabel(_:)))
+        xieyiLabel.addGestureRecognizer(tapGesture)
+        return xieyiLabel
     }()
     
     override init(frame: CGRect) {
@@ -121,7 +138,7 @@ class PLALoginView: PLACommonView {
         scrollView.addSubview(lineView2)
         scrollView.addSubview(sendBtn)
         scrollView.addSubview(loginBtn)
-        scrollView.addSubview(xieyibtn)
+        scrollView.addSubview(xieyiLabel)
         hiLabel.snp.makeConstraints { make in
             make.left.equalToSuperview().offset(26.px())
             make.top.equalToSuperview().offset(DeviceStatusHeightManager.statusBarHeight + 56.px())
@@ -150,7 +167,7 @@ class PLALoginView: PLACommonView {
         phoneTx.snp.makeConstraints { make in
             make.top.equalTo(hiLabel2.snp.top).offset(-8.px())
             make.width.equalTo(240.px())
-            make.left.equalTo(zeroLabel.snp.right).offset(1.px())
+            make.left.equalTo(zeroLabel.snp.right).offset(0.5.px())
             make.centerY.equalTo(hiLabel2.snp.centerY)
         }
         lineView1.snp.makeConstraints { make in
@@ -182,16 +199,12 @@ class PLALoginView: PLACommonView {
             make.top.equalTo(lineView2.snp.bottom).offset(35.px())
             make.height.equalTo(54.px())
         }
-        xieyibtn.snp.makeConstraints { make in
+        xieyiLabel.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.top.equalTo(loginBtn.snp.bottom).offset(14.px())
-            make.size.equalTo(CGSize(width: 309.px(), height: 22.px()))
+            make.left.equalToSuperview().offset(5.px())
             make.bottom.equalToSuperview().offset(-50.px())
         }
-        
-        xieyibtn.rx.tap.subscribe(onNext: { [weak self] in
-            self?.xieyiblock?()
-        }).disposed(by: disposeBag)
         
         loginBtn.rx.tap.subscribe(onNext: { [weak self] in
             self?.block1?()
@@ -228,41 +241,60 @@ class PLALoginView: PLACommonView {
                 self.block?(self.sendBtn)
             }
         }).disposed(by: disposeBag)
-
+        
         phoneTx
             .rx
             .text
             .orEmpty
             .map { text -> String in
-            if text.count > 11 {
-                let index = text.index(text.startIndex, offsetBy: 11)
-                return String(text[..<index])
-            } else {
-                return text
+                if text.count > 10 {
+                    let index = text.index(text.startIndex, offsetBy: 10)
+                    return String(text[..<index])
+                } else {
+                    return text
+                }
             }
-        }
-        .bind(to: phoneTx.rx.text)
-        .disposed(by: disposeBag)
+            .bind(to: phoneTx.rx.text)
+            .disposed(by: disposeBag)
         
         codeTx
             .rx
             .text
             .orEmpty
             .map { text -> String in
-            if text.count > 6 {
-                let index = text.index(text.startIndex, offsetBy: 6)
-                return String(text[..<index])
-            } else {
-                return text
+                if text.count > 6 {
+                    let index = text.index(text.startIndex, offsetBy: 6)
+                    return String(text[..<index])
+                } else {
+                    return text
+                }
             }
-        }
-        .bind(to: codeTx.rx.text)
-        .disposed(by: disposeBag)
+            .bind(to: codeTx.rx.text)
+            .disposed(by: disposeBag)
         
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    @objc func handleTapOnLabel(_ gesture: UITapGestureRecognizer) {
+        let text = (xieyiLabel.text ?? "") as NSString
+        let privacyPolicyRange = text.range(of: "Privacy Policy")
+        let termsOfServiceRange = text.range(of: "Terms of Service")
+        let tapLocation = gesture.location(in: xieyiLabel)
+        let tapIndex = xieyiLabel.indexOfAttributedTextCharacter(at: tapLocation)
+        if tapIndex >= termsOfServiceRange.location && tapIndex < termsOfServiceRange.location + termsOfServiceRange.length  {
+            self.xieyiblock?()
+        } else {
+            self.xieyiblock1?()
+        }
+    }
+    
+    func openURL(_ urlString: String) {
+        if let url = URL(string: urlString) {
+            
+        }
     }
     
 }

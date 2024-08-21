@@ -84,7 +84,7 @@ class PLAAllMoneyView: UIView {
     
     lazy var stLabel2: UILabel = {
         let stLabel = UILabel.createLabel(font: UIFont(name: regular_font, size: 14.px())!, textColor: UIColor.init(css: "#A9A9A9"), textAlignment: .left)
-        stLabel.text = "After you select it. you can't modify it"
+        stLabel.text = "Please fill in true and valid information."
         return stLabel
     }()
     

@@ -75,7 +75,7 @@ extension String {
             return nil
         }
     }
-
+    
 }
 
 extension UILabel {
@@ -86,6 +86,19 @@ extension UILabel {
         label.textColor = textColor
         label.font = font
         return label
+    }
+    func indexOfAttributedTextCharacter(at point: CGPoint) -> Int {
+        guard let attributedText = attributedText else { return NSNotFound }
+        let textStorage = NSTextStorage(attributedString: attributedText)
+        let layoutManager = NSLayoutManager()
+        textStorage.addLayoutManager(layoutManager)
+        let textContainer = NSTextContainer(size: bounds.size)
+        textContainer.lineFragmentPadding = 0.0
+        textContainer.maximumNumberOfLines = numberOfLines
+        textContainer.lineBreakMode = lineBreakMode
+        layoutManager.addTextContainer(textContainer)
+        let location = layoutManager.characterIndex(for: point, in: textContainer, fractionOfDistanceBetweenInsertionPoints: nil)
+        return location
     }
 }
 

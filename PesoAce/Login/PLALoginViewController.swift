@@ -43,9 +43,14 @@ class PLALoginViewController: PLABaseViewController {
             }
             self?.navigationController?.pushViewController(webVc, animated: true)
         }
+        loginView.xieyiblock1 = { [weak self]  in
+            let webVc = PLAWebViewController()
+            if let requestUrl = JudgeConfig.createRequsetURL(baseURL: h5Url + "/sweetheart", params: PLALoginFactory.getLoginParas()) {
+                webVc.productUrl = requestUrl
+            }
+            self?.navigationController?.pushViewController(webVc, animated: true)
+        }
     }
-    
-    
 }
 
 extension PLALoginViewController {

@@ -69,7 +69,7 @@ class PLAJiaLianxiView: UIView {
     
     lazy var stLabel2: UILabel = {
         let label = UILabel.createLabel(font: UIFont(name: regular_font, size: 14.px())!, textColor: UIColor(css: "#A9A9A9"), textAlignment: .left)
-        label.text = "After you select it, you can't modify it"
+        label.text = "Please fill in true and valid information."
         return label
     }()
     
