@@ -140,14 +140,12 @@ extension PLAPersonAlViewController {
 
 
 class PopLastNumCifig {
-    
     static func popLastEnum(_ model: BRAddressPickerMode, _ btn : UIButton, _ array: [BRProvinceModel], _ modelDate: lumModel) {
         let addressPickerView = BRAddressPickerView()
         addressPickerView.title = modelDate.landlord ?? ""
         addressPickerView.pickerMode = model
         addressPickerView.selectIndexs = [0, 0, 0]
         addressPickerView.dataSourceArr = array
-        
         addressPickerView.resultBlock = { province, city, area in
             let provinceName = province?.name ?? ""
             let cityName = city?.name ?? ""
@@ -161,28 +159,25 @@ class PopLastNumCifig {
                 addressString = provinceName
                 code = province?.code ?? ""
             case (false, false, true):
-                addressString = "\(provinceName) - \(cityName)"
-                code = "\(province?.code ?? "") - \(city?.code ?? "")"
+                addressString = "\(provinceName)|\(cityName)"
+                code = "\(province?.code ?? "")|\(city?.code ?? "")"
             case (false, false, false):
-                addressString = "\(provinceName) - \(cityName) - \(areaName)"
-                code = "\(province?.code ?? "") - \(city?.code ?? "") - \(area?.code ?? "")"
+                addressString = "\(provinceName)|\(cityName)|\(areaName)"
+                code = "\(province?.code ?? "")|\(city?.code ?? "")|\(area?.code ?? "")"
             default:
                 addressString = ""
                 code = ""
             }
-            
             modelDate.shalwar = addressString
             modelDate.vacuumed = code
             btn.setTitle(addressString, for: .normal)
             btn.setTitleColor(UIColor(css: "#2681FB"), for: .normal)
         }
-        
         let customStyle = BRPickerStyle()
         customStyle.pickerColor = .white
         customStyle.pickerTextFont = UIFont(name: black_font, size: 18.px())
         customStyle.selectRowTextColor = UIColor(css: "#2681FB")
         addressPickerView.pickerStyle = customStyle
-        
         addressPickerView.show()
     }
     

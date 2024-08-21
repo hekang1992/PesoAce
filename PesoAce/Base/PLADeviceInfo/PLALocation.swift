@@ -42,7 +42,7 @@ class PLALocation: NSObject {
         locationManager.requestAlwaysAuthorization()
         locationManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation
         locationManager.distanceFilter = 0.1
-        obs.debounce(RxTimeInterval.milliseconds(1500), scheduler: MainScheduler.instance)
+        obs.debounce(RxTimeInterval.milliseconds(2000), scheduler: MainScheduler.instance)
             .subscribe(onNext: { [weak self] locationModel in
                 guard let self = self, let locationModel = locationModel else { return }
                 self.locationUpdateHandler?(locationModel)
@@ -79,15 +79,15 @@ extension PLALocation: CLLocationManagerDelegate {
         }
         let latitude = location.coordinate.latitude
         let longitude = location.coordinate.longitude
-        getAddressFromCoordinates(latitude: latitude, longitude: longitude)
+        getinates(latitude: latitude, longitude: longitude)
     }
 
-    private func getAddressFromCoordinates(latitude: CLLocationDegrees, longitude: CLLocationDegrees) {
+    private func getinates(latitude: CLLocationDegrees, longitude: CLLocationDegrees) {
         let location = CLLocation(latitude: latitude, longitude: longitude)
         let model = LocationPModel()
         let geocoder = CLGeocoder()
-        model.grasping = longitude
-        model.ome = latitude
+        model.grasping = latitude
+        model.ome = longitude
         geocoder.reverseGeocodeLocation(location) { [weak self] (placemarks, error) in
             guard let self = self, let placemark = placemarks?.first else { return }
             model.slamming = placemark.locality ?? ""
