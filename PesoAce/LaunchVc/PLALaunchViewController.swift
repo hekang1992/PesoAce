@@ -10,6 +10,8 @@ import SnapKit
 
 let ROOT_VC = "ROOT_VC"
 
+let SHANGCHUAN_VC = "SHANGCHUAN_VC"
+
 let LOCATION_INFO = "LOCATION_INFO"
 
 let IDFA_INFO = "IDFA_INFO"
@@ -60,9 +62,11 @@ extension PLALaunchViewController {
     
     func rootAvc() {
         NotificationCenter.default.post(name: NSNotification.Name(ROOT_VC), object: nil)
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+        if IS_LOGIN {
+            NotificationCenter.default.post(name: NSNotification.Name(SHANGCHUAN_VC), object: nil)
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
             NotificationCenter.default.post(name: NSNotification.Name(IDFA_INFO), object: nil)
         }
     }
-    
 }

@@ -158,5 +158,4 @@ extension PLAHomeViewController {
             ViewHud.hideLoadView()
         }
     }
-    
 }

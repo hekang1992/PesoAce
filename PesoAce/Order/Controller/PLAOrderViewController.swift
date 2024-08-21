@@ -69,7 +69,9 @@ class PLAOrderViewController: PLABaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+        if listVCArray.count > 0 {
+            
+        }
     }
     
     override func viewDidLayoutSubviews() {

@@ -169,4 +169,5 @@ class JudgeConfig: NSObject {
         urlComponents.queryItems = queryItems
         return urlComponents.url?.absoluteString
     }
+    
 }

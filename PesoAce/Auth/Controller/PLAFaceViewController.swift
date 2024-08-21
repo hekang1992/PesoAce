@@ -60,7 +60,9 @@ class PLAFaceViewController: PLABaseViewController {
             self?.navigationController?.popViewController(animated: true)
         }
         faceView.block1 = { [weak self ] btn in
-            self?.navigationController?.popViewController(animated: true)
+            if self?.shifoushangchuanid != "1" {
+                self?.navigationController?.popViewController(animated: true)
+            }
         }
         faceView.block2 = { [weak self] btn in
             if let self = self {
@@ -123,7 +125,6 @@ extension PLAFaceViewController: UIImagePickerControllerDelegate, UINavigationCo
             completion()
             ViewHud.hideLoadView()
         }
-        
     }
     
     

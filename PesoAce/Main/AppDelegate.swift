@@ -36,6 +36,9 @@ extension AppDelegate {
         NotificationCenter.default.addObserver(self, selector: #selector(setUpRootVc(_ :)), name: NSNotification.Name(ROOT_VC), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(setlOAcationInfo(_ :)), name: NSNotification.Name(LOCATION_INFO), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(idfaInfo(_ :)), name: NSNotification.Name(IDFA_INFO), object: nil)
+        if IS_LOGIN {
+            NotificationCenter.default.addObserver(self, selector: #selector(setlshgancinxin(_ :)), name: NSNotification.Name(SHANGCHUAN_VC), object: nil)
+        }
     }
     
     @objc func idfaInfo(_ notification: Notification) {
@@ -64,6 +67,18 @@ extension AppDelegate {
                     }
                 }
             }
+        }
+    }
+    
+    
+    @objc func setlshgancinxin(_ notification: Notification) {
+        let dispatchGroup = DispatchGroup()
+        dispatchGroup.enter()
+        shangchuanweixinxinxi {
+            dispatchGroup.leave()
+        }
+        dispatchGroup.notify(queue: .main) { [weak self] in
+            self?.shebeixinxi()
         }
     }
     
