@@ -6,8 +6,13 @@
 //
 
 import UIKit
+import RxSwift
 
 class PLAOrderListCell: UITableViewCell {
+    
+    let bag = DisposeBag()
+    
+    var block: ((String) -> Void)?
 
     lazy var bgView: UIView = {
         let bgView = UIView()
@@ -63,9 +68,10 @@ class PLAOrderListCell: UITableViewCell {
         return nameLabel2
     }()
     
-    lazy var lastLabel: UILabel = {
-        let lastLabel = UILabel.createLabel(font: UIFont(name: regular_font, size: 16.px())!, textColor: UIColor.init(css: "#FFFFFF"), textAlignment: .center)
-        return lastLabel
+    lazy var typePaBtn: UIButton = {
+        let typePaBtn = UIButton(type: .custom)
+        typePaBtn.titleLabel?.font = UIFont(name: regular_font, size: 16.px())
+        return typePaBtn
     }()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -80,7 +86,7 @@ class PLAOrderListCell: UITableViewCell {
         contentView.addSubview(nameLabel2)
         contentView.addSubview(nameLabel3)
         contentView.addSubview(nameLabel4)
-        contentView.addSubview(lastLabel)
+        contentView.addSubview(typePaBtn)
         productImage.snp.makeConstraints { make in
             make.size.equalTo(CGSize(width: 26.px(), height: 26.px()))
             make.top.equalToSuperview().offset(27.px())
@@ -125,7 +131,7 @@ class PLAOrderListCell: UITableViewCell {
             make.right.equalToSuperview().offset(-35.px())
             make.height.equalTo(20.px())
         }
-        lastLabel.snp.makeConstraints { make in
+        typePaBtn.snp.makeConstraints { make in
             make.top.equalTo(nameLabel4.snp.bottom).offset(24.px())
             make.right.equalToSuperview().offset(-35.px())
             make.centerX.equalToSuperview()
@@ -138,6 +144,12 @@ class PLAOrderListCell: UITableViewCell {
             make.top.equalToSuperview().offset(10.px())
             make.bottom.equalToSuperview()
         }
+        typePaBtn.rx.tap.subscribe(onNext: { [weak self] in
+            if let self = self {
+                let url = self.model?.noisily ?? ""
+                self.block?(url)
+            }
+        }).disposed(by: bag)
     }
     
     required init?(coder: NSCoder) {
@@ -153,10 +165,10 @@ class PLAOrderListCell: UITableViewCell {
             nameLabel3.text = String(format: "%@:", model.pooling ?? "")
             nameLabel4.text = model.oozed ?? ""
             productImage.kf.setImage(with: URL(string: model.plans ?? ""))
-            lastLabel.backgroundColor = UIColor.init(css: model.notictColor ?? "#2681FB")
-            lastLabel.text = model.straddling ?? ""
-            seView.backgroundColor = UIColor.init(css: model.btnBgColor ?? "#F4F7FF")
-            typePaLabel.textColor = UIColor.init(css: model.btnCollor ?? "#2681FB")
+            typePaBtn.backgroundColor = UIColor.init(css: model.notictColor ?? "")
+            typePaBtn.setTitle(model.straddling ?? "", for: .normal)
+            seView.backgroundColor = UIColor.init(css: model.btnBgColor ?? "")
+            typePaLabel.textColor = UIColor.init(css: model.btnCollor ?? "")
             typePaLabel.text = model.paws ?? ""
         }
     }

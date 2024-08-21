@@ -113,6 +113,8 @@ class cleanerModel: HandyJSON {
     var vitreous: String?
     var btnBgColor: String?
     var inch: String?//diandanzhuangtai
+    var btnText: String?
+    var noisily: String?
 }
 
 class jokinglyModel: HandyJSON {

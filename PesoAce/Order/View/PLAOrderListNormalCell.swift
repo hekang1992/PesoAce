@@ -28,8 +28,13 @@ class PLAOrderListNormalCell: UITableViewCell {
     
     lazy var seView: UIView = {
         let seView = UIView()
-        seView.backgroundColor = UIColor.init(css: "#F4F7FF")
+        seView.backgroundColor = UIColor.init(css: "")
         return seView
+    }()
+    
+    lazy var typePaLabel: UILabel = {
+        let typePaLabel = UILabel.createLabel(font: UIFont(name: regular_font, size: 14.px())!, textColor: UIColor.init(css: ""), textAlignment: .center)
+        return typePaLabel
     }()
     
     lazy var lineView: UIView = {
@@ -64,6 +69,7 @@ class PLAOrderListNormalCell: UITableViewCell {
         contentView.addSubview(productImage)
         contentView.addSubview(nameLabel)
         contentView.addSubview(seView)
+        seView.addSubview(typePaLabel)
         contentView.addSubview(lineView)
         contentView.addSubview(nameLabel1)
         contentView.addSubview(nameLabel2)
@@ -83,6 +89,9 @@ class PLAOrderListNormalCell: UITableViewCell {
             make.centerY.equalTo(productImage.snp.centerY)
             make.size.equalTo(CGSize(width: 97.px(), height: 24.px()))
             make.right.equalToSuperview().offset(-45.px())
+        }
+        typePaLabel.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
         }
         lineView.snp.makeConstraints { make in
             make.left.equalToSuperview().offset(35.px())
@@ -132,7 +141,9 @@ class PLAOrderListNormalCell: UITableViewCell {
             nameLabel3.text = String(format: "%@:", model.pooling ?? "")
             nameLabel4.text = model.oozed ?? ""
             productImage.kf.setImage(with: URL(string: model.plans ?? ""))
-            seView.backgroundColor = UIColor.init(css: model.btnCollor ?? "#F4F7FF")
+            seView.backgroundColor = UIColor.init(css: model.btnBgColor ?? "")
+            typePaLabel.textColor = UIColor.init(css: model.btnCollor ?? "")
+            typePaLabel.text = model.paws ?? ""
         }
     }
     

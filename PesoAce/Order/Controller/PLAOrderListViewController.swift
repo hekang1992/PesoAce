@@ -37,12 +37,13 @@ class PLAOrderListViewController: PLABaseViewController {
         listView.block = { [weak self] url in
             self?.block?(url)
         }
-        
+        listView.block1 = { [weak self] url in
+            self?.block?(url)
+        }
         self.listView.tableView.mj_header = MJRefreshNormalHeader(refreshingTarget: self, refreshingAction: #selector(handleRefresh))
     }
     
 }
-
 
 extension PLAOrderListViewController {
     

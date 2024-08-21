@@ -13,6 +13,8 @@ class PLAOrderListView: UIView {
     
     var block: ((String) -> Void)?
     
+    var block1: ((String) -> Void)?
+    
     lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
         tableView.delegate = self
@@ -59,11 +61,14 @@ extension PLAOrderListView: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let model = modelArray?[indexPath.row]
-        if let typeStr = model?.paws, !typeStr.isEmpty {
+        if let typeStr = model?.btnText, !typeStr.isEmpty {
             if let cell = tableView.dequeueReusableCell(withIdentifier: "PLAOrderListCell", for: indexPath) as? PLAOrderListCell {
                 cell.selectionStyle = .none
                 cell.backgroundColor = .clear
                 cell.model = modelArray?[indexPath.row]
+                cell.block = { [weak self] str in
+                    self?.block1?(str)
+                }
                 return cell
             }
         }else {
