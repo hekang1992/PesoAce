@@ -21,6 +21,10 @@ class PLAChangeBankViewController: PLABaseViewController {
         return emptyView
     }()
     
+    var productID: String?
+    
+    var orderID: String?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -35,6 +39,7 @@ class PLAChangeBankViewController: PLABaseViewController {
         cbankView.block1 = { [weak self] in
             let moneyVc = PLAAllMoneyViewController()
             moneyVc.h5type = "1"
+            moneyVc.orderID = self?.orderID
             self?.navigationController?.pushViewController(moneyVc, animated: true)
         }
         cbankView.block2 = { [weak self] model in
@@ -50,8 +55,6 @@ class PLAChangeBankViewController: PLABaseViewController {
 }
 
 extension PLAChangeBankViewController {
-    
-    
     func bankInfo() {
         ViewHud.addLoadView()
         PLAAFNetWorkManager.shared.requestAPI(params: ["isbank": "1", "change": "1", "wa": "6"], pageUrl: "/ace/looked/dello/there", method: .post) { [weak self] baseModel in
@@ -90,13 +93,13 @@ extension PLAChangeBankViewController {
     
     func changeBankInfo(_ model: improvementModel) {
         ViewHud.addLoadView()
-        PLAAFNetWorkManager.shared.requestAPI(params: ["bankNo": model.podge ?? "", "fade": model.fade ?? "", "wider": "", "changeBank": "1"], pageUrl: "/ace/dipping/kidneys/things", method: .post) { [weak self] baseModel in
+        PLAAFNetWorkManager.shared.requestAPI(params: ["bankNo": model.podge ?? "", "fade": model.fade ?? "", "wider": orderID ?? "", "changeBank": "1"], pageUrl: "/ace/dipping/kidneys/things", method: .post) { [weak self] baseModel in
             ViewHud.hideLoadView()
             if baseModel.greasy == 0 || baseModel.greasy == 00 {
                 if let model = JSONDeserializer<wallpaperModel>.deserializeFrom(dict: baseModel.wallpaper), let self = self {
                     self.bankInfo()
-                    JudgeConfig.judue(model.beige ?? "", from: self)
-                }                
+                    JudgeConfig.judue(model.beige ?? "", "moneyall", from: self)
+                }
             }
             MBProgressHUD.wj_showPlainText(baseModel.formica ?? "", view: nil)
         } errorBlock: { error in

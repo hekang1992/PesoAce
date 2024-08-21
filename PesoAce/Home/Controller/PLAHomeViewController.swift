@@ -48,7 +48,7 @@ class PLAHomeViewController: PLABaseViewController {
         oneView.picBlock = { [weak self] url in
             if let self = self {
                 if !url.isEmpty {
-                    JudgeConfig.judue(url, from: self)
+                    JudgeConfig.judue(url, "", from: self)
                 }
             }
         }
@@ -70,14 +70,14 @@ class PLAHomeViewController: PLABaseViewController {
         mainView.picBlock = { [weak self] url in
             if let self = self {
                 if !url.isEmpty {
-                    JudgeConfig.judue(url, from: self)
+                    JudgeConfig.judue(url, "", from: self)
                 }
             }
         }
         mainView.picBlock1 = { [weak self] url in
             if let self = self {
                 if !url.isEmpty {
-                    JudgeConfig.judue(url, from: self)
+                    JudgeConfig.judue(url, "", from: self)
                 }
             }
         }
@@ -152,7 +152,7 @@ extension PLAHomeViewController {
             ViewHud.hideLoadView()
             if let greasy = baseModel.greasy, greasy == 0 || greasy == 00 {
                 guard let model = JSONDeserializer<wallpaperModel>.deserializeFrom(dict: baseModel.wallpaper), let self = self else { return }
-                JudgeConfig.judue(model.minarets ?? "", from: self)
+                JudgeConfig.judue(model.minarets ?? "", "", from: self)
             }
         } errorBlock: { error in
             ViewHud.hideLoadView()

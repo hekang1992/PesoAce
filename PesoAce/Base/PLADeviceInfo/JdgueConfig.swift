@@ -14,12 +14,12 @@ class JudgeConfig: NSObject {
     
     static var start: String = DeviceInfo.getCurrentTime()
     
-    static func judue(_ str: String?, from vc: PLABaseViewController) {
+    static func judue(_ str: String?, _ type: String, from vc: PLABaseViewController) {
         guard let str = str,
               let url = URL(string: str),
               let sch = url.scheme else { return }
         if sch.hasPrefix("http")  {
-            pushWebVc(str, "", form: vc)
+            pushWebVc(str, type, form: vc)
         }else if sch.hasPrefix("ace") {
             let path = url.path
             if path.contains("/afflictions") {// 产品详情
@@ -29,9 +29,16 @@ class JudgeConfig: NSObject {
                 productDetailInfo(reputedly, "", form: vc)
             } else if path.contains("/sensibility") {
                 vc.navigationController?.popToRootViewController(animated: true)
-            } else if path.contains("/perceived") {
-                let banVc = PLAChangeBankViewController()
-                vc.navigationController?.pushViewController(banVc, animated: true)
+            } else if path.contains("/assurance") {
+                if let reputedlyRange = str.range(of: "reputedly=")?.upperBound,
+                   let andSymbolRange = str.range(of: "&", range: reputedlyRange..<str.endIndex)?.lowerBound, let biryaniRange = str.range(of: "biryani=")?.upperBound {
+                    let productID = str[reputedlyRange..<andSymbolRange]
+                    let orderID = str[biryaniRange..<str.endIndex]
+                    let banVc = PLAChangeBankViewController()
+                    banVc.productID = String(productID)
+                    banVc.orderID = String(orderID)
+                    vc.navigationController?.pushViewController(banVc, animated: true)
+                }
             } else if path.contains("/hideously") {
                 let orVc = PLAOrderViewController()
                 vc.navigationController?.pushViewController(orVc, animated: true)

@@ -115,7 +115,9 @@ class PLAWebViewController: PLABaseViewController {
                 self.webView.goBack()
             } else {
                 if self.type == "moneyall" {
-                    self.navigationController?.popToRootViewController(animated: true)
+                    if let navigationController = self.navigationController {
+                        JudgePushVcConfing.popToZhidingVc(ofClass: PLAOrderViewController.self, in: navigationController)
+                    }
                 } else {
                     self.navigationController?.popViewController(animated: true)
                 }
@@ -123,8 +125,6 @@ class PLAWebViewController: PLABaseViewController {
         }).disposed(by: disposeBag)
     }
 }
-
-// MARK: - WKScriptMessageHandler, WKNavigationDelegate
 
 extension PLAWebViewController: WKScriptMessageHandler, WKNavigationDelegate {
     
@@ -238,7 +238,7 @@ extension PLAWebViewController: WKScriptMessageHandler, WKNavigationDelegate {
     
     private func daikaiwangzhi(_ arguments: [String]?) {
         guard let path = arguments?.first else { return }
-        JudgeConfig.judue(path, from: self)
+        JudgeConfig.judue(path, "", from: self)
     }
     
     private func bgcolor(_ arguments: [String]?) {
@@ -272,4 +272,5 @@ extension PLAWebViewController: WKScriptMessageHandler, WKNavigationDelegate {
         let startTime = arguments![1]
         JudgeConfig.maidianxinxi(productId, "10", startTime)
     }
+    
 }

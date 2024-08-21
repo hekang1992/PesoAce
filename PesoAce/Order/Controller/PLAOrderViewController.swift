@@ -38,7 +38,7 @@ class PLAOrderViewController: PLABaseViewController {
             orderView.contentScrollView.addSubview(vc.view)
             vc.block = { [weak self] url in
                 if let self = self {
-                    JudgeConfig.judue(url, from: self)
+                    JudgeConfig.judue(url, "", from: self)
                 }
             }
             listVCArray.append(vc)

@@ -40,6 +40,12 @@ class PLAOrderListViewController: PLABaseViewController {
         
         self.listView.tableView.mj_header = MJRefreshNormalHeader(refreshingTarget: self, refreshingAction: #selector(handleRefresh))
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        handleRefresh()
+    }
+    
 }
 
 

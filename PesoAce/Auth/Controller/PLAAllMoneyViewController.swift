@@ -21,6 +21,8 @@ class PLAAllMoneyViewController: PLABaseViewController {
     
     var h5type: String?
     
+    var orderID: String?
+    
     lazy var moneyView: PLAAllMoneyView = {
         let moneyView = PLAAllMoneyView()
         moneyView.stLabel.text = setp ?? ""
@@ -43,7 +45,9 @@ class PLAAllMoneyViewController: PLABaseViewController {
             make.edges.equalToSuperview()
         }
         moneyView.block = { [weak self] in
-            self?.navigationController?.popToRootViewController(animated: true)
+            if let navigationController = self?.navigationController {
+                JudgePushVcConfing.popToZhidingVc(ofClass: PLAOrderViewController.self, in: navigationController)
+            }
         }
         moneyView.block1 = {btn, model in //enmu
             if let significant = model.significant {
@@ -121,7 +125,7 @@ extension PLAAllMoneyViewController {
     
     func changeBankInfo(_ model: wallpaperModel) {
         ViewHud.addLoadView()
-        PLAAFNetWorkManager.shared.requestAPI(params: ["fade": model.fade ?? "", "wider": "", "changeBank": "1"], pageUrl: "/ace/dipping/kidneys/things", method: .post) { [weak self] baseModel in
+        PLAAFNetWorkManager.shared.requestAPI(params: ["fade": model.fade ?? "", "wider": self.orderID ?? "", "changeBank": "1"], pageUrl: "/ace/dipping/kidneys/things", method: .post) { [weak self] baseModel in
             ViewHud.hideLoadView()
             if baseModel.greasy == 0 || baseModel.greasy == 00 {
                 if let model = JSONDeserializer<wallpaperModel>.deserializeFrom(dict: baseModel.wallpaper), let self = self {
@@ -129,7 +133,7 @@ extension PLAAllMoneyViewController {
                     if beige.isEmpty {
                         self.navigationController?.popViewController(animated: true)
                     }else {
-                        JudgeConfig.judue(model.beige ?? "", from: self)
+                        JudgeConfig.judue(model.beige ?? "", "moneyall", from: self)
                     }
                 }
             }
@@ -138,5 +142,18 @@ extension PLAAllMoneyViewController {
             ViewHud.hideLoadView()
         }
     }
-    
+}
+
+
+class JudgePushVcConfing: NSObject {
+    static func popToZhidingVc<T: PLABaseViewController>(ofClass: T.Type, in navigationController: UINavigationController) {
+        for viewController in navigationController.viewControllers {
+            if viewController.isKind(of: ofClass) {
+                navigationController.popToViewController(viewController, animated: true)
+                return
+            }
+        }
+        // 如果没有找到匹配的视图控制器，弹出到根视图控制器
+        navigationController.popToRootViewController(animated: true)
+    }
 }
