@@ -217,7 +217,9 @@ extension PLAWebViewController: WKScriptMessageHandler, WKNavigationDelegate {
         }else if leixingzifu.hasPrefix("PesoAceM://"){
             if let range = leixingzifu.range(of: "PesoAceM://") {
                 let emailAddress = String(leixingzifu[range.upperBound...])
-                if let emailURL = URL(string: "mailto:\(emailAddress)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!) {
+                let mobileStr = UserDefaults.standard.object(forKey: PLA_LOGIN)
+                let phoneStr = "PesoAce: \(mobileStr ?? "")"
+                if let emailURL = URL(string: "mailto:\(emailAddress)?body=\(phoneStr)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!) {
                     if UIApplication.shared.canOpenURL(emailURL) {
                         UIApplication.shared.open(emailURL, options: [:], completionHandler: nil)
                     }
