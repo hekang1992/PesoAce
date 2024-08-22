@@ -11,6 +11,8 @@ import DeviceKit
 let PLA_LOGIN = "PLA_LOGIN"
 let PLA_SESSIONID = "PLA_SESSIONID"
 
+let MAIDIAN1 = "MAIDIAN1"
+
 var IS_LOGIN: Bool {
     if let sessionID = UserDefaults.standard.object(forKey: PLA_SESSIONID) as? String {
         return !sessionID.isEmpty
@@ -72,6 +74,7 @@ extension PLALoginFactory {
     static func removeLoginInfo() {
         UserDefaults.standard.setValue("", forKey: PLA_LOGIN)
         UserDefaults.standard.setValue("", forKey: PLA_SESSIONID)
+        UserDefaults.standard.setValue("", forKey: MAIDIAN1)
         UserDefaults.standard.synchronize()
     }
     

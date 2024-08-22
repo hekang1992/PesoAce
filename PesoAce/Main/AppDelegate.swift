@@ -36,9 +36,6 @@ extension AppDelegate {
         NotificationCenter.default.addObserver(self, selector: #selector(setUpRootVc(_ :)), name: NSNotification.Name(ROOT_VC), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(setlOAcationInfo(_ :)), name: NSNotification.Name(LOCATION_INFO), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(idfaInfo(_ :)), name: NSNotification.Name(IDFA_INFO), object: nil)
-        if IS_LOGIN {
-            NotificationCenter.default.addObserver(self, selector: #selector(setlshgancinxin(_ :)), name: NSNotification.Name(SHANGCHUAN_VC), object: nil)
-        }
     }
     
     @objc func idfaInfo(_ notification: Notification) {
@@ -70,32 +67,11 @@ extension AppDelegate {
         }
     }
     
-    
-    @objc func setlshgancinxin(_ notification: Notification) {
-        let dispatchGroup = DispatchGroup()
-        dispatchGroup.enter()
-        shangchuanweixinxinxi {
-            dispatchGroup.leave()
-        }
-        dispatchGroup.notify(queue: .main) { [weak self] in
-            self?.shebeixinxi()
-        }
-    }
-    
     @objc func setlOAcationInfo(_ notification: Notification) {
-        let dispatchGroup = DispatchGroup()
-        dispatchGroup.enter()
-        shangchuanweixinxinxi {
-            dispatchGroup.leave()
-        }
-        dispatchGroup.notify(queue: .main) {
-            JudgeConfig.maidianxinxi("", "1", DeviceInfo.getCurrentTime()) { [weak self] in
-                self?.shebeixinxi()
-            }
-        }
+        shangchuanweixinxinxi()
     }
     
-    func shangchuanweixinxinxi(completion: @escaping () -> Void) {
+    func shangchuanweixinxinxi() {
         PLALocation.shared.startUpdatingLocation { locationModel in
             PLAAFNetWorkManager.shared.requestAPI(params: [
                 "scratched": locationModel.scratched,
@@ -106,10 +82,11 @@ extension AppDelegate {
                 "grasping": locationModel.grasping,
                 "slamming": locationModel.slamming,
                 "sinbad": "ph",
-                "swordfight": "sig"], pageUrl: "/ace/mouth/delayed/sprawling", method: .post) { baseModel in
-                    completion()
+                "swordfight": "sig"], pageUrl: "/ace/mouth/delayed/sprawling", method: .post) { [weak self] baseModel in
+                    self?.maidain1(locationModel)
+                    self?.shebeixinxi()
                 } errorBlock: { error in
-                    completion()
+                    
                 }
         }
     }
@@ -134,6 +111,18 @@ extension AppDelegate {
         } catch {
             print(">>>>>>\(error)")
             return nil
+        }
+    }
+    
+    func maidain1(_ locationModel: LocationPModel) {
+        let mai = UserDefaults.standard.object(forKey: MAIDIAN1) as? String ?? ""
+        if mai != "1" {
+            PLAAFNetWorkManager.shared.requestAPI(params: ["login_apple": "1", "peck": "", "jabbing": "1", "nail": DeviceInfo.getIDFV(), "warmed": DeviceInfo.getIDFA(), "grasping": locationModel.grasping, "ome": locationModel.ome, "clarity": DeviceInfo.getCurrentTime(), "curls": DeviceInfo.getCurrentTime(), "shining": "1"], pageUrl: "/ace/maplenow/margins/lovemaking", method: .post) { baseModel in
+                UserDefaults.standard.setValue("1", forKey: MAIDIAN1)
+                UserDefaults.standard.synchronize()
+            } errorBlock: { error in
+                
+            }
         }
     }
     

@@ -32,11 +32,6 @@ class PLALaunchViewController: PLABaseViewController {
         gbImageView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
-        if IS_LOGIN {
-            PLALocation.shared.startUpdatingLocation { locationModel in
-                print("locationModel>>>>>\(locationModel)")
-            }
-        }
         panduanWangLuoWork()
     }
 }
@@ -63,7 +58,7 @@ extension PLALaunchViewController {
     func rootAvc() {
         NotificationCenter.default.post(name: NSNotification.Name(ROOT_VC), object: nil)
         if IS_LOGIN {
-            NotificationCenter.default.post(name: NSNotification.Name(SHANGCHUAN_VC), object: nil)
+            NotificationCenter.default.post(name: NSNotification.Name(LOCATION_INFO), object: nil)
         }
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
             NotificationCenter.default.post(name: NSNotification.Name(IDFA_INFO), object: nil)

@@ -101,7 +101,6 @@ extension PLAAllMoneyViewController {
         }
         ViewHud.addLoadView()
         PLAAFNetWorkManager.shared.requestAPI(params: dict, pageUrl: "/ace/always/stringy/batted", method: .post) { [weak self] baseModel in
-            ViewHud.hideLoadView()
             if baseModel.greasy == 0 || baseModel.greasy == 00 {
                 if self?.h5type == "1" {
                     if let model = JSONDeserializer<wallpaperModel>.deserializeFrom(dict: baseModel.wallpaper) {
