@@ -23,7 +23,7 @@ typealias LocationModelBlock = (_ locationModel: LocationPModel) -> Void
 
 class PLALocation: NSObject {
 
-    static let shared = PLALocation()
+//    static let shared = PLALocation()
     
     private var locationManager = CLLocationManager()
     
@@ -40,22 +40,28 @@ class PLALocation: NSObject {
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()
         locationManager.requestAlwaysAuthorization()
-        locationManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation
-        locationManager.distanceFilter = 0.1
+        locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
         obs.debounce(RxTimeInterval.milliseconds(2000), scheduler: MainScheduler.instance)
-            .subscribe(onNext: { [weak self] locationModel in
-                guard let self = self, let locationModel = locationModel else { return }
-                self.locationUpdateHandler?(locationModel)
+            .subscribe(onNext: { locationModel in
+                if let locationModel = locationModel {
+                    self.locationUpdateHandler?(locationModel)
+                }
             }).disposed(by: bag)
     }
+    
+    deinit {
+        print("obsobsobsobsobsobs")
+    }
+    
 }
 
 extension PLALocation: CLLocationManagerDelegate {
-
+    
     func startUpdatingLocation(completion: @escaping LocationModelBlock) {
         locationUpdateHandler = completion
         if CLLocationManager.authorizationStatus() == .denied {
-            locationUpdateHandler?(locatinModel)
+            let model = LocationPModel()
+            locationUpdateHandler?(model)
         } else {
             locationManager.startUpdatingLocation()
         }
@@ -66,7 +72,6 @@ extension PLALocation: CLLocationManagerDelegate {
         case .authorizedWhenInUse, .authorizedAlways:
             locationManager.startUpdatingLocation()
         case .denied:
-            locationUpdateHandler?(locatinModel)
             locationManager.stopUpdatingLocation()
         default:
             break
@@ -97,6 +102,7 @@ extension PLALocation: CLLocationManagerDelegate {
             model.scratched = placemark.administrativeArea ?? ""
             self.locatinModel = model
             self.obs.onNext(model)
+            self.obs.onCompleted()
             self.locationManager.stopUpdatingLocation()
         }
     }
@@ -104,4 +110,5 @@ extension PLALocation: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print("Failed to update location: \(error.localizedDescription)")
     }
+
 }

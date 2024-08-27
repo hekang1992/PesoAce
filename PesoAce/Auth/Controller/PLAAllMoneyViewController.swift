@@ -110,7 +110,7 @@ extension PLAAllMoneyViewController {
                     if let self = self {
                         let dispatchGroup = DispatchGroup()
                         dispatchGroup.enter()
-                        JudgeConfig.maidianxinxi(self.productID ?? "", "8", self.start ?? "") {
+                        JudgeConfig.maidianxinxi(self.productID ?? "", "8", self.start ?? "", DeviceInfo.getCurrentTime()) {
                             dispatchGroup.leave()
                         }
                         dispatchGroup.notify(queue: .main) {

@@ -14,6 +14,7 @@ import GYSide
 class PLAHomeViewController: PLABaseViewController {
     
     lazy var oneView = PLAHomeOneView()
+    
     lazy var mainView = PLAMainHomeView()
     
     var header: MJRefreshNormalHeader?

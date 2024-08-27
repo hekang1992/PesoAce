@@ -121,7 +121,7 @@ class PLAAFNetWorkManager: NSObject {
                         }
                         if let contentToSerialize = model?.wallpaper, let data = try? JSONSerialization.data(withJSONObject: contentToSerialize, options: []) {
                             let jsonString = String(data: data, encoding:.utf8)
-                            print("data>>>>>>>>>>>>>>>\(jsonString ?? "")")
+//                            print("data>>>>>>>>>>>>>>>\(jsonString ?? "")")
                         }
                     }
                 case .failure(let error):

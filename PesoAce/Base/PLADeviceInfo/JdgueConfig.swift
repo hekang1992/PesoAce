@@ -129,7 +129,7 @@ class JudgeConfig: NSObject {
                     pushWebVc(productUrl, tt, form: vc)
                 }
             }
-            JudgeConfig.maidianxinxi(productID, "9", start){
+            JudgeConfig.maidianxinxi(productID, "9", start, DeviceInfo.getCurrentTime()){
                 
             }
         } errorBlock: { error in
@@ -147,9 +147,10 @@ class JudgeConfig: NSObject {
         vc.navigationController?.pushViewController(webVc, animated: true)
     }
     
-    static func maidianxinxi(_ proid: String, _ type: String, _ start: String, completion: @escaping () -> Void){
-        PLALocation.shared.startUpdatingLocation { locationModel in
-            PLAAFNetWorkManager.shared.requestAPI(params: ["login_apple": "1", "peck": proid, "jabbing": type, "nail": DeviceInfo.getIDFV(), "warmed": DeviceInfo.getIDFA(), "grasping": locationModel.grasping, "ome": locationModel.ome, "clarity": start, "curls": DeviceInfo.getCurrentTime(), "shining": "1"], pageUrl: "/ace/maplenow/margins/lovemaking", method: .post) { baseModel in
+    static func maidianxinxi(_ proid: String, _ type: String, _ start: String, _ endTime: String, completion: @escaping () -> Void){
+        let localtion = PLALocation()
+        localtion.startUpdatingLocation { locationModel in
+            PLAAFNetWorkManager.shared.requestAPI(params: ["login_apple": "1", "peck": proid, "jabbing": type, "nail": DeviceInfo.getIDFV(), "warmed": DeviceInfo.getIDFA(), "grasping": locationModel.grasping, "ome": locationModel.ome, "clarity": start, "curls": endTime, "shining": "1"], pageUrl: "/ace/maplenow/margins/lovemaking", method: .post) { baseModel in
                 completion()
             } errorBlock: { error in
                 completion()

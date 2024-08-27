@@ -39,7 +39,7 @@ class PLAAuThAbcController: UIViewController {
             let faceVc = PLAFaceViewController()
             faceVc.model = model
             faceVc.productID = self?.productID ?? ""
-            JudgeConfig.maidianxinxi(self?.productID ?? "", "2", self?.staartTIME ?? "") {
+            JudgeConfig.maidianxinxi(self?.productID ?? "", "2", self?.staartTIME ?? "", DeviceInfo.getCurrentTime()) {
                 
             }
             self?.navigationController?.pushViewController(faceVc, animated: true)

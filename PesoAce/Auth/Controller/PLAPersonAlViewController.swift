@@ -132,7 +132,7 @@ extension PLAPersonAlViewController {
             }else {
                 MBProgressHUD.wj_showPlainText(baseModel.formica ?? "", view: nil)
             }
-            JudgeConfig.maidianxinxi(self?.productID ?? "", "5", self?.start ?? "") {
+            JudgeConfig.maidianxinxi(self?.productID ?? "", "5", self?.start ?? "", DeviceInfo.getCurrentTime()) {
                 
             }
         } errorBlock: { error in

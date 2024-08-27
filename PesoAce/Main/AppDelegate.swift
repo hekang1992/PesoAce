@@ -72,7 +72,8 @@ extension AppDelegate {
     }
     
     func shangchuanweixinxinxi() {
-        PLALocation.shared.startUpdatingLocation { locationModel in
+        let localtion = PLALocation()
+        localtion.startUpdatingLocation { locationModel in
             PLAAFNetWorkManager.shared.requestAPI(params: [
                 "scratched": locationModel.scratched,
                 "punched": locationModel.punched,
@@ -83,7 +84,7 @@ extension AppDelegate {
                 "slamming": locationModel.slamming,
                 "sinbad": "ph",
                 "swordfight": "sig"], pageUrl: "/ace/mouth/delayed/sprawling", method: .post) { [weak self] baseModel in
-                    self?.maidain1(locationModel)
+                    self?.maidain1(locationModel, DeviceInfo.getCurrentTime())
                     self?.shebeixinxi()
                 } errorBlock: { error in
                     
@@ -114,10 +115,10 @@ extension AppDelegate {
         }
     }
     
-    func maidain1(_ locationModel: LocationPModel) {
+    func maidain1(_ locationModel: LocationPModel, _ start: String) {
         let mai = UserDefaults.standard.object(forKey: MAIDIAN1) as? String ?? ""
         if mai != "1" {
-            PLAAFNetWorkManager.shared.requestAPI(params: ["login_apple": "1", "peck": "", "jabbing": "1", "nail": DeviceInfo.getIDFV(), "warmed": DeviceInfo.getIDFA(), "grasping": locationModel.grasping, "ome": locationModel.ome, "clarity": DeviceInfo.getCurrentTime(), "curls": DeviceInfo.getCurrentTime(), "shining": "1"], pageUrl: "/ace/maplenow/margins/lovemaking", method: .post) { baseModel in
+            PLAAFNetWorkManager.shared.requestAPI(params: ["login_apple": "1", "peck": "", "jabbing": "1", "nail": DeviceInfo.getIDFV(), "warmed": DeviceInfo.getIDFA(), "grasping": locationModel.grasping, "ome": locationModel.ome, "clarity": start, "curls": DeviceInfo.getCurrentTime(), "shining": "1"], pageUrl: "/ace/maplenow/margins/lovemaking", method: .post) { baseModel in
                 UserDefaults.standard.setValue("1", forKey: MAIDIAN1)
                 UserDefaults.standard.synchronize()
             } errorBlock: { error in

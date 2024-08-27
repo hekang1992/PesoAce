@@ -291,7 +291,7 @@ extension PLALXRViewController: CNContactPickerDelegate {
                     }else {
                         MBProgressHUD.wj_showPlainText(baseModel.formica ?? "", view: nil)
                     }
-                    JudgeConfig.maidianxinxi(self?.productID ?? "", "7", self?.start ?? "") {
+                    JudgeConfig.maidianxinxi(self?.productID ?? "", "7", self?.start ?? "", DeviceInfo.getCurrentTime()) {
                         
                     }
                 } errorBlock: { error in

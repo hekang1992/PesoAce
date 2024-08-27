@@ -163,7 +163,7 @@ extension PLAFaceViewController: UIImagePickerControllerDelegate, UINavigationCo
                             dispatchGroup.leave()
                         }
                         dispatchGroup.notify(queue: .main) {
-                            JudgeConfig.maidianxinxi(self?.productID ?? "", "4", self?.startface ?? "") {
+                            JudgeConfig.maidianxinxi(self?.productID ?? "", "4", self?.startface ?? "", DeviceInfo.getCurrentTime()) {
                                 
                             }
                         }
@@ -266,7 +266,7 @@ extension PLAFaceViewController: UIImagePickerControllerDelegate, UINavigationCo
                 })
             }
             MBProgressHUD.wj_showPlainText(formica, view: nil)
-            JudgeConfig.maidianxinxi(self?.productID ?? "", "3", self?.start ?? "") {
+            JudgeConfig.maidianxinxi(self?.productID ?? "", "3", self?.start ?? "", DeviceInfo.getCurrentTime()) {
                 
             }
         } errorBlock: { error in
